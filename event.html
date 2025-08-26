@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary Meta Tags -->
+    <title>Mine - Nơi Đồ Cũ Viết Tiếp Câu Chuyện Xanh | Mua Bán Đồ Cũ Bền Vững</title>
+    <meta name="title" content="Mine - Nơi Đồ Cũ Viết Tiếp Câu Chuyện Xanh">
+    <meta name="description"
+        content="Mine - Nền tảng mua bán đồ cũ hàng đầu Việt Nam. Tìm kiếm bất động sản, xe cộ, đồ điện tử, gia dụng đã qua sử dụng với chất lượng tốt. Góp phần bảo vệ môi trường qua kinh tế tuần hoàn.">
+    <meta name="keywords"
+        content="đồ cũ, mua bán đồ cũ, bất động sản cũ, xe cũ, đồ điện tử cũ, đồ gia dụng cũ, kinh tế tuần hoàn, bảo vệ môi trường, second hand, recycle">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Vietnamese">
+    <meta name="author" content="Mine">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css" rel="stylesheet" />
+    <link rel="icon" href="Picture/logo.png" type="image/svg+xml">
+    <link rel="icon" href="Picture/logo.png" type="image/x-icon">
+    <link rel="icon" href="Picture/logo.png" type="image/png">
+    <link rel="apple-touch-icon" href="Picture/logo.png">
+    <style>
+        .img.h-12.w-12.text-green-600 {
+            border-radius: 30px;
+        }
+
+        svg.h-12.w-12.text-green-600.rounded-full,
+        img.h-12.w-12.text-green-600,
+        video.h-12.w-12.rounded-full.object-cover {
+            border-radius: 50% !important;
+        }
+
+        /* Rating Face Styles */
+        .rating-face {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .rating-face:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .rating-face.selected {
+            border-color: #16a34a !important;
+            background-color: rgba(34, 197, 94, 0.1);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+    <nav class="bg-gray-800 border-gray-700 dark:bg-gray-900 fixed w-full z-50 shadow-sm">
+        <div class="max-w-screen-xl flex items-center mx-auto p-3">
+            <!-- Logo và tên -->
+            <a href="#" class="flex items-center space-x-2 flex-shrink-0">
+                <img src="Picture/logo.png" class="h-10" alt="Mine Logo">
+                <span class="self-center text-xl font-bold text-white">Mine</span>
+            </a>
+
+            <!-- Menu chính (ẩn trên mobile/tablet) -->
+            <div class="hidden lg:flex items-center space-x-6 ml-8">
+                <a href="index.html" class="text-white hover:text-green-400 transition-colors">Trang chủ</a>
+                <a href="mua_fixed.html" class="text-white hover:text-green-400 transition-colors">Mua sắm</a>
+                <a href="service.html" class="text-white hover:text-green-400 transition-colors">Dịch vụ</a>
+                <a href="timhieuthem.html" class="text-white hover:text-green-400 transition-colors">Về chúng tôi</a>
+                <a href="contact.html" class="text-white hover:text-green-400 transition-colors">Liên hệ</a>
+            </div>
+
+            <!-- Spacer để đẩy actions về bên phải -->
+            <div class="flex-1"></div>
+
+            <!-- Actions (giỏ hàng, đăng bán, đăng nhập) -->
+            <div class="flex items-center space-x-3 flex-shrink-0">
+                <!-- Giỏ hàng với icon đẹp hơn -->
+                <a href="cart.html" class="relative p-2 text-white hover:text-green-400 transition-colors"
+                    title="Giỏ hàng">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l-1 7H6L5 9z" />
+                    </svg>
+                    <span id="cart-count"
+                        class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center hidden">0</span>
+                </a>
+
+                <!-- Nút đăng bán -->
+                <a href="dang_ban.html"
+                    class="px-4 py-2 text-sm font-medium text-white bg-green-600 hover:bg-green-700 rounded-lg transition-colors">
+                    Đăng bán
+                </a>
+                <button data-collapse-toggle="navbar-default" type="button"
+                    class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+                    aria-controls="navbar-default" aria-expanded="false">
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 17 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M1 1h15M1 7h15M1 13h15" />
+                    </svg>
+                </button>
+                <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+                    <ul
+                        class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                        <li class="relative flex items-center space-x-2">
+                            <div class="relative h-8 w-8 flex items-center justify-center">
+                                <svg class="h-8 w-8 text-green-600" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5.94 7.94l-4.47 4.47-2.4-2.4-1.42 1.42 3.82 3.82 5.89-5.89-1.42-1.42z" />
+                                    <path d="M12 7v3M9 10h6M12 13v3" class="text-white" />
+                                </svg>
+                            </div>
+                            <button id="dropdown-toggle" class="text-gray-500 hover:text-gray-700 ml-1"
+                                title="Toggle dropdown">
+                                <svg id="arrow-icon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                    viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M5.293 9.293a1 1 0 011.414 0L10 12.586l3.293-3.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                            <div id="dropdown-content"
+                                class="hidden absolute top-full mt-2 w-60 bg-white border border-gray-300 rounded-lg shadow-lg end-0">
+                                <div class="p-4">
+                                    <div class="flex items-start mb-4">
+                                        <!-- Avatar container with pencil icon -->
+                                        <div id="avatar-container" class="relative flex-shrink-0 mr-3">
+                                            <svg class="h-12 w-12 text-green-600" fill="currentColor"
+                                                viewBox="0 0 24 24">
+                                                <path
+                                                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5.94 7.94l-4.47 4.47-2.4-2.4-1.42 1.42 3.82 3.82 5.89-5.89-1.42-1.42z" />
+                                                <path d="M12 7v3M9 10h6M12 13v3" class="text-white" />
+                                            </svg>
+                                            <!-- Icon cây viết chì bên cạnh avatar -->
+                                            <button id="pencil-edit-button"
+                                                class="absolute -bottom-1 -right-1 bg-white rounded-full p-0.5 shadow-md hover:bg-gray-50 transition-colors z-10"
+                                                title="Đổi avatar">
+                                                <svg class="h-3 w-3 text-gray-600" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+                                                    </path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <!-- User info -->
+                                        <div class="flex-1 min-w-0">
+                                            <p
+                                                class="text-sm font-medium whitespace-nowrap overflow-hidden text-ellipsis">
+                                                Trần Hữu Hải Đăng</p>
+                                            <p
+                                                class="text-xs text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
+                                                TK Định danh: C0888293...</p>
+                                        </div>
+                                    </div>
+                                    <input type="file" id="avatar-input" accept="image/*,video/*" class="hidden"
+                                        title="Chọn avatar mới" placeholder="Chọn file avatar">
+                                    <ul class="mt-2 space-y-1">
+                                        <li><a href="public-maps.html"
+                                                class="block text-sm text-gray-700 hover:underline">Bản đồ công khai</a>
+                                        </li>
+                                        <li><a href="blog.html"
+                                                class="block text-sm text-gray-700 hover:underline">Blog</a>
+                                        </li>
+                                        <li><a href="event.html"
+                                                class="block text-sm text-gray-700 hover:underline">Sự kiện</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+
+            </div>
+
+    </nav>
+
+    <div id="authentication-modal" tabindex="-1" aria-hidden="true"
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div class="relative p-4 w-full max-w-md max-h-full">
+            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Sign in to our platform</h3>
+                    <button type="button"
+                        class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                        data-modal-hide="authentication-modal">
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                </div>
+                <div class="p-4 md:p-5">
+                    <form class="space-y-4" action="#">
+                        <div>
+                            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
+                                email</label>
+                            <input type="email" name="email" id="email"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                placeholder="name@company.com" required>
+                        </div>
+                        <div>
+                            <label for="password"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
+                                password</label>
+                            <input type="password" name="password" id="password" placeholder="••••••••"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                required>
+                        </div>
+                        <div class="flex justify-between">
+                            <div class="flex items-start">
+                                <div class="flex items-center h-5">
+                                    <input id="remember" type="checkbox" value=""
+                                        class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-green-300 dark:bg-gray-600 dark:border-gray-500 dark:focus:ring-green-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
+                                        required>
+                                </div>
+                                <label for="remember"
+                                    class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Remember
+                                    me</label>
+                            </div>
+                            <a href="#" class="text-sm text-green-700 hover:underline dark:text-green-500">Lost
+                                Password?</a>
+                        </div>
+                        <button type="submit"
+                            class="w-full text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Login
+                            to your account</button>
+                        <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
+                            Not registered? <a href="#"
+                                class="text-green-700 hover:underline dark:text-green-500">Create account</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main Content -->
+    <div class="pt-16">
+        <!-- Hero Section -->
+        <div class="bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h1 class="text-5xl font-bold text-gray-900 mb-6 animate-fade-in-up">
+                        <span class="bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+                            🎉 Sự Kiện Đặc Biệt
+                        </span>
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-8 animate-fade-in-up animation-delay-200">
+                        Khám phá những sự kiện thú vị và tham gia cùng cộng đồng Mine
+                    </p>
+                    <button id="create-event-btn" class="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-8 py-4 rounded-2xl font-semibold text-lg
+                                   hover:from-green-700 hover:to-emerald-700 transform hover:scale-105 transition-all duration-300
+                                   shadow-lg hover:shadow-xl animate-fade-in-up animation-delay-400">
+                        ✨ Tạo Sự Kiện Mới
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Events Grid -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div id="events-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Events will be loaded here dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Event Modal -->
+    <div id="create-event-modal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm transition-opacity duration-300"></div>
+        <div class="absolute inset-0 flex items-center justify-center p-4">
+            <div class="bg-white rounded-3xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto
+                        transform transition-all duration-300 scale-95 modal-content">
+                <div class="p-8">
+                    <div class="flex justify-between items-center mb-8">
+                        <h2 class="text-3xl font-bold text-gray-900">🎨 Tạo Sự Kiện Mới</h2>
+                        <button id="close-modal"
+                            class="text-gray-400 hover:text-gray-600 transition-colors p-2 rounded-full hover:bg-gray-100"
+                            title="Đóng modal" aria-label="Đóng modal">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <form id="event-form" class="space-y-6">
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">📝 Tên sự kiện</label>
+                                <input type="text" id="event-title" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent
+                                              transition-all duration-200 hover:border-green-300"
+                                    placeholder="Nhập tên sự kiện...">
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">📋 Mô tả</label>
+                                <textarea id="event-description" rows="3" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent
+                                                 transition-all duration-200 hover:border-green-300 resize-none"
+                                    placeholder="Mô tả chi tiết về sự kiện..."></textarea>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">📅 Ngày</label>
+                                    <input type="date" id="event-date" required title="Chọn ngày tổ chức sự kiện" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent
+                                                  transition-all duration-200 hover:border-green-300">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">⏰ Giờ</label>
+                                    <input type="time" id="event-time" required title="Chọn giờ tổ chức sự kiện" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent
+                                                  transition-all duration-200 hover:border-green-300">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">📍 Địa điểm</label>
+                                <input type="text" id="event-location" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent
+                                              transition-all duration-200 hover:border-green-300"
+                                    placeholder="Nhập địa điểm tổ chức...">
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">🏷️ Danh mục</label>
+                                <select id="event-category" required title="Chọn danh mục sự kiện" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent
+                                               transition-all duration-200 hover:border-green-300">
+                                    <option value="">Chọn danh mục</option>
+                                    <option value="workshop">🛠️ Workshop</option>
+                                    <option value="seminar">🎤 Seminar</option>
+                                    <option value="networking">🤝 Networking</option>
+                                    <option value="exhibition">🖼️ Triển lãm</option>
+                                    <option value="sale">🛍️ Sale Event</option>
+                                    <option value="community">👥 Cộng đồng</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">👥 Số người tham gia tối
+                                    đa</label>
+                                <input type="number" id="event-max-participants" required min="10" max="1000" value="50"
+                                    title="Nhập số người có thể tham gia tối đa" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent
+                                              transition-all duration-200 hover:border-green-300"
+                                    placeholder="Ví dụ: 50">
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4 pt-6">
+                            <button type="button" id="cancel-btn" class="flex-1 px-6 py-3 border border-gray-300 text-gray-700 rounded-xl font-medium
+                                           hover:bg-gray-50 transition-all duration-200 transform hover:scale-105">
+                                ❌ Hủy
+                            </button>
+                            <button type="submit" class="flex-1 px-6 py-3 bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-xl font-medium
+                                           hover:from-green-700 hover:to-emerald-700 transition-all duration-200 transform hover:scale-105
+                                           shadow-lg hover:shadow-xl">
+                                ✨ Tạo Sự Kiện
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Join Success Modal -->
+    <div id="join-success-modal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm"></div>
+        <div class="absolute inset-0 flex items-center justify-center p-4">
+            <div class="bg-white rounded-3xl shadow-2xl max-w-md w-full transform transition-all duration-300
+                        success-modal-content">
+                <div class="p-8 text-center">
+                    <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">🎉 Tham gia thành công!</h3>
+                    <p class="text-gray-600 mb-6">Bạn đã đăng ký tham gia sự kiện thành công. Chúng tôi sẽ gửi thông tin
+                        chi tiết qua email.</p>
+                    <button id="close-success-modal"
+                        class="w-full px-6 py-3 bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-xl font-medium
+                                   hover:from-green-700 hover:to-emerald-700 transition-all duration-200 transform hover:scale-105">
+                        Đóng
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
+    <script>
+        // Event Management System
+        class EventManager {
+            
+            constructor() {
+                this.events = this.loadEvents();
+                this.init();
+                this.initializeDefaultEvents();
+            }
+
+            init() {
+                this.bindEvents();
+                this.renderEvents();
+                this.initAnimations();
+                this.updateCartCount();
+            }
+
+            // Initialize default events if none exist
+            initializeDefaultEvents() {
+                if (this.events.length === 0) {
+                    const defaultEvents = [
+                        {
+                            id: 'event_' + Date.now() + '_1',
+                            title: '🛠️ Workshop Tái Chế Đồ Cũ',
+                            description: 'Học cách biến đồ cũ thành những món đồ hữu ích và đẹp mắt. Workshop thực hành với các chuyên gia.',
+                            date: this.getDateAfterDays(7),
+                            time: '14:00',
+                            location: 'Trung tâm Văn hóa Quận 1, TP.HCM',
+                            category: 'workshop',
+                            participants: 45,
+                            maxParticipants: 50,
+                            createdAt: Date.now() - 86400000
+                        },
+                        {
+                            id: 'event_' + Date.now() + '_2',
+                            title: '🎤 Hội thảo Kinh tế Tuần hoàn',
+                            description: 'Tìm hiểu về xu hướng kinh tế bền vững và cách áp dụng vào cuộc sống hàng ngày.',
+                            date: this.getDateAfterDays(14),
+                            time: '09:00',
+                            location: 'Khách sạn Rex, Quận 1, TP.HCM',
+                            category: 'seminar',
+                            participants: 120,
+                            maxParticipants: 200,
+                            createdAt: Date.now() - 172800000
+                        },
+                        {
+                            id: 'event_' + Date.now() + '_3',
+                            title: '🤝 Gặp gỡ Cộng đồng Mine',
+                            description: 'Sự kiện gặp gỡ, giao lưu giữa các thành viên cộng đồng Mine. Chia sẻ kinh nghiệm mua bán đồ cũ.',
+                            date: this.getDateAfterDays(21),
+                            time: '18:30',
+                            location: 'Công viên Tao Đàn, Quận 1, TP.HCM',
+                            category: 'networking',
+                            participants: 78,
+                            maxParticipants: 100,
+                            createdAt: Date.now() - 259200000
+                        },
+                        {
+                            id: 'event_' + Date.now() + '_4',
+                            title: '🖼️ Triển lãm Đồ Cũ Nghệ Thuật',
+                            description: 'Triển lãm những món đồ cũ được tái tạo thành các tác phẩm nghệ thuật độc đáo.',
+                            date: this.getDateAfterDays(30),
+                            time: '10:00',
+                            location: 'Bảo tàng Mỹ thuật TP.HCM',
+                            category: 'exhibition',
+                            participants: 156,
+                            maxParticipants: 300,
+                            createdAt: Date.now() - 345600000
+                        },
+                        {
+                            id: 'event_' + Date.now() + '_5',
+                            title: '🛍️ Sale Cuối Năm - Đồ Cũ Giá Sốc',
+                            description: 'Sự kiện sale lớn nhất trong năm với hàng ngàn món đồ cũ chất lượng cao giá ưu đãi.',
+                            date: this.getDateAfterDays(45),
+                            time: '08:00',
+                            location: 'Trung tâm Hội chợ Sài Gòn',
+                            category: 'sale',
+                            participants: 234,
+                            maxParticipants: 500,
+                            createdAt: Date.now() - 432000000
+                        },
+                        {
+                            id: 'event_' + Date.now() + '_6',
+                            title: '👥 Ngày Hội Tình Nguyện Môi Trường',
+                            description: 'Tham gia các hoạt động bảo vệ môi trường cùng cộng đồng. Dọn dẹp, trồng cây và tuyên truyền.',
+                            date: this.getDateAfterDays(60),
+                            time: '06:30',
+                            location: 'Công viên Gia Định, Gò Vấp, TP.HCM',
+                            category: 'community',
+                            participants: 89,
+                            maxParticipants: 150,
+                            createdAt: Date.now() - 518400000
+                        }
+                    ];
+
+                    this.events = defaultEvents;
+                    this.saveEvents();
+                }
+            }
+            
+
+            getDateAfterDays(days) {
+                const date = new Date();
+                date.setDate(date.getDate() + days);
+                return date.toISOString().split('T')[0];
+            }
+
+            bindEvents() {
+                // Navigation dropdown functionality
+                this.initDropdown();
+                this.initAvatarSystem();
+
+                // Event management
+                document.getElementById('create-event-btn').addEventListener('click', () => this.showCreateModal());
+                document.getElementById('close-modal').addEventListener('click', () => this.hideCreateModal());
+                document.getElementById('cancel-btn').addEventListener('click', () => this.hideCreateModal());
+                document.getElementById('event-form').addEventListener('submit', (e) => this.handleCreateEvent(e));
+                document.getElementById('close-success-modal').addEventListener('click', () => this.hideSuccessModal());
+
+                // Validation for max participants input
+                this.initMaxParticipantsValidation();
+
+                // Close modals on backdrop click
+                document.getElementById('create-event-modal').addEventListener('click', (e) => {
+                    if (e.target === e.currentTarget) this.hideCreateModal();
+                });
+                document.getElementById('join-success-modal').addEventListener('click', (e) => {
+                    if (e.target === e.currentTarget) this.hideSuccessModal();
+                });
+            }
+
+            initMaxParticipantsValidation() {
+                const maxParticipantsInput = document.getElementById('event-max-participants');
+                if (!maxParticipantsInput) return;
+
+                // Real-time validation
+                maxParticipantsInput.addEventListener('input', (e) => {
+                    const value = parseInt(e.target.value);
+                    const helpText = e.target.parentElement.querySelector('.help-text');
+
+                    // Remove existing help text
+                    if (helpText && helpText.classList.contains('help-text')) {
+                        helpText.remove();
+                    }
+
+                    let message = '';
+                    let messageClass = 'text-gray-500';
+
+                    if (e.target.value === '') {
+                        message = 'Từ 10 đến 1000 người';
+                    } else if (value < 10) {
+                        message = 'Tối thiểu 10 người';
+                        messageClass = 'text-red-500';
+                    } else if (value > 1000) {
+                        message = 'Tối đa 1000 người';
+                        messageClass = 'text-red-500';
+                    } else {
+                        message = `✓ ${value} người - Hợp lệ`;
+                        messageClass = 'text-green-500';
+                    }
+
+                    // Add new help text
+                    const newHelpText = document.createElement('p');
+                    newHelpText.className = `text-sm mt-1 help-text ${messageClass}`;
+                    newHelpText.textContent = message;
+                    e.target.parentElement.appendChild(newHelpText);
+                });
+
+                // Prevent invalid characters
+                maxParticipantsInput.addEventListener('keypress', (e) => {
+                    if (!/[\d]/.test(e.key) && !['Backspace', 'Delete', 'Tab', 'Escape', 'Enter', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+                        e.preventDefault();
+                    }
+                });
+            }
+
+            initDropdown() {
+                const dropdownToggle = document.getElementById('dropdown-toggle');
+                const dropdownContent = document.getElementById('dropdown-content');
+                const arrowIcon = document.getElementById('arrow-icon');
+                let isDropdownOpen = false;
+
+                if (!dropdownToggle || !dropdownContent || !arrowIcon) return;
+
+                const toggleDropdown = (e) => {
+                    e.stopPropagation();
+                    isDropdownOpen = !isDropdownOpen;
+                    dropdownContent.classList.toggle('hidden', !isDropdownOpen);
+                    arrowIcon.classList.toggle('rotate-180', isDropdownOpen);
+                };
+
+                const closeDropdown = () => {
+                    if (isDropdownOpen) {
+                        isDropdownOpen = false;
+                        dropdownContent.classList.add('hidden');
+                        arrowIcon.classList.remove('rotate-180');
+                    }
+                };
+
+                dropdownToggle.addEventListener('click', toggleDropdown);
+                document.addEventListener('click', (e) => {
+                    if (!dropdownToggle.contains(e.target) && !dropdownContent.contains(e.target)) {
+                        closeDropdown();
+                    }
+                });
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && isDropdownOpen) closeDropdown();
+                });
+            }
+
+            initAvatarSystem() {
+                const avatarFileInput = document.getElementById('avatar-input');
+                const avatarContainer = document.getElementById('avatar-container');
+
+                if (!avatarFileInput || !avatarContainer) return;
+
+                this.ensurePencilButton();
+                this.loadSavedAvatar();
+
+                avatarFileInput.addEventListener('change', (e) => {
+                    const file = e.target.files[0];
+                    if (!file) return;
+
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        this.updateAvatarDisplay(e.target.result, file.type);
+                        this.saveToLocalStorage('avatar', { src: e.target.result, type: file.type });
+                    };
+                    reader.readAsDataURL(file);
+                });
+            }
+
+            ensurePencilButton() {
+                const avatarContainer = document.getElementById('avatar-container');
+                let pencilButton = avatarContainer.querySelector('#pencil-edit-button');
+
+                if (!pencilButton) {
+                    pencilButton = document.createElement('button');
+                    pencilButton.id = 'pencil-edit-button';
+                    pencilButton.className = 'absolute -bottom-1 -right-1 bg-white rounded-full p-0.5 shadow-md hover:bg-gray-50 transition-colors z-10';
+                    pencilButton.title = 'Đổi avatar';
+                    pencilButton.innerHTML = `
+                        <svg class="h-3 w-3 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                  d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+                            </path>
+                        </svg>
+                    `;
+                    avatarContainer.appendChild(pencilButton);
+                }
+
+                pencilButton.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    document.getElementById('avatar-input').click();
+                });
+            }
+
+            updateAvatarDisplay(src, type) {
+                const avatarContainer = document.getElementById('avatar-container');
+                const currentAvatar = avatarContainer.querySelector('svg, img, video');
+
+                let newAvatar;
+                if (type.startsWith('image/')) {
+                    newAvatar = document.createElement('img');
+                    newAvatar.src = src;
+                    newAvatar.alt = 'Avatar';
+                } else if (type.startsWith('video/')) {
+                    newAvatar = document.createElement('video');
+                    newAvatar.src = src;
+                    newAvatar.autoplay = true;
+                    newAvatar.loop = true;
+                    newAvatar.muted = true;
+                }
+
+                if (newAvatar) {
+                    newAvatar.className = 'h-12 w-12 rounded-full object-cover';
+                    currentAvatar.replaceWith(newAvatar);
+                }
+            }
+
+            loadSavedAvatar() {
+                const savedAvatar = this.getFromLocalStorage('avatar');
+                if (savedAvatar && savedAvatar.src && savedAvatar.type) {
+                    this.updateAvatarDisplay(savedAvatar.src, savedAvatar.type);
+                }
+            }
+
+            initAnimations() {
+                // Add CSS for animations
+                const style = document.createElement('style');
+                style.textContent = `
+                    @keyframes fadeInUp {
+                        from {
+                            opacity: 0;
+                            transform: translateY(30px);
+                        }
+                        to {
+                            opacity: 1;
+                            transform: translateY(0);
+                        }
+                    }
+
+                    @keyframes slideInRight {
+                        from {
+                            opacity: 0;
+                            transform: translateX(50px);
+                        }
+                        to {
+                            opacity: 1;
+                            transform: translateX(0);
+                        }
+                    }
+
+                    @keyframes scaleIn {
+                        from {
+                            opacity: 0;
+                            transform: scale(0.8);
+                        }
+                        to {
+                            opacity: 1;
+                            transform: scale(1);
+                        }
+                    }
+
+                    .animate-fade-in-up {
+                        animation: fadeInUp 0.8s ease-out forwards;
+                        opacity: 0;
+                    }
+
+                    .animate-slide-in-right {
+                        animation: slideInRight 0.6s ease-out forwards;
+                        opacity: 0;
+                    }
+
+                    .animate-scale-in {
+                        animation: scaleIn 0.5s ease-out forwards;
+                        opacity: 0;
+                    }
+
+                    .animation-delay-200 {
+                        animation-delay: 0.2s;
+                    }
+
+                    .animation-delay-400 {
+                        animation-delay: 0.4s;
+                    }
+
+                    .animation-delay-600 {
+                        animation-delay: 0.6s;
+                    }
+
+                    .event-card {
+                        transform: translateY(20px);
+                        opacity: 0;
+                        transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+                    }
+
+                    .event-card.animate-in {
+                        transform: translateY(0);
+                        opacity: 1;
+                    }
+
+                    .modal-content {
+                        transform: scale(0.95) translateY(-20px);
+                        opacity: 0;
+                    }
+
+                    .modal-content.show {
+                        transform: scale(1) translateY(0);
+                        opacity: 1;
+                        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                    }
+
+                    .success-modal-content {
+                        transform: scale(0.8);
+                        opacity: 0;
+                    }
+
+                    .success-modal-content.show {
+                        transform: scale(1);
+                        opacity: 1;
+                        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+                    }
+
+                    .join-btn {
+                        position: relative;
+                        overflow: hidden;
+                    }
+
+                    .join-btn::before {
+                        content: '';
+                        position: absolute;
+                        top: 0;
+                        left: -100%;
+                        width: 100%;
+                        height: 100%;
+                        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+                        transition: left 0.5s;
+                    }
+
+                    .join-btn:hover::before {
+                        left: 100%;
+                    }
+
+                    /* Number input styling */
+                    input[type="number"] {
+                        -webkit-appearance: textfield;
+                        -moz-appearance: textfield;
+                        appearance: textfield;
+                    }
+
+                    input[type="number"]::-webkit-outer-spin-button,
+                    input[type="number"]::-webkit-inner-spin-button {
+                        -webkit-appearance: none;
+                        margin: 0;
+                    }
+
+                    /* Input validation styling */
+                    input[type="number"]:invalid {
+                        border-color: #ef4444;
+                        box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+                    }
+
+                    input[type="number"]:valid {
+                        border-color: #10b981;
+                    }
+
+                    .pulse-ring {
+                        animation: pulse-ring 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+                    }
+
+                    @keyframes pulse-ring {
+                        0% {
+                            transform: scale(0.8);
+                            opacity: 1;
+                        }
+                        100% {
+                            transform: scale(1.2);
+                            opacity: 0;
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+
+                // Animate event cards on scroll
+                this.observeEventCards();
+            }
+
+            observeEventCards() {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach((entry, index) => {
+                        if (entry.isIntersecting) {
+                            setTimeout(() => {
+                                entry.target.classList.add('animate-in');
+                            }, index * 100);
+                        }
+                    });
+                }, { threshold: 0.1 });
+
+                document.querySelectorAll('.event-card').forEach(card => {
+                    observer.observe(card);
+                });
+            }
+
+            showCreateModal() {
+                const modal = document.getElementById('create-event-modal');
+                const content = modal.querySelector('.modal-content');
+
+                modal.classList.remove('hidden');
+                setTimeout(() => {
+                    content.classList.add('show');
+                }, 10);
+
+                // Set min date to today
+                document.getElementById('event-date').min = new Date().toISOString().split('T')[0];
+            }
+
+            hideCreateModal() {
+                const modal = document.getElementById('create-event-modal');
+                const content = modal.querySelector('.modal-content');
+
+                content.classList.remove('show');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                    document.getElementById('event-form').reset();
+                    // Reset default value for max participants
+                    document.getElementById('event-max-participants').value = '50';
+                }, 300);
+            }
+
+            showSuccessModal() {
+                const modal = document.getElementById('join-success-modal');
+                const content = modal.querySelector('.success-modal-content');
+
+                modal.classList.remove('hidden');
+                setTimeout(() => {
+                    content.classList.add('show');
+                }, 10);
+            }
+
+            hideSuccessModal() {
+                const modal = document.getElementById('join-success-modal');
+                const content = modal.querySelector('.success-modal-content');
+
+                content.classList.remove('show');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                }, 400);
+            }
+
+            handleCreateEvent(e) {
+                e.preventDefault();
+
+                const maxParticipants = parseInt(document.getElementById('event-max-participants').value);
+
+                // Validate max participants
+                if (maxParticipants < 10 || maxParticipants > 1000) {
+                    alert('Số người tham gia tối đa phải từ 10 đến 1000 người');
+                    return;
+                }
+
+                const newEvent = {
+                    id: 'event_' + Date.now(),
+                    title: document.getElementById('event-title').value,
+                    description: document.getElementById('event-description').value,
+                    date: document.getElementById('event-date').value,
+                    time: document.getElementById('event-time').value,
+                    location: document.getElementById('event-location').value,
+                    category: document.getElementById('event-category').value,
+                    participants: 0,
+                    maxParticipants: maxParticipants,
+                    createdAt: Date.now()
+                };
+
+                this.events.unshift(newEvent); // Add to beginning
+                this.saveEvents();
+                this.renderEvents();
+                this.hideCreateModal();
+
+                // Show success animation
+                setTimeout(() => {
+                    const newCard = document.querySelector(`[data-event-id="${newEvent.id}"]`);
+                    if (newCard) {
+                        newCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        newCard.style.background = 'linear-gradient(135deg, #d4edda, #c3e6cb)';
+                        setTimeout(() => {
+                            newCard.style.background = '';
+                        }, 2000);
+                    }
+                }, 500);
+            }
+
+            handleJoinEvent(eventId) {
+                const event = this.events.find(e => e.id === eventId);
+                if (event && event.participants < event.maxParticipants) {
+                    event.participants++;
+                    this.saveEvents();
+
+                    // Update UI
+                    const card = document.querySelector(`[data-event-id="${eventId}"]`);
+                    const participantsSpan = card.querySelector('.participants-count');
+                    participantsSpan.textContent = event.participants;
+
+                    // Show success modal
+                    this.showSuccessModal();
+
+                    // Add joined state to button
+                    const joinBtn = card.querySelector('.join-btn');
+                    joinBtn.innerHTML = '✅ Đã tham gia';
+                    joinBtn.classList.remove('bg-gradient-to-r', 'from-green-600', 'to-emerald-600', 'hover:from-green-700', 'hover:to-emerald-700');
+                    joinBtn.classList.add('bg-gray-400', 'cursor-not-allowed');
+                    joinBtn.disabled = true;
+                }
+            }
+
+            getCategoryIcon(category) {
+                const icons = {
+                    workshop: '🛠️',
+                    seminar: '🎤',
+                    networking: '🤝',
+                    exhibition: '🖼️',
+                    sale: '🛍️',
+                    community: '👥'
+                };
+                return icons[category] || '📅';
+            }
+
+            getCategoryColor(category) {
+                const colors = {
+                    workshop: 'from-blue-500 to-blue-600',
+                    seminar: 'from-purple-500 to-purple-600',
+                    networking: 'from-yellow-500 to-yellow-600',
+                    exhibition: 'from-pink-500 to-pink-600',
+                    sale: 'from-red-500 to-red-600',
+                    community: 'from-green-500 to-green-600'
+                };
+                return colors[category] || 'from-gray-500 to-gray-600';
+            }
+
+            formatDate(dateString) {
+                const date = new Date(dateString);
+                return date.toLocaleDateString('vi-VN', {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+            }
+
+            renderEvents() {
+                const container = document.getElementById('events-container');
+
+                if (this.events.length === 0) {
+                    container.innerHTML = `
+                        <div class="col-span-full text-center py-16">
+                            <div class="text-6xl mb-4">📅</div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Chưa có sự kiện nào</h3>
+                            <p class="text-gray-600">Hãy tạo sự kiện đầu tiên của bạn!</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                container.innerHTML = this.events.map((event, index) => `
+                    <div class="event-card bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden"
+                         data-event-id="${event.id}"
+                         style="animation-delay: ${index * 100}ms">
+                        <div class="relative">
+                            <div class="bg-gradient-to-r ${this.getCategoryColor(event.category)} h-2"></div>
+                            <div class="p-6">
+                                <div class="flex justify-between items-start mb-4">
+                                    <div class="bg-gradient-to-r ${this.getCategoryColor(event.category)} text-white px-3 py-1 rounded-full text-sm font-medium">
+                                        ${this.getCategoryIcon(event.category)} ${event.category.charAt(0).toUpperCase() + event.category.slice(1)}
+                                    </div>
+                                    <div class="text-right text-sm text-gray-500">
+                                        <div class="flex items-center">
+                                            <span class="participants-count font-semibold text-green-600">${event.participants}</span>
+                                            <span class="mx-1">/</span>
+                                            <span>${event.maxParticipants}</span>
+                                            <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20">
+                                                <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <h3 class="text-xl font-bold text-gray-900 mb-3 line-clamp-2">${event.title}</h3>
+                                <p class="text-gray-600 mb-4 line-clamp-3">${event.description}</p>
+
+                                <div class="space-y-2 mb-6">
+                                    <div class="flex items-center text-gray-700">
+                                        <svg class="w-4 h-4 mr-2 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
+                                        </svg>
+                                        <span class="text-sm">${this.formatDate(event.date)} • ${event.time}</span>
+                                    </div>
+                                    <div class="flex items-center text-gray-700">
+                                        <svg class="w-4 h-4 mr-2 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+                                        </svg>
+                                        <span class="text-sm">${event.location}</span>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center gap-4">
+                                    <div class="flex-1 bg-gray-200 rounded-full h-2">
+                                        <div class="bg-gradient-to-r from-green-400 to-emerald-500 h-2 rounded-full transition-all duration-500"
+                                             style="width: ${(event.participants / event.maxParticipants) * 100}%"></div>
+                                    </div>
+                                    <button onclick="eventManager.handleJoinEvent('${event.id}')"
+                                            class="join-btn bg-gradient-to-r from-green-600 to-emerald-600 text-white px-4 py-2 rounded-xl font-medium
+                                                   hover:from-green-700 hover:to-emerald-700 transition-all duration-200 transform hover:scale-105
+                                                   shadow-lg hover:shadow-xl flex-shrink-0">
+                                        🎯 Tham gia
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+
+                // Re-observe event cards for animation
+                setTimeout(() => {
+                    this.observeEventCards();
+                }, 100);
+            }
+
+            loadEvents() {
+                return this.getFromLocalStorage('events') || [];
+            }
+
+            saveEvents() {
+                this.saveToLocalStorage('events', this.events);
+            }
+
+            saveToLocalStorage(key, value) {
+                try {
+                    localStorage.setItem(key, JSON.stringify(value));
+                } catch (error) {
+                    console.warn('Could not save to localStorage:', error);
+                }
+            }
+
+            updateCartCount() {
+                const cart = utils.safeLocalStorage.getItem('cart') || [];
+                const cartCount = cart.reduce((total, item) => {
+                    return total + (parseInt(item.quantity) || 0);
+                }, 0);
+
+                const cartCountElement = document.getElementById('cart-count');
+
+                if (cartCountElement) {
+                    if (cartCount > 0) {
+                        cartCountElement.textContent = cartCount > 99 ? '99+' : cartCount;
+                        cartCountElement.classList.remove('hidden');
+                    } else {
+                        cartCountElement.classList.add('hidden');
+                    }
+                }
+            }
+
+            getFromLocalStorage(key) {
+                try {
+                    const item = localStorage.getItem(key);
+                    return item ? JSON.parse(item) : null;
+                } catch (error) {
+                    console.warn('Could not read from localStorage:', error);
+                    return null;
+                }
+            }
+            
+        }
+        // Initialize the event manager when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add utils object before creating EventManager
+            window.utils = {
+                safeLocalStorage: {
+                    getItem: function(key) {
+                        try {
+                            const item = localStorage.getItem(key);
+                            return item ? JSON.parse(item) : null;
+                        } catch (error) {
+                            console.warn('Could not read from localStorage:', error);
+                            return null;
+                        }
+                    },
+                    setItem: function(key, value) {
+                        try {
+                            localStorage.setItem(key, JSON.stringify(value));
+                        } catch (error) {
+                            console.warn('Could not save to localStorage:', error);
+                        }
+                    }
+                }
+            };
+            
+            window.eventManager = new EventManager();
+            eventManager.updateCartCount(); // ✅ Gọi đúng cách
+        });
+    </script>
+    </div>
+</body>
+
+</html>

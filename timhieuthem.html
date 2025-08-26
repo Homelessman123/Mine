@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary Meta Tags -->
+    <title>Mine - Nơi Đồ Cũ Viết Tiếp Câu Chuyện Xanh | Mua Bán Đồ Cũ Bền Vững</title>
+    <meta name="title" content="Mine - Nơi Đồ Cũ Viết Tiếp Câu Chuyện Xanh">
+    <meta name="description"
+        content="Mine - Nền tảng mua bán đồ cũ hàng đầu Việt Nam. Tìm kiếm bất động sản, xe cộ, đồ điện tử, gia dụng đã qua sử dụng với chất lượng tốt. Góp phần bảo vệ môi trường qua kinh tế tuần hoàn.">
+    <meta name="keywords"
+        content="đồ cũ, mua bán đồ cũ, bất động sản cũ, xe cũ, đồ điện tử cũ, đồ gia dụng cũ, kinh tế tuần hoàn, bảo vệ môi trường, second hand, recycle">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Vietnamese">
+    <meta name="author" content="Mine">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css" rel="stylesheet" />
+    <link rel="icon" href="Picture/logo.png" type="image/svg+xml">
+    <link rel="icon" href="Picture/logo.png" type="image/x-icon">
+    <link rel="icon" href="Picture/logo.png" type="image/png">
+    <link rel="apple-touch-icon" href="Picture/logo.png">
+    <style>
+        .img.h-12.w-12.text-green-600 {
+            border-radius: 30px;
+        }
+
+        svg.h-12.w-12.text-green-600.rounded-full,
+        img.h-12.w-12.text-green-600,
+        video.h-12.w-12.rounded-full.object-cover {
+            border-radius: 50% !important;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+    <nav class="bg-gray-800 border-gray-700 dark:bg-gray-900 fixed w-full z-50 shadow-sm">
+        <div class="max-w-screen-xl flex items-center mx-auto p-3">
+            <!-- Logo và tên -->
+            <a href="index.html" class="flex items-center space-x-2 flex-shrink-0">
+                <img src="Picture/logo.png" class="h-10" alt="Mine Logo">
+                <span class="self-center text-xl font-bold text-white">Mine</span>
+            </a>
+
+            <!-- Menu chính (ẩn trên mobile/tablet) -->
+            <div class="hidden lg:flex items-center space-x-6 ml-8">
+                <a href="index.html" class="text-white hover:text-green-400 transition-colors">Trang chủ</a>
+                <a href="mua_fixed.html" class="text-white hover:text-green-400 transition-colors">Mua sắm</a>
+                <a href="service.html" class="text-white hover:text-green-400 transition-colors">Dịch vụ</a>
+                <a href="timhieuthem.html" class="text-green-400 font-medium hover:text-green-300 transition-colors">Về
+                    chúng tôi</a>
+                <a href="contact.html" class="text-white hover:text-green-400 transition-colors">Liên hệ</a>
+            </div>
+
+            <!-- Spacer để đẩy actions về bên phải -->
+            <div class="flex-1"></div>
+
+            <!-- Actions (giỏ hàng, đăng bán, đăng nhập) -->
+            <div class="flex items-center space-x-3 flex-shrink-0">
+                <!-- Giỏ hàng với icon đẹp hơn -->
+                <a href="cart.html" class="relative p-2 text-white hover:text-green-400 transition-colors"
+                    title="Giỏ hàng">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l-1 7H6L5 9z" />
+                    </svg>
+                    <span id="cart-count"
+                        class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center hidden">0</span>
+                </a>
+
+                <!-- Nút đăng bán -->
+                <a href="dang_ban.html"
+                    class="px-4 py-2 text-sm font-medium text-white bg-green-600 hover:bg-green-700 rounded-lg transition-colors">
+                    Đăng bán
+                </a>
+                <button data-collapse-toggle="navbar-default" type="button"
+                    class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+                    aria-controls="navbar-default" aria-expanded="false">
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 17 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M1 1h15M1 7h15M1 13h15" />
+                    </svg>
+                </button>
+                <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+                    <ul
+                        class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                        <li class="relative flex items-center space-x-2">
+                            <div class="relative h-8 w-8 flex items-center justify-center">
+                                <svg class="h-8 w-8 text-green-600" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5.94 7.94l-4.47 4.47-2.4-2.4-1.42 1.42 3.82 3.82 5.89-5.89-1.42-1.42z" />
+                                    <path d="M12 7v3M9 10h6M12 13v3" class="text-white" />
+                                </svg>
+                            </div>
+                            <button id="dropdown-toggle" class="text-gray-500 hover:text-gray-700 ml-1"
+                                title="Toggle dropdown">
+                                <svg id="arrow-icon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                    viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M5.293 9.293a1 1 0 011.414 0L10 12.586l3.293-3.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                            <div id="dropdown-content"
+                                class="hidden absolute top-full mt-2 w-60 bg-white border border-gray-300 rounded-lg shadow-lg end-0">
+                                <div class="p-4">
+                                    <div class="flex items-start mb-4">
+                                        <!-- Avatar container with pencil icon -->
+                                        <div id="avatar-container" class="relative flex-shrink-0 mr-3">
+                                            <svg class="h-12 w-12 text-green-600" fill="currentColor"
+                                                viewBox="0 0 24 24">
+                                                <path
+                                                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5.94 7.94l-4.47 4.47-2.4-2.4-1.42 1.42 3.82 3.82 5.89-5.89-1.42-1.42z" />
+                                                <path d="M12 7v3M9 10h6M12 13v3" class="text-white" />
+                                            </svg>
+                                            <!-- Icon cây viết chì bên cạnh avatar -->
+                                            <button id="pencil-edit-button"
+                                                class="absolute -bottom-1 -right-1 bg-white rounded-full p-0.5 shadow-md hover:bg-gray-50 transition-colors z-10"
+                                                title="Đổi avatar">
+                                                <svg class="h-3 w-3 text-gray-600" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+                                                    </path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <!-- User info -->
+                                        <div class="flex-1 min-w-0">
+                                            <p
+                                                class="text-sm font-medium whitespace-nowrap overflow-hidden text-ellipsis">
+                                                Trần Hữu Hải Đăng</p>
+                                            <p
+                                                class="text-xs text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
+                                                TK Định danh: C0888293...</p>
+                                        </div>
+                                    </div>
+                                    <input type="file" id="avatar-input" accept="image/*,video/*" class="hidden"
+                                        title="Chọn avatar mới" placeholder="Chọn file avatar">
+                                    <ul class="mt-2 space-y-1">
+                                        <li><a href="public-maps.html"
+                                                class="block text-sm text-gray-700 hover:underline">Bản đồ công khai</a>
+                                        </li>
+                                        <li><a href="blog.html"
+                                                class="block text-sm text-gray-700 hover:underline">Blog</a>
+                                        </li>
+                                        <li><a href="event.html" class="block text-sm text-gray-700 hover:underline">Sự
+                                                kiện</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+
+            </div>
+
+    </nav>
+
+    <!-- Mission Section -->
+    <section class="pt-20 pb-16 bg-white dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Mission Statement -->
+            <div class="text-center mb-16">
+                <div
+                    class="inline-flex items-center justify-center w-16 h-16 bg-green-100 dark:bg-green-800 rounded-full mb-6">
+                    <svg class="w-8 h-8 text-green-600 dark:text-green-300" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
+                    Sứ Mệnh Của <span class="text-green-600 dark:text-green-400">Mine</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
+                    Tạo cho giới trẻ một thói quen tiêu dùng bền vững và giải quyết bài toán lãng phí tài nguyên
+                </p>
+                <div class="mt-8 flex flex-wrap justify-center gap-4">
+                    <div
+                        class="flex items-center bg-gray-100 dark:bg-gray-700 px-4 py-2 rounded-full shadow-sm border border-gray-200 dark:border-gray-600">
+                        <div class="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
+                        <span class="text-sm font-medium text-gray-700 dark:text-gray-200">Tiêu dùng bền vững</span>
+                    </div>
+                    <div
+                        class="flex items-center bg-gray-100 dark:bg-gray-700 px-4 py-2 rounded-full shadow-sm border border-gray-200 dark:border-gray-600">
+                        <div class="w-3 h-3 bg-blue-500 rounded-full mr-2"></div>
+                        <span class="text-sm font-medium text-gray-700 dark:text-gray-200">Giải pháp xanh</span>
+                    </div>
+                    <div
+                        class="flex items-center bg-gray-100 dark:bg-gray-700 px-4 py-2 rounded-full shadow-sm border border-gray-200 dark:border-gray-600">
+                        <div class="w-3 h-3 bg-purple-500 rounded-full mr-2"></div>
+                        <span class="text-sm font-medium text-gray-700 dark:text-gray-200">Cộng đồng trẻ</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Section -->
+            <div class="mb-12 text-center">
+                <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Đội Ngũ Phát Triển</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                    Những con người đam mê công nghệ và môi trường, cùng nhau xây dựng tương lai xanh
+                </p>
+            </div>
+
+            <!-- Team Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Mentor 1: Diễm Quỳnh -->
+                <div
+                    class="group relative bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl dark:shadow-gray-700 transition-all duration-300 overflow-hidden transform hover:-translate-y-2 border border-gray-100 dark:border-gray-700">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-br from-pink-400 to-purple-500 opacity-0 group-hover:opacity-10 transition-opacity duration-300">
+                    </div>
+                    <div class="p-6 text-center relative">
+                        <div class="relative mx-auto mb-6">
+                            <div
+                                class="w-24 h-24 rounded-full overflow-hidden mx-auto border-4 border-pink-200 group-hover:border-pink-300 transition-colors duration-300">
+                                <img src="Picture/Pham_Thi_Diem_Quynh.jpg" alt="Diễm Quỳnh"
+                                    class="w-full h-full object-cover">
+                            </div>
+                            <div
+                                class="absolute -bottom-2 -right-2 bg-pink-500 text-white text-xs px-2 py-1 rounded-full font-semibold">
+                                MENTOR
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Phạm Thị Diễm Quỳnh</h3>
+                        <p class="text-pink-600 dark:text-pink-400 font-semibold text-sm mb-3">Mentor</p>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-4">
+                            Giáo viên Kỹ năng mềm Trường THPT FPT Cần Thơ
+                        </p>
+                        <div class="flex justify-center space-x-2">
+                            <span class="bg-pink-100 text-pink-700 text-xs px-2 py-1 rounded-full">Sustainability</span>
+                            <span class="bg-pink-100 text-pink-700 text-xs px-2 py-1 rounded-full">Leadership</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mentor 2: Trần Thanh Loan -->
+                <div
+                    class="group relative bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl dark:shadow-gray-700 transition-all duration-300 overflow-hidden transform hover:-translate-y-2 border border-gray-100 dark:border-gray-700">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-br from-indigo-400 to-blue-500 opacity-0 group-hover:opacity-10 transition-opacity duration-300">
+                    </div>
+                    <div class="p-6 text-center relative">
+                        <div class="relative mx-auto mb-6">
+                            <div
+                                class="w-24 h-24 rounded-full overflow-hidden mx-auto border-4 border-emerald-200 group-hover:border-emerald-300 transition-colors duration-300">
+                                <img src="Picture/Tran_Thanh_Loan.jpg" alt="Trần Thanh Loan"
+                                    class="w-full h-full object-cover">
+                            </div>
+                            <div
+                                class="absolute -bottom-2 -right-2 bg-indigo-500 text-white text-xs px-2 py-1 rounded-full font-semibold">
+                                MENTOR
+                            </div>
+                        </div>
+                        <h3 class="text-xg font-bold text-gray-900 dark:text-white mb-2">Trần Thanh Ngọc Thanh Loan</h3>
+                        <p class="text-indigo-600 dark:text-indigo-400 font-semibold text-sm mb-3">Mentor</p>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-4">
+                            Giáo viên Kỹ năng mềm Trường THPT FPT Cần Thơ
+                        </p>
+                        <div class="flex justify-center space-x-2">
+                            <span class="bg-indigo-100 text-indigo-700 text-xs px-2 py-1 rounded-full">Leadership</span>
+                            <span class="bg-indigo-100 text-indigo-700 text-xs px-2 py-1 rounded-full">Soft
+                                Skills</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Student 1: Trần Hữu Hải Đăng -->
+                <div
+                    class="group relative bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl dark:shadow-gray-700 transition-all duration-300 overflow-hidden transform hover:-translate-y-2 border border-gray-100 dark:border-gray-700">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-br from-emerald-400 to-green-500 opacity-0 group-hover:opacity-10 transition-opacity duration-300">
+                    </div>
+                    <div class="p-6 text-center relative">
+                        <div class="relative mx-auto mb-6">
+                            <div
+                                class="w-24 h-24 rounded-full overflow-hidden mx-auto border-4 border-emerald-200 group-hover:border-emerald-300 transition-colors duration-300">
+                                <img src="Picture/Trần Hữu Hải Đăng.png" alt="Trần Hữu Hải Đăng"
+                                    class="w-full h-full object-cover">
+                            </div>
+                            <div
+                                class="absolute -bottom-2 -right-2 bg-emerald-500 text-white text-xs px-2 py-1 rounded-full font-semibold">
+                                DEV
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Trần Hữu Hải Đăng</h3>
+                        <p class="text-emerald-600 dark:text-emerald-400 font-semibold text-sm mb-3">Frontend Developer
+                        </p>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-4">
+                            Học sinh đam mê kinh doanh và phát triển công nghệ xanh
+                        </p>
+                        <div class="flex justify-center space-x-2">
+                            <span class="bg-emerald-100 text-emerald-700 text-xs px-2 py-1 rounded-full">Frontend</span>
+                            <span class="bg-emerald-100 text-emerald-700 text-xs px-2 py-1 rounded-full">Backend</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Student 2: Lương Gia Phúc -->
+                <div
+                    class="group relative bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl dark:shadow-gray-700 transition-all duration-300 overflow-hidden transform hover:-translate-y-2 border border-gray-100 dark:border-gray-700">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-br from-orange-400 to-red-500 opacity-0 group-hover:opacity-10 transition-opacity duration-300">
+                    </div>
+                    <div class="p-6 text-center relative">
+                        <div class="relative mx-auto mb-6">
+                            <div
+                                class="w-24 h-24 rounded-full overflow-hidden mx-auto border-4 border-orange-200 group-hover:border-orange-300 transition-colors duration-300">
+                                <img src="Picture/Lương Gia Phúc.png" alt="Lương Gia Phúc"
+                                    class="w-full h-full object-cover">
+                            </div>
+                            <div
+                                class="absolute -bottom-2 -right-2 bg-orange-500 text-white text-xs px-2 py-1 rounded-full font-semibold">
+                                DEV
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Lương Gia Phúc</h3>
+                        <p class="text-orange-600 dark:text-orange-400 font-semibold text-sm mb-3">UI/UX Designer</p>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-4">
+                            Học sinh đam mê tham gia các cuộc thi và dự án công nghệ xanh
+                        </p>
+                        <div class="flex justify-center space-x-2">
+                            <span class="bg-orange-100 text-orange-700 text-xs px-2 py-1 rounded-full">Design</span>
+                            <span class="bg-orange-100 text-orange-700 text-xs px-2 py-1 rounded-full">UX/UI</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="mt-16 text-center">
+                <div
+                    class="bg-gray-50 dark:bg-gray-800 rounded-2xl shadow-lg p-8 max-w-3xl mx-auto border border-gray-200 dark:border-gray-700">
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Cùng Chúng Tôi Tạo Nên Sự Thay Đổi
+                    </h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6">
+                        Hãy tham gia cộng đồng Mine để cùng nhau xây dựng một tương lai bền vững cho thế hệ
+                        trẻ
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="service.html"
+                            class="bg-green-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-green-700 transition-colors duration-300 flex items-center justify-center">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                            Khám Phá Dịch Vụ
+                        </a>
+                        <a href="contact.html"
+                            class="border-2 border-green-600 text-green-600 px-8 py-3 rounded-full font-semibold hover:bg-green-50 transition-colors duration-300 flex items-center justify-center">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z">
+                                </path>
+                            </svg>
+                            Liên Hệ Ngay
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
+    <script>
+        // Optimized JavaScript with better error handling and performance
+        (function () {
+            'use strict';
+
+            // Cache DOM elements and state
+            let isDropdownOpen = false;
+            let eventListenersAttached = false;
+
+            // Utility functions
+            const utils = {
+                createElement: (tag, className, attributes = {}) => {
+                    const element = document.createElement(tag);
+                    if (className) element.className = className;
+                    Object.entries(attributes).forEach(([key, value]) => {
+                        element.setAttribute(key, value);
+                    });
+                    return element;
+                },
+
+                debounce: (func, wait) => {
+                    let timeout;
+                    return function executedFunction(...args) {
+                        const later = () => {
+                            clearTimeout(timeout);
+                            func(...args);
+                        };
+                        clearTimeout(timeout);
+                        timeout = setTimeout(later, wait);
+                    };
+                },
+
+                validateFile: (file) => {
+                    const maxSize = 10 * 1024 * 1024; // 10MB
+                    const allowedTypes = ['image/', 'video/'];
+
+                    if (!file) return { valid: false, error: 'Không có file được chọn' };
+                    if (file.size > maxSize) return { valid: false, error: 'File quá lớn. Vui lòng chọn file nhỏ hơn 10MB.' };
+                    if (!allowedTypes.some(type => file.type.startsWith(type))) {
+                        return { valid: false, error: 'Định dạng file không được hỗ trợ. Chỉ chấp nhận hình ảnh và video.' };
+                    }
+
+                    return { valid: true };
+                },
+
+                safeLocalStorage: {
+                    setItem: (key, value) => {
+                        try {
+                            localStorage.setItem(key, JSON.stringify(value));
+                            return true;
+                        } catch (error) {
+                            console.warn('Không thể lưu vào localStorage:', error);
+                            return false;
+                        }
+                    },
+
+                    getItem: (key) => {
+                        try {
+                            const item = localStorage.getItem(key);
+                            return item ? JSON.parse(item) : null;
+                        } catch (error) {
+                            console.warn('Không thể đọc từ localStorage:', error);
+                            return null;
+                        }
+                    }
+                }
+            };
+
+            // Initialize when DOM is ready
+            document.addEventListener('DOMContentLoaded', function () {
+                initDropdown();
+                initAvatarSystem();
+            });
+
+            function updateCartCount() {
+                const cart = utils.safeLocalStorage.getItem('cart') || [];
+                const cartCount = cart.reduce((total, item) => {
+                    return total + (parseInt(item.quantity) || 0);
+                }, 0);
+
+                const cartCountElement = document.getElementById('cart-count');
+
+                if (cartCountElement) {
+                    if (cartCount > 0) {
+                        cartCountElement.textContent = cartCount > 99 ? '99+' : cartCount;
+                        cartCountElement.classList.remove('hidden');
+                    } else {
+                        cartCountElement.classList.add('hidden');
+                    }
+                }
+            }
+
+            // --- 1. Dropdown Management ---
+            function initDropdown() {
+                const dropdownToggle = document.getElementById('dropdown-toggle');
+                const dropdownContent = document.getElementById('dropdown-content');
+                const arrowIcon = document.getElementById('arrow-icon');
+
+                if (!dropdownToggle || !dropdownContent || !arrowIcon) {
+                    console.warn('Dropdown elements not found');
+                    return;
+                }
+
+                const toggleDropdown = (e) => {
+                    e.stopPropagation();
+                    isDropdownOpen = !isDropdownOpen;
+
+                    dropdownContent.classList.toggle('hidden', !isDropdownOpen);
+                    arrowIcon.classList.toggle('rotate-180', isDropdownOpen);
+                };
+
+                const closeDropdown = () => {
+                    if (isDropdownOpen) {
+                        isDropdownOpen = false;
+                        dropdownContent.classList.add('hidden');
+                        arrowIcon.classList.remove('rotate-180');
+                    }
+                };
+
+                // Click outside to close dropdown
+                const handleOutsideClick = (event) => {
+                    if (!dropdownToggle.contains(event.target) && !dropdownContent.contains(event.target)) {
+                        closeDropdown();
+                    }
+                };
+
+                // Escape key to close dropdown
+                const handleKeyPress = (event) => {
+                    if (event.key === 'Escape' && isDropdownOpen) {
+                        closeDropdown();
+                    }
+                };
+
+                // Attach event listeners
+                dropdownToggle.addEventListener('click', toggleDropdown);
+                document.addEventListener('click', handleOutsideClick);
+                document.addEventListener('keydown', handleKeyPress);
+            }
+
+            // --- 2. Avatar System ---
+            function initAvatarSystem() {
+                const avatarFileInput = document.getElementById('avatar-input');
+                const navAvatarContainer = document.querySelector('.relative.h-8.w-8');
+                const avatarContainer = document.getElementById('avatar-container');
+
+                if (!avatarFileInput || !avatarContainer) {
+                    console.warn('Avatar elements not found');
+                    return;
+                }
+
+                // Create avatar element based on type and container
+                function createAvatarElement(src, type, containerType) {
+                    let element;
+                    const isImage = type.startsWith('image/');
+                    const isVideo = type.startsWith('video/');
+
+                    if (isImage) {
+                        element = utils.createElement('img', '', {
+                            src,
+                            alt: 'Avatar',
+                            loading: 'lazy'
+                        });
+                    } else if (isVideo) {
+                        element = utils.createElement('video', '', {
+                            src,
+                            autoplay: 'true',
+                            loop: 'true',
+                            muted: 'true'
+                        });
+                    }
+
+                    if (element) {
+                        element.className = containerType === 'nav'
+                            ? 'h-8 w-8 rounded-full object-cover'
+                            : 'h-12 w-12 rounded-full object-cover';
+
+                        // Add error handling for media elements
+                        element.onerror = () => {
+                            console.error('Failed to load avatar media');
+                            // Could implement fallback avatar here
+                        };
+                    }
+
+                    return element;
+                }
+
+                // Update avatar display in all locations
+                function updateAvatarDisplay(src, type) {
+                    // Update nav avatar
+                    if (navAvatarContainer) {
+                        const newNavAvatar = createAvatarElement(src, type, 'nav');
+                        if (newNavAvatar) {
+                            navAvatarContainer.innerHTML = '';
+                            navAvatarContainer.appendChild(newNavAvatar);
+                        }
+                    }
+
+                    // Update dropdown avatar
+                    if (avatarContainer) {
+                        const currentAvatar = avatarContainer.querySelector('svg, img, video');
+                        const newDropdownAvatar = createAvatarElement(src, type, 'dropdown');
+
+                        if (currentAvatar && newDropdownAvatar) {
+                            currentAvatar.replaceWith(newDropdownAvatar);
+                        }
+
+                        // Ensure pencil button exists and is functional
+                        ensurePencilButton();
+                    }
+                }
+
+                // Ensure pencil edit button exists and works
+                function ensurePencilButton() {
+                    let pencilButton = avatarContainer.querySelector('#pencil-edit-button');
+
+                    if (!pencilButton) {
+                        pencilButton = utils.createElement('button',
+                            'absolute -bottom-1 -right-1 bg-white rounded-full p-0.5 shadow-md hover:bg-gray-50 transition-colors z-10',
+                            {
+                                id: 'pencil-edit-button',
+                                title: 'Đổi avatar',
+                                'aria-label': 'Đổi avatar'
+                            }
+                        );
+
+                        pencilButton.innerHTML = `
+                                <svg class="h-3 w-3 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                          d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+                                    </path>
+                                </svg>
+                            `;
+
+                        avatarContainer.appendChild(pencilButton);
+                    }
+
+                    // Remove existing listeners to prevent duplicates
+                    const newPencilButton = pencilButton.cloneNode(true);
+                    pencilButton.replaceWith(newPencilButton);
+
+                    // Add click handler
+                    newPencilButton.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        avatarFileInput.click();
+                    });
+                }
+
+                // Handle file input change
+                const handleFileChange = utils.debounce((event) => {
+                    const file = event.target.files[0];
+                    const validation = utils.validateFile(file);
+
+                    if (!validation.valid) {
+                        alert(validation.error);
+                        // Reset input
+                        event.target.value = '';
+                        return;
+                    }
+
+                    const reader = new FileReader();
+
+                    reader.onload = (e) => {
+                        const src = e.target.result;
+                        const type = file.type;
+
+                        updateAvatarDisplay(src, type);
+                        utils.safeLocalStorage.setItem('avatar', { src, type });
+                    };
+
+                    reader.onerror = () => {
+                        alert('Lỗi khi đọc file. Vui lòng thử lại.');
+                    };
+
+                    reader.readAsDataURL(file);
+                }, 300);
+
+                // Load saved avatar from localStorage
+                function loadSavedAvatar() {
+                    const savedAvatar = utils.safeLocalStorage.getItem('avatar');
+                    if (savedAvatar && savedAvatar.src && savedAvatar.type) {
+                        updateAvatarDisplay(savedAvatar.src, savedAvatar.type);
+                    } else {
+                        // Ensure default pencil button is functional
+                        ensurePencilButton();
+                    }
+                }
+
+                // Initialize avatar system
+                avatarFileInput.addEventListener('change', handleFileChange);
+                loadSavedAvatar();
+            }
+            updateCartCount();
+        })();
+    </script>
+</body>
+
+</html>

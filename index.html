@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary Meta Tags -->
+    <title>Mine - Nơi Đồ Cũ Viết Tiếp Câu Chuyện Xanh | Mua Bán Đồ Cũ Bền Vững</title>
+    <meta name="title" content="Mine - Nơi Đồ Cũ Viết Tiếp Câu Chuyện Xanh">
+    <meta name="description"
+        content="Mine - Nền tảng mua bán đồ cũ hàng đầu Việt Nam. Tìm kiếm bất động sản, xe cộ, đồ điện tử, gia dụng đã qua sử dụng với chất lượng tốt. Góp phần bảo vệ môi trường qua kinh tế tuần hoàn.">
+    <meta name="keywords"
+        content="đồ cũ, mua bán đồ cũ, bất động sản cũ, xe cũ, đồ điện tử cũ, đồ gia dụng cũ, kinh tế tuần hoàn, bảo vệ môi trường, second hand, recycle">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Vietnamese">
+    <meta name="author" content="Mine">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css" rel="stylesheet" />
+    <link rel="icon" href="Picture/logo.png" type="image/svg+xml">
+    <link rel="icon" href="Picture/logo.png" type="image/x-icon">
+    <link rel="icon" href="Picture/logo.png" type="image/png">
+    <link rel="apple-touch-icon" href="Picture/logo.png">
+    <style>
+        .img.h-12.w-12.text-green-600 {
+            border-radius: 30px;
+        }
+
+        svg.h-12.w-12.text-green-600.rounded-full,
+        img.h-12.w-12.text-green-600,
+        video.h-12.w-12.rounded-full.object-cover {
+            border-radius: 50% !important;
+        }
+
+        /* Rating Face Styles */
+        .rating-face {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .rating-face:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .rating-face.selected {
+            border-color: #16a34a !important;
+            background-color: rgba(34, 197, 94, 0.1);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+    <nav class="bg-gray-800 border-gray-700 dark:bg-gray-900 fixed w-full z-50 shadow-sm">
+        <div class="max-w-screen-xl flex items-center mx-auto p-3">
+            <!-- Logo và tên -->
+            <a href="#" class="flex items-center space-x-2 flex-shrink-0">
+                <img src="Picture/logo.png" class="h-10" alt="Mine Logo">
+                <span class="self-center text-xl font-bold text-white">Mine</span>
+            </a>
+
+            <!-- Menu chính (ẩn trên mobile/tablet) -->
+            <div class="hidden lg:flex items-center space-x-6 ml-8">
+                <a href="index.html" class="text-green-400 font-medium hover:text-green-300 transition-colors">Trang
+                    chủ</a>
+                <a href="mua_fixed.html" class="text-white hover:text-green-400 transition-colors">Mua sắm</a>
+                <a href="service.html" class="text-white hover:text-green-400 transition-colors">Dịch vụ</a>
+                <a href="timhieuthem.html" class="text-white hover:text-green-400 transition-colors">Về chúng tôi</a>
+                <a href="contact.html" class="text-white hover:text-green-400 transition-colors">Liên hệ</a>
+            </div>
+
+            <!-- Spacer để đẩy actions về bên phải -->
+            <div class="flex-1"></div>
+
+            <!-- Actions (giỏ hàng, đăng bán, đăng nhập) -->
+            <div class="flex items-center space-x-3 flex-shrink-0">
+                <!-- Giỏ hàng với icon đẹp hơn -->
+                <a href="cart.html" class="relative p-2 text-white hover:text-green-400 transition-colors"
+                    title="Giỏ hàng">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l-1 7H6L5 9z" />
+                    </svg>
+                    <span id="cart-count"
+                        class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center hidden">0</span>
+                </a>
+
+                <!-- Nút đăng bán -->
+                <a href="dang_ban.html"
+                    class="px-4 py-2 text-sm font-medium text-white bg-green-600 hover:bg-green-700 rounded-lg transition-colors">
+                    Đăng bán
+                </a>
+                <button data-collapse-toggle="navbar-default" type="button"
+                    class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+                    aria-controls="navbar-default" aria-expanded="false">
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 17 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M1 1h15M1 7h15M1 13h15" />
+                    </svg>
+                </button>
+                <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+                    <ul
+                        class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                        <li class="relative flex items-center space-x-2">
+                            <div class="relative h-8 w-8 flex items-center justify-center">
+                                <svg class="h-8 w-8 text-green-600" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5.94 7.94l-4.47 4.47-2.4-2.4-1.42 1.42 3.82 3.82 5.89-5.89-1.42-1.42z" />
+                                    <path d="M12 7v3M9 10h6M12 13v3" class="text-white" />
+                                </svg>
+                            </div>
+                            <button id="dropdown-toggle" class="text-gray-500 hover:text-gray-700 ml-1"
+                                title="Toggle dropdown">
+                                <svg id="arrow-icon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                    viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M5.293 9.293a1 1 0 011.414 0L10 12.586l3.293-3.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                            <div id="dropdown-content"
+                                class="hidden absolute top-full mt-2 w-60 bg-white border border-gray-300 rounded-lg shadow-lg end-0">
+                                <div class="p-4">
+                                    <div class="flex items-start mb-4">
+                                        <!-- Avatar container with pencil icon -->
+                                        <div id="avatar-container" class="relative flex-shrink-0 mr-3">
+                                            <svg class="h-12 w-12 text-green-600" fill="currentColor"
+                                                viewBox="0 0 24 24">
+                                                <path
+                                                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5.94 7.94l-4.47 4.47-2.4-2.4-1.42 1.42 3.82 3.82 5.89-5.89-1.42-1.42z" />
+                                                <path d="M12 7v3M9 10h6M12 13v3" class="text-white" />
+                                            </svg>
+                                            <!-- Icon cây viết chì bên cạnh avatar -->
+                                            <button id="pencil-edit-button"
+                                                class="absolute -bottom-1 -right-1 bg-white rounded-full p-0.5 shadow-md hover:bg-gray-50 transition-colors z-10"
+                                                title="Đổi avatar">
+                                                <svg class="h-3 w-3 text-gray-600" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+                                                    </path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <!-- User info -->
+                                        <div class="flex-1 min-w-0">
+                                            <p
+                                                class="text-sm font-medium whitespace-nowrap overflow-hidden text-ellipsis">
+                                                Trần Hữu Hải Đăng</p>
+                                            <p
+                                                class="text-xs text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
+                                                TK Định danh: C0888293...</p>
+                                        </div>
+                                    </div>
+                                    <input type="file" id="avatar-input" accept="image/*,video/*" class="hidden"
+                                        title="Chọn avatar mới" placeholder="Chọn file avatar">
+                                    <ul class="mt-2 space-y-1">
+                                        <li><a href="public-maps.html"
+                                                class="block text-sm text-gray-700 hover:underline">Bản đồ công khai</a>
+                                        </li>
+                                        <li><a href="blog.html"
+                                                class="block text-sm text-gray-700 hover:underline">Blog</a>
+                                        </li>
+                                        <li><a href="event.html" class="block text-sm text-gray-700 hover:underline">Sự
+                                                kiện</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+
+            </div>
+
+    </nav>
+
+    <div id="authentication-modal" tabindex="-1" aria-hidden="true"
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div class="relative p-4 w-full max-w-md max-h-full">
+            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Sign in to our platform</h3>
+                    <button type="button"
+                        class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                        data-modal-hide="authentication-modal">
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                </div>
+                <div class="p-4 md:p-5">
+                    <form class="space-y-4" action="#">
+                        <div>
+                            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
+                                email</label>
+                            <input type="email" name="email" id="email"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                placeholder="name@company.com" required>
+                        </div>
+                        <div>
+                            <label for="password"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
+                                password</label>
+                            <input type="password" name="password" id="password" placeholder="••••••••"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                                required>
+                        </div>
+                        <div class="flex justify-between">
+                            <div class="flex items-start">
+                                <div class="flex items-center h-5">
+                                    <input id="remember" type="checkbox" value=""
+                                        class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-green-300 dark:bg-gray-600 dark:border-gray-500 dark:focus:ring-green-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
+                                        required>
+                                </div>
+                                <label for="remember"
+                                    class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Remember
+                                    me</label>
+                            </div>
+                            <a href="#" class="text-sm text-green-700 hover:underline dark:text-green-500">Lost
+                                Password?</a>
+                        </div>
+                        <button type="submit"
+                            class="w-full text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Login
+                            to your account</button>
+                        <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
+                            Not registered? <a href="#"
+                                class="text-green-700 hover:underline dark:text-green-500">Create account</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="pt-16">
+        <section class="bg-white dark:bg-gray-900">
+            <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16">
+                <h1
+                    class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+                    Nền Tảng Mua Bán Đồ Cũ Hàng Đầu<br class="hidden sm:block"> Việt Nam</h1>
+                <p class="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-400">Nơi đồ
+                    cũ viết tiếp câu chuyện xanh. Tham gia cùng chúng tôi xây dựng một tương lai bền vững thông qua kinh
+                    tế tuần hoàn và tái sử dụng.</p>
+                <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0">
+                    <a href="service.html"
+                        class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 dark:focus:ring-green-900"
+                        aria-label="Khám phá dịch vụ đặc biệt của trang web">Khám
+                        Phá<svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M1 5h12m0 0L9 1m4 4L9 9" />
+                        </svg></a>
+                    <a href="timhieuthem.html"
+                        class="inline-flex justify-center items-center py-3 px-5 sm:ms-4 text-base font-medium text-center text-gray-900 rounded-lg border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
+                        aria-label="Tìm hiểu thêm về Mine">Tìm
+                        hiểu thêm</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Search Section -->
+        <section id="search-section" class="bg-white dark:bg-gray-900 py-8">
+            <div class="max-w-screen-xl mx-auto px-4">
+                <div class="max-w-4xl mx-auto">
+                    <div class="relative">
+                        <div class="flex">
+                            <!-- Search Input -->
+                            <div class="relative flex-1">
+                                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                    <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none"
+                                        stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                    </svg>
+                                </div>
+                                <input type="search" id="search-input"
+                                    class="block w-full p-4 pl-10 pr-4 text-sm text-gray-900 border border-gray-300 rounded-l-lg bg-gray-50 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                                    placeholder="Tìm kiếm sản phẩm, danh mục..." required>
+                            </div>
+
+                            <!-- Category Filter -->
+                            <select id="category-filter"
+                                class="p-4 text-sm text-gray-900 border border-gray-300 bg-gray-50 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500">
+                                <option value="">Tất cả danh mục</option>
+                                <option value="A">Đồ điện tử</option>
+                                <option value="B">Đồ gia dụng & Nội thất</option>
+                                <option value="C">Thời trang & Phụ kiện</option>
+                                <option value="D">Xe cộ & Phương tiện</option>
+                                <option value="E">Bất động sản</option>
+                                <option value="F">Sách & Văn phòng phẩm</option>
+                                <option value="G">Thể thao & Giải trí</option>
+                                <option value="H">Sức khỏe & Làm đẹp</option>
+                            </select>
+
+                            <!-- Search Button -->
+                            <button type="button" id="search-btn"
+                                class="px-6 py-4 text-sm font-medium text-white bg-green-600 rounded-r-lg border border-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                </svg>
+                            </button>
+                        </div>
+
+                        <!-- Quick Filter Tags -->
+                        <div class="flex flex-wrap gap-2 mt-4 items-center">
+                            <button
+                                class="search-tag px-3 py-1 text-xs bg-green-100 text-green-600 rounded-full hover:bg-green-200 transition-colors"
+                                data-filter="ban">Đồ bán</button>
+                            <button
+                                class="search-tag px-3 py-1 text-xs bg-blue-100 text-blue-600 rounded-full hover:bg-blue-200 transition-colors"
+                                data-filter="tang">Đồ tặng</button>
+                            <button
+                                class="search-tag px-3 py-1 text-xs bg-purple-100 text-purple-600 rounded-full hover:bg-purple-200 transition-colors"
+                                data-filter="moi">Mới</button>
+                            <button
+                                class="search-tag px-3 py-1 text-xs bg-yellow-100 text-yellow-600 rounded-full hover:bg-yellow-200 transition-colors"
+                                data-filter="nhu-moi">Như mới</button>
+                            <button
+                                class="search-tag px-3 py-1 text-xs bg-red-100 text-red-600 rounded-full hover:bg-red-200 transition-colors"
+                                data-filter="gia-re">Giá rẻ</button>
+
+                            <!-- Satisfaction Rating Filter - Same Row -->
+                            <button
+                                class="satisfaction-filter rating-face w-9 h-9 flex items-center justify-center text-lg rounded-full border-2 border-gray-200 hover:border-green-500 transition-colors"
+                                data-rating="1" title="Rất không hài lòng">😭</button>
+                            <button
+                                class="satisfaction-filter rating-face w-9 h-9 flex items-center justify-center text-lg rounded-full border-2 border-gray-200 hover:border-green-500 transition-colors"
+                                data-rating="2" title="Không hài lòng">😕</button>
+                            <button
+                                class="satisfaction-filter rating-face w-9 h-9 flex items-center justify-center text-lg rounded-full border-2 border-gray-200 hover:border-green-500 transition-colors"
+                                data-rating="3" title="Trung tính">😐</button>
+                            <button
+                                class="satisfaction-filter rating-face w-9 h-9 flex items-center justify-center text-lg rounded-full border-2 border-gray-200 hover:border-green-500 transition-colors"
+                                data-rating="4" title="Hài lòng">😊</button>
+                            <button
+                                class="satisfaction-filter rating-face w-9 h-9 flex items-center justify-center text-lg rounded-full border-2 border-gray-200 hover:border-green-500 transition-colors"
+                                data-rating="5" title="Rất hài lòng">😍</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="products" class="bg-white dark:bg-gray-900">
+            <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16">
+                <h2
+                    class="mb-8 text-3xl font-extrabold tracking-tight leading-tight text-center text-gray-900 lg:mb-16 dark:text-white md:text-4xl">
+                    Khám Phá Sản Phẩm Của Chúng Tôi</h2>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Product Card 1 -->
+                    <div
+                        class="bg-gray-50 rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 dark:bg-gray-800 border dark:border-gray-700">
+                        <img src="https://cdn.tgdd.vn/Products/Images/42/251192/iphone-14-pro-max-purple-1.jpg"
+                            alt="Túi Vải Tái Chế" class="w-full h-56 object-cover">
+                        <div class="p-6">
+                            <h3 class="font-semibold text-xl mb-2 text-gray-900 dark:text-white">IPhone 14 Pro Max 256GB
+                            </h3>
+                            <p class="text-green-600 font-bold text-2xl mb-4 dark:text-green-500">28.000.000₫</p>
+                            <p class="text-gray-600 text-sm mb-4 dark:text-gray-400">IPhone 14 Pro Max màu tím, 256GB,
+                                còn nguyên seal, chưa active. Bảo hành Apple 12 tháng</p>
+                            <a href="https://mine.greenmapvietnam.online/trung_bay.html?id=SP001"
+                                class="w-full bg-green-700 text-white py-2 rounded-lg hover:bg-green-800 transition duration-300 focus:ring-4 focus:ring-green-300 dark:focus:ring-green-900 block text-center">Xem
+                                Chi Tiết</a>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 2 -->
+                    <div
+                        class="bg-gray-50 rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 dark:bg-gray-800 border dark:border-gray-700">
+                        <img src="https://hoanghamobile.com/Uploads/2024/07/03/apple-watch-21.jpg" alt="Chậu Cây Mini"
+                            class="w-full h-56 object-cover">
+                        <div class="p-6">
+                            <h3 class="font-semibold text-xl mb-2 text-gray-900 dark:text-white">Apple Watch
+                            </h3>
+                            <p class="text-green-600 font-bold text-2xl mb-4 dark:text-green-500">15.000.000₫</p>
+                            <p class="text-gray-600 text-sm mb-4 dark:text-gray-400">Apple Watch Series 7, 41mm, GPS,
+                                trắng, dùng đã sử dụng 1 tháng. Bảo hành Apple 12 tháng</p>
+                            <a href="https://mine.greenmapvietnam.online/trung_bay.html?id=SP006"
+                                class="w-full bg-green-700 text-white py-2 rounded-lg hover:bg-green-800 transition duration-300 focus:ring-4 focus:ring-green-300 dark:focus:ring-green-900 block text-center">Xem
+                                Chi Tiết</a>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 3 -->
+                    <div
+                        class="bg-gray-50 rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 dark:bg-gray-800 border dark:border-gray-700">
+                        <img src="data:image/webp;base64,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"
+                            alt="Bình Nước Giữ Nhiệt" class="w-full h-56 object-cover">
+                        <div class="p-6">
+                            <h3 class="font-semibold text-xl mb-2 text-gray-900 dark:text-white">MacBook Air M2 13inch
+                            </h3>
+                            <p class="text-green-600 font-bold text-2xl mb-4 dark:text-green-500">24.500.000₫</p>
+                            <p class="text-gray-600 text-sm mb-4 dark:text-gray-400">MacBook Air M2 2022, 13 inch, 8GB
+                                RAM, 256GB SSD. Máy còn mới 99%, sử dụng ít</p>
+                            <a href="https://mine.greenmapvietnam.online/trung_bay.html?id=SP002"
+                                class="w-full bg-green-700 text-white py-2 rounded-lg hover:bg-green-800 transition duration-300 focus:ring-4 focus:ring-green-300 dark:focus:ring-green-900 block text-center">Xem
+                                Chi Tiết</a>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 4 -->
+                    <div
+                        class="bg-gray-50 rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 dark:bg-gray-800 border dark:border-gray-700">
+                        <img src="https://media.karousell.com/media/photos/products/2024/1/10/honda_wave_alpha_2020_1704883079_0ab4d5f1_progressive.jpg"
+                            alt="Sổ Tay Giấy Tái Chế" class="w-full h-56 object-cover">
+                        <div class="p-6">
+                            <h3 class="font-semibold text-xl mb-2 text-gray-900 dark:text-white">Honda Wave Alpha 2020
+                            </h3>
+                            <p class="text-green-500 font-bold text-2xl mb-4 dark:text-green-500">18.500.000₫</p>
+                            <p class="text-gray-600 text-sm mb-4 dark:text-gray-400">Honda Wave Alpha 2020, màu đỏ đen,
+                                đi 15.000km. Xe zin, bảo dưỡng định kỳ</p>
+                            <a href="https://mine.greenmapvietnam.online/trung_bay.html?id=SP005"
+                                class="w-full bg-green-700 text-white py-2 rounded-lg hover:bg-green-800 transition duration-300 focus:ring-4 focus:ring-green-300 dark:focus:ring-green-900 block text-center">Xem
+                                Chi Tiết</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="products">
+
+            <div id="products-carousel" class="relative w-full" data-carousel="slide">
+                <div class="relative h-[60vh] overflow-hidden md:h-[85vh]">
+
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                        <img src="https://scontent.fsgn5-5.fna.fbcdn.net/v/t39.30808-6/482020947_622316447230711_9199788320059848071_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=833d8c&_nc_ohc=lmKtRo6InLgQ7kNvwGzCzxk&_nc_oc=AdnNRXUM5mAXtXwjeOwbXZ7Kpx5XKUDk94TDOfhvk1nr0XdjS9OeAPqvUWbU0Snqpbc&_nc_zt=23&_nc_ht=scontent.fsgn5-5.fna&_nc_gid=5NIqXBdJTHt50P6e6jNVvQ&oh=00_AfTcnVA-CGfSTsTowx_oTJ6j7WEciEioC_9bvwksmBAuRA&oe=68902519"
+                            class="absolute block w-full h-full object-cover" alt="Túi Vải Tái Chế">
+                        <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+                        <div
+                            class="absolute inset-0 flex flex-col items-center justify-center text-center text-white p-4">
+                            <h2
+                                class="mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl lg:text-6xl">
+                                NGÕ NHÀ VE</h2>
+                            <p class="mb-8 text-lg font-normal lg:text-xl sm:px-16 lg:px-48 max-w-3xl">Sứ mệnh của Ngõ
+                                là gom góp sức trẻ và sự nhiệt huyết của mình để điểm tô thêm chấm xanh cho cuộc sống
+                            </p>
+                            <a href="https://www.facebook.com/clbngonhave"
+                                class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 dark:focus:ring-green-900">
+                                Xem Chi Tiết
+                                <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                        <img src="https://image.baophapluat.vn/1200x630/Uploaded/2023/gznrxgmabianhgzmath/2023_03_01/sgx4-1451.jpeg"
+                            class="absolute block w-full h-full object-cover" alt="Chậu Cây Mini">
+                        <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+                        <div
+                            class="absolute inset-0 flex flex-col items-center justify-center text-center text-white p-4">
+                            <h2
+                                class="mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl lg:text-6xl">
+                                SÀI GÒN XANH</h2>
+                            <p class="mb-8 text-lg font-normal lg:text-xl sm:px-16 lg:px-48 max-w-3xg">Là một tổ chức
+                                môi trường với sứ mệnh ngăn chặn nhựa thải ra kênh rạch và bờ biển</p>
+                            <a href="https://saigonxanh.org/"
+                                class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 dark:focus:ring-green-900">
+                                Xem Chi Tiết
+                                <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                        <img src="https://scontent.fsgn5-3.fna.fbcdn.net/v/t39.30808-6/522725067_755027296912050_4414498947476814533_n.jpg?stp=dst-jpg_s960x960_tt6&_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_ohc=Vr62ID5jNg4Q7kNvwGQvnfj&_nc_oc=AdnBHkA75YQ8BHCXhC4dbFKUIO-EPT0ssviyse0hGSqoSNBSHRl5SfnqgJ1yHl5wBfs&_nc_zt=23&_nc_ht=scontent.fsgn5-3.fna&_nc_gid=c3WTWw64Ki5Zy0xs6ZYc5A&oh=00_AfSE0e4n-WkTqMmOYrS7ENnHHoIiJ6QVUfxiOm4iU424FQ&oe=688FF218"
+                            class="absolute block w-full h-full object-cover" alt="Bình Nước Giữ Nhiệt">
+                        <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+                        <div
+                            class="absolute inset-0 flex flex-col items-center justify-center text-center text-white p-4">
+                            <h2
+                                class="mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl lg:text-6xg">
+                                CÂU LẠC BỘ MÔI TRƯỜNG - ĐẠI HỌC CẦN THƠ</h2>
+                            <p class="mb-8 text-lg font-normal lg:text-xl sm:px-16 lg:px-48 max-w-3xl">Giảm rác thải
+                                nhựa với bình nước cá nhân, giữ nóng và lạnh hiệu quả.</p>
+                            <a href="https://www.facebook.com/share/p/1FFYuwSCEk/"
+                                class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 dark:focus:ring-green-900">
+                                Xem Chi Tiết
+                                <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                        <img src="https://scontent.fsgn5-9.fna.fbcdn.net/v/t39.30808-6/487312818_1172525784660689_748449852237187034_n.jpg?stp=dst-jpg_s960x960_tt6&_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_ohc=GmbZqFeh49kQ7kNvwHGULnl&_nc_oc=Adm4KAC0i3tnWQ5v6eYuuNBzd5Dp9Nk9y0XdYKetmFeq8alZ_Wd-BxdRANQAKaThmQI&_nc_zt=23&_nc_ht=scontent.fsgn5-9.fna&_nc_gid=mp28oqdOzqsaNOZHDzKdGQ&oh=00_AfRqwQafOXJwnMRto6Hc0Ykb7J7w8UExcmdomrUCS0fmPw&oe=689003A6"
+                            class="absolute block w-full h-full object-cover" alt="Sổ Tay Giấy Tái Chế">
+                        <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+                        <div
+                            class="absolute inset-0 flex flex-col items-center justify-center text-center text-white p-4">
+                            <h2
+                                class="mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl lg:text-6xl">
+                                CÙNG TRƯỜNG ĐẠI HỌC Y DƯỢC CẦN THƠ DỌN RÁC</h2>
+                            <p class="mb-8 text-lg font-normal lg:text-xl sm:px-16 lg:px-48 max-w-3xl">Đổi rác tái chế
+                                nhận sen đá</p>
+                            <a href="https://www.facebook.com/share/p/1DN4G6usax/"
+                                class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 dark:focus:ring-green-900">
+                                Xem Chi Tiết
+                                <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="bg-white dark:bg-gray-900">
+            <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+                <div class="md:flex md:justify-between">
+                    <div class="mb-6 md:mb-0">
+                        <a href="#" class="flex items-center">
+                            <img src="Picture/logo.png" class="h-10 me-3" alt="Green Map Logo" />
+                            <span
+                                class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Mine</span>
+                        </a>
+                    </div>
+                    <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+                        <div>
+                            <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Resources
+                            </h2>
+                            <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                                <li class="mb-4">
+                                    <a href="#" class="hover:underline">Conservation</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="hover:underline">Blog</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Follow us
+                            </h2>
+                            <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                                <li class="mb-4">
+                                    <a href="#" class="hover:underline ">Facebook</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="hover:underline">Twitter</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Legal</h2>
+                            <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                                <li class="mb-4">
+                                    <a href="#" class="hover:underline">Privacy Policy</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="hover:underline">Terms &amp; Conditions</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="sm:flex sm:items-center sm:justify-between"></div>
+            </div>
+        </footer>
+
+        <div id="avatar-modal" tabindex="-1" aria-hidden="true"
+            class="hidden fixed top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+            <div class="relative w-full max-w-md max-h-full">
+                <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                    <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
+                        <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                            Đổi Avatar
+                        </h3>
+                        <button type="button" id="close-avatar-modal"
+                            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                    clip-rule="evenodd"></path>
+                        </button>
+                    </div>
+                    <div class="p-6 space-y-6">
+                        <input type="file" id="avatar-upload" accept="image/*,video/*"
+                            class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400">
+                    </div>
+                    <div
+                        class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
+                        <button id="save-avatar" type="button"
+                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Lưu</button>
+                        <button id="cancel-avatar" type="button"
+                            class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Hủy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
+        <script>
+            // Optimized JavaScript with better error handling and performance
+            (function () {
+                'use strict';
+
+                // Cache DOM elements and state
+                let isDropdownOpen = false;
+                let eventListenersAttached = false;
+
+                // Utility functions
+                const utils = {
+                    createElement: (tag, className, attributes = {}) => {
+                        const element = document.createElement(tag);
+                        if (className) element.className = className;
+                        Object.entries(attributes).forEach(([key, value]) => {
+                            element.setAttribute(key, value);
+                        });
+                        return element;
+                    },
+
+                    debounce: (func, wait) => {
+                        let timeout;
+                        return function executedFunction(...args) {
+                            const later = () => {
+                                clearTimeout(timeout);
+                                func(...args);
+                            };
+                            clearTimeout(timeout);
+                            timeout = setTimeout(later, wait);
+                        };
+                    },
+
+                    validateFile: (file) => {
+                        const maxSize = 10 * 1024 * 1024; // 10MB
+                        const allowedTypes = ['image/', 'video/'];
+
+                        if (!file) return { valid: false, error: 'Không có file được chọn' };
+                        if (file.size > maxSize) return { valid: false, error: 'File quá lớn. Vui lòng chọn file nhỏ hơn 10MB.' };
+                        if (!allowedTypes.some(type => file.type.startsWith(type))) {
+                            return { valid: false, error: 'Định dạng file không được hỗ trợ. Chỉ chấp nhận hình ảnh và video.' };
+                        }
+
+                        return { valid: true };
+                    },
+
+                    safeLocalStorage: {
+                        setItem: (key, value) => {
+                            try {
+                                localStorage.setItem(key, JSON.stringify(value));
+                                return true;
+                            } catch (error) {
+                                console.warn('Không thể lưu vào localStorage:', error);
+                                return false;
+                            }
+                        },
+
+                        getItem: (key) => {
+                            try {
+                                const item = localStorage.getItem(key);
+                                return item ? JSON.parse(item) : null;
+                            } catch (error) {
+                                console.warn('Không thể đọc từ localStorage:', error);
+                                return null;
+                            }
+                        }
+                    }
+                };
+
+                // Initialize when DOM is ready
+                document.addEventListener('DOMContentLoaded', function () {
+                    initDropdown();
+                    initAvatarSystem();
+                });
+
+                // --- 1. Dropdown Management ---
+                function initDropdown() {
+                    const dropdownToggle = document.getElementById('dropdown-toggle');
+                    const dropdownContent = document.getElementById('dropdown-content');
+                    const arrowIcon = document.getElementById('arrow-icon');
+
+                    if (!dropdownToggle || !dropdownContent || !arrowIcon) {
+                        console.warn('Dropdown elements not found');
+                        return;
+                    }
+
+                    const toggleDropdown = (e) => {
+                        e.stopPropagation();
+                        isDropdownOpen = !isDropdownOpen;
+
+                        dropdownContent.classList.toggle('hidden', !isDropdownOpen);
+                        arrowIcon.classList.toggle('rotate-180', isDropdownOpen);
+                    };
+
+                    const closeDropdown = () => {
+                        if (isDropdownOpen) {
+                            isDropdownOpen = false;
+                            dropdownContent.classList.add('hidden');
+                            arrowIcon.classList.remove('rotate-180');
+                        }
+                    };
+
+                    // Click outside to close dropdown
+                    const handleOutsideClick = (event) => {
+                        if (!dropdownToggle.contains(event.target) && !dropdownContent.contains(event.target)) {
+                            closeDropdown();
+                        }
+                    };
+
+                    // Escape key to close dropdown
+                    const handleKeyPress = (event) => {
+                        if (event.key === 'Escape' && isDropdownOpen) {
+                            closeDropdown();
+                        }
+                    };
+
+                    // Attach event listeners
+                    dropdownToggle.addEventListener('click', toggleDropdown);
+                    document.addEventListener('click', handleOutsideClick);
+                    document.addEventListener('keydown', handleKeyPress);
+                }
+
+                // --- 2. Avatar System ---
+                function initAvatarSystem() {
+                    const avatarFileInput = document.getElementById('avatar-input');
+                    const navAvatarContainer = document.querySelector('.relative.h-8.w-8');
+                    const avatarContainer = document.getElementById('avatar-container');
+
+                    if (!avatarFileInput || !avatarContainer) {
+                        console.warn('Avatar elements not found');
+                        return;
+                    }
+
+                    // Create avatar element based on type and container
+                    function createAvatarElement(src, type, containerType) {
+                        let element;
+                        const isImage = type.startsWith('image/');
+                        const isVideo = type.startsWith('video/');
+
+                        if (isImage) {
+                            element = utils.createElement('img', '', {
+                                src,
+                                alt: 'Avatar',
+                                loading: 'lazy'
+                            });
+                        } else if (isVideo) {
+                            element = utils.createElement('video', '', {
+                                src,
+                                autoplay: 'true',
+                                loop: 'true',
+                                muted: 'true'
+                            });
+                        }
+
+                        if (element) {
+                            element.className = containerType === 'nav'
+                                ? 'h-8 w-8 rounded-full object-cover'
+                                : 'h-12 w-12 rounded-full object-cover';
+
+                            // Add error handling for media elements
+                            element.onerror = () => {
+                                console.error('Failed to load avatar media');
+                                // Could implement fallback avatar here
+                            };
+                        }
+
+                        return element;
+                    }
+
+                    // Update avatar display in all locations
+                    function updateAvatarDisplay(src, type) {
+                        // Update nav avatar
+                        if (navAvatarContainer) {
+                            const newNavAvatar = createAvatarElement(src, type, 'nav');
+                            if (newNavAvatar) {
+                                navAvatarContainer.innerHTML = '';
+                                navAvatarContainer.appendChild(newNavAvatar);
+                            }
+                        }
+
+                        // Update dropdown avatar
+                        if (avatarContainer) {
+                            const currentAvatar = avatarContainer.querySelector('svg, img, video');
+                            const newDropdownAvatar = createAvatarElement(src, type, 'dropdown');
+
+                            if (currentAvatar && newDropdownAvatar) {
+                                currentAvatar.replaceWith(newDropdownAvatar);
+                            }
+
+                            // Ensure pencil button exists and is functional
+                            ensurePencilButton();
+                        }
+                    }
+
+                    // Ensure pencil edit button exists and works
+                    function ensurePencilButton() {
+                        let pencilButton = avatarContainer.querySelector('#pencil-edit-button');
+
+                        if (!pencilButton) {
+                            pencilButton = utils.createElement('button',
+                                'absolute -bottom-1 -right-1 bg-white rounded-full p-0.5 shadow-md hover:bg-gray-50 transition-colors z-10',
+                                {
+                                    id: 'pencil-edit-button',
+                                    title: 'Đổi avatar',
+                                    'aria-label': 'Đổi avatar'
+                                }
+                            );
+
+                            pencilButton.innerHTML = `
+                                <svg class="h-3 w-3 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                          d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+                                    </path>
+                                </svg>
+                            `;
+
+                            avatarContainer.appendChild(pencilButton);
+                        }
+
+                        // Remove existing listeners to prevent duplicates
+                        const newPencilButton = pencilButton.cloneNode(true);
+                        pencilButton.replaceWith(newPencilButton);
+
+                        // Add click handler
+                        newPencilButton.addEventListener('click', (e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            avatarFileInput.click();
+                        });
+                    }
+
+                    // Handle file input change
+                    const handleFileChange = utils.debounce((event) => {
+                        const file = event.target.files[0];
+                        const validation = utils.validateFile(file);
+
+                        if (!validation.valid) {
+                            alert(validation.error);
+                            // Reset input
+                            event.target.value = '';
+                            return;
+                        }
+
+                        const reader = new FileReader();
+
+                        reader.onload = (e) => {
+                            const src = e.target.result;
+                            const type = file.type;
+
+                            updateAvatarDisplay(src, type);
+                            utils.safeLocalStorage.setItem('avatar', { src, type });
+                        };
+
+                        reader.onerror = () => {
+                            alert('Lỗi khi đọc file. Vui lòng thử lại.');
+                        };
+
+                        reader.readAsDataURL(file);
+                    }, 300);
+
+                    // Load saved avatar from localStorage
+                    function loadSavedAvatar() {
+                        const savedAvatar = utils.safeLocalStorage.getItem('avatar');
+                        if (savedAvatar && savedAvatar.src && savedAvatar.type) {
+                            updateAvatarDisplay(savedAvatar.src, savedAvatar.type);
+                        } else {
+                            // Ensure default pencil button is functional
+                            ensurePencilButton();
+                        }
+                    }
+
+                    // Initialize avatar system
+                    avatarFileInput.addEventListener('change', handleFileChange);
+                    loadSavedAvatar();
+                }
+                
+                
+                // Search functionality
+                function initializeSearch() {
+                    const searchInput = document.getElementById('search-input');
+                    const searchBtn = document.getElementById('search-btn');
+                    const categoryFilter = document.getElementById('category-filter');
+                    const searchTags = document.querySelectorAll('.search-tag');
+                    const satisfactionFilters = document.querySelectorAll('.satisfaction-filter');
+                    updateCartCount();
+    
+
+                    // Function to calculate average rating for a product
+                    function getProductAverageRating(productId) {
+                        try {
+                            const sellerRatings = utils.safeLocalStorage.getItem('sellerRatings') || {};
+
+                            // Find ratings for this product across all sellers
+                            let allRatings = [];
+
+                            Object.values(sellerRatings).forEach(seller => {
+                                if (seller.ratings && Array.isArray(seller.ratings)) {
+                                    const productRatings = seller.ratings.filter(rating =>
+                                        rating.productId === productId && rating.rating >= 1 && rating.rating <= 5
+                                    );
+                                    allRatings = allRatings.concat(productRatings.map(r => r.rating));
+                                }
+                            });
+
+                            if (allRatings.length === 0) return 0;
+
+                            const average = allRatings.reduce((sum, rating) => sum + rating, 0) / allRatings.length;
+                            return Math.round(average); // Round to nearest integer (1-5)
+                        } catch (error) {
+                            console.error('Error calculating product rating:', error);
+                            return 0;
+                        }
+                    }
+                    function updateCartCount() {
+                        const cart = utils.safeLocalStorage.getItem('cart') || [];
+                        const cartCount = cart.reduce((total, item) => {
+                            return total + (parseInt(item.quantity) || 0);
+                        }, 0);
+
+                        const cartCountElement = document.getElementById('cart-count');
+
+                        if (cartCountElement) {
+                            if (cartCount > 0) {
+                                cartCountElement.textContent = cartCount > 99 ? '99+' : cartCount;
+                                cartCountElement.classList.remove('hidden');
+                            } else {
+                                cartCountElement.classList.add('hidden');
+                            }
+                        }
+                    }
+
+                    // Handle search button click
+                    function performSearch() {
+                        const searchTerm = searchInput.value.trim();
+                        const category = categoryFilter.value;
+                        const selectedSatisfactionRating = document.querySelector('.satisfaction-filter.selected')?.getAttribute('data-rating');
+
+                        // Build URL parameters
+                        const params = new URLSearchParams();
+                        if (searchTerm) params.set('search', searchTerm);
+                        if (category) params.set('category', category);
+                        if (selectedSatisfactionRating) params.set('satisfaction', selectedSatisfactionRating);
+
+                        // Redirect to mua_fixed.html with search parameters
+                        const url = category || searchTerm || selectedSatisfactionRating ? `mua_fixed.html?${params.toString()}` : 'mua_fixed.html';
+                        window.location.href = url;
+                    }
+
+                    // Event listeners
+                    if (searchBtn) {
+                        searchBtn.addEventListener('click', performSearch);
+                    }
+
+                    if (searchInput) {
+                        searchInput.addEventListener('keypress', (e) => {
+                            if (e.key === 'Enter') {
+                                e.preventDefault();
+                                performSearch();
+                            }
+                        });
+                    }
+
+                    // Handle category filter change
+                    if (categoryFilter) {
+                        categoryFilter.addEventListener('change', () => {
+                            if (categoryFilter.value) {
+                                performSearch();
+                            }
+                        });
+                    }
+
+                    // Handle search tag clicks
+                    searchTags.forEach(tag => {
+                        tag.addEventListener('click', () => {
+                            const filter = tag.getAttribute('data-filter');
+                            if (filter) {
+                                searchInput.value = filter;
+                                performSearch();
+                            }
+                        });
+                    });
+                    
+                    // Handle satisfaction rating filter clicks
+                    satisfactionFilters.forEach(button => {
+                        button.addEventListener('click', () => {
+                            // Remove selected class from all buttons
+                            satisfactionFilters.forEach(btn => btn.classList.remove('selected'));
+
+                            // If clicking the same button, toggle it off
+                            if (button.classList.contains('selected')) {
+                                button.classList.remove('selected');
+                            } else {
+                                // Add selected class to clicked button
+                                button.classList.add('selected');
+                            }
+
+                            // Perform search with satisfaction filter
+                            performSearch();
+                        });
+                    });
+                }
+
+                // Initialize search functionality
+                initializeSearch();
+            })();
+        </script>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,1947 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary Meta Tags -->
+    <title>Mine - Nơi Đồ Cũ Viết Tiếp Câu Chuyện Xanh | Mua Bán Đồ Cũ Bền Vững</title>
+    <meta name="title" content="Mine - Nơi Đồ Cũ Viết Tiếp Câu Chuyện Xanh">
+    <meta name="description"
+        content="Mine - Nền tảng mua bán đồ cũ hàng đầu Việt Nam. Tìm kiếm bất động sản, xe cộ, đồ điện tử, gia dụng đã qua sử dụng với chất lượng tốt. Góp phần bảo vệ môi trường qua kinh tế tuần hoàn.">
+    <meta name="keywords"
+        content="đồ cũ, mua bán đồ cũ, bất động sản cũ, xe cũ, đồ điện tử cũ, đồ gia dụng cũ, kinh tế tuần hoàn, bảo vệ môi trường, second hand, recycle">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Vietnamese">
+    <meta name="author" content="Mine">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css" rel="stylesheet" />
+    <link rel="icon" href="Picture/logo.png" type="image/svg+xml">
+    <link rel="icon" href="Picture/logo.png" type="image/x-icon">
+    <link rel="icon" href="Picture/logo.png" type="image/png">
+    <link rel="apple-touch-icon" href="Picture/logo.png">
+    <style>
+        .category-field {
+            display: none;
+        }
+
+        .preview-container {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .media-preview {
+            position: relative;
+            display: inline-block;
+            margin: 5px;
+        }
+
+        .remove-media {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: red;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        /* Tab styling */
+        .upload-tab.active {
+            border-bottom-color: #059669;
+            color: #059669;
+        }
+
+        .upload-panel {
+            transition: all 0.3s ease;
+        }
+
+        /* Drag and drop styling */
+        .drop-zone-active {
+            border-color: #059669 !important;
+            background-color: #f0fdf4 !important;
+        }
+
+        /* Markdown editor styles */
+        .markdown-toolbar {
+            background: #F9FAFB;
+            border-bottom: 1px solid #E5E7EB;
+            padding: 8px 12px;
+        }
+
+        .markdown-toolbar button {
+            padding: 4px 8px;
+            border: 1px solid #D1D5DB;
+            background: white;
+            border-radius: 4px;
+            margin-right: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .markdown-toolbar button:hover {
+            background: #F3F4F6;
+        }
+
+        .markdown-editor {
+            font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+            font-size: 14px;
+        }
+
+        .markdown-preview {
+            padding: 12px;
+            background: #FAFAFA;
+            border-top: 1px solid #E5E7EB;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* URL image item styles */
+        .url-image-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px;
+            border: 1px solid #E5E7EB;
+            border-radius: 6px;
+            margin-bottom: 8px;
+        }
+
+        /* Data table styles */
+        #data-table input {
+            outline: none;
+        }
+
+        #data-table input:focus {
+            background-color: #F0FDF4;
+        }
+
+        /* Table styling */
+        #data-table input {
+            outline: none;
+        }
+
+        #data-table input:focus {
+            background-color: #f9fafb;
+        }
+
+        /* URL preview styling */
+        .url-image-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            background-color: #f9fafb;
+        }
+
+        /* Markdown editor styling */
+        .markdown-toolbar {
+            border-bottom: 1px solid #e5e7eb;
+            padding: 8px 12px;
+            background-color: #f9fafb;
+            border-radius: 6px 6px 0 0;
+        }
+
+        .markdown-toolbar button {
+            padding: 4px 8px;
+            margin-right: 4px;
+            border: 1px solid #d1d5db;
+            background-color: white;
+            border-radius: 3px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .markdown-toolbar button:hover {
+            background-color: #f3f4f6;
+        }
+
+        .markdown-editor {
+            min-height: 120px;
+            border-radius: 0 0 6px 6px;
+            border-top: none;
+        }
+
+        .markdown-preview {
+            min-height: 120px;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 0 0 6px 6px;
+            background-color: #fefefe;
+        }
+
+        /* Price Suggestion Styles */
+        #price-suggestion-btn {
+            background: linear-gradient(135deg, #3B82F6, #1E40AF);
+            border: none;
+            color: white;
+            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        #price-suggestion-btn:hover {
+            background: linear-gradient(135deg, #2563EB, #1D4ED8);
+            box-shadow: 0 4px 8px rgba(59, 130, 246, 0.4);
+            transform: translateY(-1px);
+        }
+
+        #price-suggestion-btn:disabled {
+            background: #9CA3AF;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        #price-notification {
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        #apply-suggested-price {
+            background: linear-gradient(135deg, #10B981, #059669);
+            transition: all 0.2s ease;
+            font-weight: 600;
+        }
+
+        #apply-suggested-price:hover {
+            background: linear-gradient(135deg, #059669, #047857);
+            transform: scale(1.05);
+        }
+
+        #price-loading .animate-spin {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Responsive adjustments for price suggestion */
+        @media (max-width: 768px) {
+            #price-suggestion-btn {
+                position: static;
+                width: 100%;
+                margin-top: 8px;
+                transform: none !important;
+            }
+
+            .relative {
+                position: static;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-gray-800 border-gray-700 dark:bg-gray-900 fixed w-full z-50 shadow-sm">
+        <div class="max-w-screen-xl flex items-center mx-auto p-3">
+            <!-- Logo và tên -->
+            <a href="index.html" class="flex items-center space-x-2 flex-shrink-0">
+                <img src="Picture/logo.png" class="h-10" alt="Mine Logo">
+                <span class="self-center text-xl font-bold text-white">Mine</span>
+            </a>
+
+            <!-- Menu chính (ẩn trên mobile/tablet) -->
+            <div class="hidden lg:flex items-center space-x-6 ml-8">
+                <a href="index.html" class="text-white hover:text-green-400 transition-colors">Trang chủ</a>
+                <a href="mua_fixed.html" class="text-white hover:text-green-400 transition-colors">Mua sắm</a>
+                <a href="service.html" class="text-white hover:text-green-400 transition-colors">Dịch vụ</a>
+                <a href="timhieuthem.html" class="text-white hover:text-green-400 transition-colors">Về chúng tôi</a>
+                <a href="contact.html" class="text-white hover:text-green-400 transition-colors">Liên hệ</a>
+            </div>
+
+            <!-- Spacer để đẩy actions về bên phải -->
+            <div class="flex-1"></div>
+
+            <!-- Actions (giỏ hàng, đăng bán, đăng nhập) -->
+            <div class="flex items-center space-x-3 flex-shrink-0">
+                <!-- Giỏ hàng với icon đẹp hơn -->
+                <a href="cart.html" class="relative p-2 text-white hover:text-green-400 transition-colors"
+                    title="Giỏ hàng">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l-1 7H6L5 9z" />
+                    </svg>
+                    <span id="cart-count"
+                        class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center hidden">0</span>
+                </a>
+
+                <!-- Nút đăng bán -->
+                <a href="dang_ban.html"
+                    class="px-4 py-2 text-sm font-medium text-white bg-green-600 hover:bg-green-700 rounded-lg transition-colors">
+                    Đăng bán
+                </a>
+                <button data-collapse-toggle="navbar-default" type="button"
+                    class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+                    aria-controls="navbar-default" aria-expanded="false">
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 17 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M1 1h15M1 7h15M1 13h15" />
+                    </svg>
+                </button>
+                <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+                    <ul
+                        class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                        <li class="relative flex items-center space-x-2">
+                            <div class="relative h-8 w-8 flex items-center justify-center">
+                                <svg class="h-8 w-8 text-green-600" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5.94 7.94l-4.47 4.47-2.4-2.4-1.42 1.42 3.82 3.82 5.89-5.89-1.42-1.42z" />
+                                    <path d="M12 7v3M9 10h6M12 13v3" class="text-white" />
+                                </svg>
+                            </div>
+                            <button id="dropdown-toggle" class="text-gray-500 hover:text-gray-700 ml-1"
+                                title="Toggle dropdown">
+                                <svg id="arrow-icon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                    viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M5.293 9.293a1 1 0 011.414 0L10 12.586l3.293-3.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                            <div id="dropdown-content"
+                                class="hidden absolute top-full mt-2 w-60 bg-white border border-gray-300 rounded-lg shadow-lg end-0">
+                                <div class="p-4">
+                                    <div class="flex items-start mb-4">
+                                        <!-- Avatar container with pencil icon -->
+                                        <div id="avatar-container" class="relative flex-shrink-0 mr-3">
+                                            <svg class="h-12 w-12 text-green-600" fill="currentColor"
+                                                viewBox="0 0 24 24">
+                                                <path
+                                                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5.94 7.94l-4.47 4.47-2.4-2.4-1.42 1.42 3.82 3.82 5.89-5.89-1.42-1.42z" />
+                                                <path d="M12 7v3M9 10h6M12 13v3" class="text-white" />
+                                            </svg>
+                                            <!-- Icon cây viết chì bên cạnh avatar -->
+                                            <button id="pencil-edit-button"
+                                                class="absolute -bottom-1 -right-1 bg-white rounded-full p-0.5 shadow-md hover:bg-gray-50 transition-colors z-10"
+                                                title="Đổi avatar">
+                                                <svg class="h-3 w-3 text-gray-600" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+                                                    </path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <!-- User info -->
+                                        <div class="flex-1 min-w-0">
+                                            <p
+                                                class="text-sm font-medium whitespace-nowrap overflow-hidden text-ellipsis">
+                                                Trần Hữu Hải Đăng</p>
+                                            <p
+                                                class="text-xs text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
+                                                TK Định danh: C0888293...</p>
+                                        </div>
+                                    </div>
+                                    <input type="file" id="avatar-input" accept="image/*,video/*" class="hidden"
+                                        title="Chọn avatar mới" placeholder="Chọn file avatar">
+                                    <ul class="mt-2 space-y-1">
+                                        <li><a href="public-maps.html"
+                                                class="block text-sm text-gray-700 hover:underline">Bản đồ công khai</a>
+                                        </li>
+                                        <li><a href="blog.html"
+                                                class="block text-sm text-gray-700 hover:underline">Blog</a>
+                                        </li>
+                                        <li><a href="event.html" class="block text-sm text-gray-700 hover:underline">Sự
+                                                kiện</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+
+            </div>
+
+    </nav>
+
+    <!-- Main Content -->
+    <div class="pt-20 max-w-4xl mx-auto p-6">
+        <div class="bg-white rounded-lg shadow-lg p-8">
+            <h1 class="text-3xl font-bold text-gray-900 mb-8 text-center">Đăng bán sản phẩm</h1>
+
+            <form id="product-form" class="space-y-6">
+                <!-- Loại giao dịch -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Loại giao dịch *</label>
+                    <div class="flex space-x-4">
+                        <label class="flex items-center">
+                            <input type="radio" name="transaction_type" value="ban" checked class="mr-2">
+                            <span>Bán</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="transaction_type" value="tang" class="mr-2">
+                            <span>Tặng</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Danh mục sản phẩm -->
+                <div>
+                    <label for="category" class="block text-sm font-medium text-gray-700 mb-2">Danh mục sản phẩm
+                        *</label>
+                    <select id="category" name="category" required
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500">
+                        <option value="">Chọn danh mục</option>
+                        <option value="A" data-prefix="A">Đồ điện tử</option>
+                        <option value="B" data-prefix="B">Đồ gia dụng & Nội thất</option>
+                        <option value="C" data-prefix="C">Thời trang & Phụ kiện</option>
+                        <option value="D" data-prefix="D">Xe cộ & Phương tiện</option>
+                        <option value="E" data-prefix="E">Bất động sản</option>
+                        <option value="F" data-prefix="F">Sách & Văn phòng phẩm</option>
+                        <option value="G" data-prefix="G">Thể thao & Giải trí</option>
+                        <option value="H" data-prefix="H">Sức khỏe & Làm đẹp</option>
+                    </select>
+                </div>
+
+                <!-- Mã sản phẩm tự động -->
+                <div>
+                    <label for="product_id" class="block text-sm font-medium text-gray-700 mb-2">Mã sản phẩm</label>
+                    <input type="text" id="product_id" name="product_id" readonly
+                        class="w-full p-3 border border-gray-300 rounded-lg bg-gray-100"
+                        placeholder="Sẽ được tạo tự động">
+                </div>
+
+                <!-- Thông tin cơ bản -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="title" class="block text-sm font-medium text-gray-700 mb-2">Tiêu đề *</label>
+                        <input type="text" id="title" name="title" required
+                            class="w-full p-3 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500"
+                            placeholder="Nhập tiêu đề sản phẩm">
+                    </div>
+                    <div>
+                        <label for="price" class="block text-sm font-medium text-gray-700 mb-2">Giá (VNĐ)</label>
+                        <div class="relative">
+                            <input type="number" id="price" name="price" min="0"
+                                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500"
+                                placeholder="0">
+                            <button type="button" id="price-suggestion-btn"
+                                class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-blue-100 hover:bg-blue-200 text-blue-600 px-3 py-1 rounded text-sm font-medium transition-colors duration-200"
+                                title="Gợi ý giá dựa trên giá sản phẩm mới chính thức">
+                                💡 Giá đề xuất
+                            </button>
+                        </div>
+
+                        <!-- Thông báo gợi ý giá -->
+                        <div id="price-notification" class="mt-2 hidden">
+                            <div id="price-alert" class="p-3 rounded-lg border-l-4 flex items-center space-x-2">
+                                <span id="price-icon" class="text-lg"></span>
+                                <div class="flex-1">
+                                    <p id="price-message" class="text-sm font-medium"></p>
+                                    <div id="price-details" class="text-xs mt-1 opacity-75"></div>
+                                </div>
+                                <button type="button" id="apply-suggested-price"
+                                    class="hidden px-2 py-1 bg-green-500 text-white rounded text-xs hover:bg-green-600 transition-colors">
+                                    Áp dụng
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Loading indicator -->
+                        <div id="price-loading" class="mt-2 hidden">
+                            <div class="flex items-center space-x-2 text-gray-500">
+                                <div
+                                    class="animate-spin rounded-full h-4 w-4 border-2 border-gray-300 border-t-blue-600">
+                                </div>
+                                <span class="text-sm">Đang tìm kiếm giá thị trường...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tình trạng sản phẩm -->
+                <div>
+                    <label for="condition" class="block text-sm font-medium text-gray-700 mb-2">Tình trạng sản phẩm
+                        *</label>
+                    <select id="condition" name="condition" required
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500">
+                        <option value="">Chọn tình trạng</option>
+                        <option value="moi">Mới</option>
+                        <option value="nhu-moi">Như mới</option>
+                        <option value="99%">99%</option>
+                        <option value="con-bao-hanh">Còn bảo hành</option>
+                        <option value="het-bao-hanh">Hết bảo hành</option>
+                    </select>
+                </div>
+
+                <!-- Mô tả với Markdown Editor -->
+                <div>
+                    <label for="description" class="block text-sm font-medium text-gray-700 mb-2">Câu chuyện của món đồ
+                        *</label>
+                    <p class="text-sm text-gray-500 mb-3">Hãy kể về nguồn gốc, lý do bán và những kỷ niệm gắn với món đồ
+                        này để thu hút người mua hơn.</p>
+
+                    <div class="border border-gray-300 rounded-lg overflow-hidden">
+                        <!-- Markdown Toolbar -->
+                        <div class="markdown-toolbar flex items-center space-x-1">
+                            <button type="button" onclick="insertMarkdown('**', '**', 'Văn bản đậm')" title="Bold">
+                                <strong>B</strong>
+                            </button>
+                            <button type="button" onclick="insertMarkdown('*', '*', 'Văn bản nghiêng')" title="Italic">
+                                <em>I</em>
+                            </button>
+                            <button type="button" onclick="insertMarkdown('## ', '', 'Tiêu đề')" title="Heading">
+                                H2
+                            </button>
+                            <button type="button" onclick="insertMarkdown('- ', '', 'Mục danh sách')" title="List">
+                                •
+                            </button>
+                            <button type="button" onclick="insertMarkdown('`', '`', 'code')" title="Code">
+                                &lt;/&gt;
+                            </button>
+                            <div class="ml-auto flex items-center space-x-2">
+                                <button type="button" id="edit-tab"
+                                    class="text-sm px-2 py-1 rounded bg-green-100 text-green-700">
+                                    Viết
+                                </button>
+                                <button type="button" id="preview-tab"
+                                    class="text-sm px-2 py-1 rounded text-gray-600 hover:bg-gray-100">
+                                    Xem trước
+                                </button>
+                                <button type="button" id="add-story-image-btn"
+                                    class="text-sm px-2 py-1 rounded border border-gray-300 text-gray-600 hover:bg-gray-100 flex items-center space-x-1"
+                                    title="Thêm hình ảnh vào câu chuyện">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M12 4v16m8-8H4"></path>
+                                    </svg>
+                                </button>
+                                <input type="file" id="story-image-input" accept="image/*" multiple class="hidden">
+                            </div>
+                        </div>
+
+                        <!-- Editor Area -->
+                        <div id="editor-area">
+                            <textarea id="description" name="description" rows="6" required
+                                class="markdown-editor w-full p-3 border-0 focus:ring-0 resize-none" placeholder="Ví dụ:
+
+## Tại sao tôi bán món đồ này?
+
+Đây là chiếc **iPhone 14 Pro Max** mà tôi đã sử dụng được 6 tháng. Lý do bán vì tôi vừa được công ty cấp điện thoại mới.
+
+### Tình trạng:
+- Máy còn nguyên seal, chưa bóc tem
+- Đầy đủ phụ kiện gốc
+- Bảo hành Apple 12 tháng
+
+*Đây thực sự là món đồ được chăm sóc cẩn thận!*"></textarea>
+
+                            <div id="preview-area" class="markdown-preview hidden" style="min-height: 150px;">
+                                <!-- Preview content will be inserted here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upload media với GitHub-style interface -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Hình ảnh & Video *</label>
+                    <div class="border border-gray-300 rounded-lg">
+                        <!-- Tab Interface -->
+                        <div class="border-b border-gray-200">
+                            <nav class="flex">
+                                <button type="button" id="upload-tab"
+                                    class="upload-tab active px-4 py-2 text-sm font-medium border-b-2 border-green-500 text-green-600">
+                                    Tải lên file
+                                </button>
+                            </nav>
+                        </div>
+
+                        <!-- Upload Files Panel -->
+                        <div id="upload-panel" class="upload-panel p-6">
+                            <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-green-400 transition-colors"
+                                id="drop-zone">
+                                <input type="file" id="media-upload" multiple accept="image/*,video/*" class="hidden">
+                                <div class="space-y-3">
+                                    <svg class="w-12 h-12 mx-auto text-gray-400" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12">
+                                        </path>
+                                    </svg>
+                                    <div>
+                                        <button type="button" onclick="document.getElementById('media-upload').click()"
+                                            class="text-green-600 hover:text-green-700 font-medium">
+                                            Chọn file từ máy tính
+                                        </button>
+                                        <p class="text-gray-500">hoặc kéo thả file vào đây</p>
+                                    </div>
+                                    <p class="text-sm text-gray-500">Hỗ trợ: JPG, PNG, GIF, MP4, MOV (Tối đa 10 file,
+                                        mỗi file < 50MB)</p>
+                                </div>
+                            </div>
+                            <div id="media-preview" class="preview-container mt-4"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Thông tin theo danh mục -->
+
+                <!-- Đồ điện tử -->
+                <div id="category-A" class="category-field">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Thông tin đồ điện tử</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Thương hiệu</label>
+                            <input type="text" name="brand"
+                                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Model</label>
+                            <input type="text" name="model"
+                                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500">
+                        </div>
+                    </div>
+
+                    <!-- Upload hình ảnh chứng minh chính hãng -->
+                    <div class="mt-6">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Hình ảnh chứng minh chính hãng
+                            *</label>
+                        <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+                            <input type="file" id="authenticity-upload" multiple accept="image/*,video/*" class="hidden"
+                                required>
+                            <button type="button" onclick="document.getElementById('authenticity-upload').click()"
+                                class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg mb-4">
+                                Chọn hình ảnh/video
+                            </button>
+                            <p class="text-sm text-gray-500">Hỗ trợ: JPG, PNG, GIF, MP4, MOV (Tối đa 10 file, mỗi file <
+                                    50MB)</p>
+                                    <div id="authenticity-preview" class="preview-container mt-4"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Đồ gia dụng & Nội thất -->
+                <div id="category-B" class="category-field">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Thông tin đồ gia dụng & nội thất</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Chất liệu</label>
+                            <input type="text" name="material"
+                                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Kích thước</label>
+                            <input type="text" name="dimensions"
+                                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500"
+                                placeholder="VD: 120x80x75cm">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Màu sắc</label>
+                            <input type="text" name="color"
+                                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Tình trạng</label>
+                            <select name="condition"
+                                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500">
+                                <option value="">Chọn tình trạng</option>
+                                <option value="moi">Mới</option>
+                                <option value="nhu-moi">Như mới</option>
+                                <option value="tot">Tốt</option>
+                                <option value="binh-thuong">Bình thường</option>
+                                <option value="can-sua-chua">Cần sửa chữa</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Xe cộ & Phương tiện -->
+                <div id="category-D" class="category-field">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Thông tin xe cộ & phương tiện</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Hãng xe</label>
+                            <input type="text" name="brand"
+                                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Dòng xe</label>
+                            <input type="text" name="model"
+                                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Năm sản xuất</label>
+                            <input type="number" name="year" min="1990" max="2024"
+                                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Số km đã đi</label>
+                            <input type="number" name="mileage"
+                                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500"
+                                placeholder="VD: 50000">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Loại nhiên liệu</label>
+                            <select name="fuel_type"
+                                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500">
+                                <option value="">Chọn loại nhiên liệu</option>
+                                <option value="xang">Xăng</option>
+                                <option value="dau">Dầu</option>
+                                <option value="dien">Điện</option>
+                                <option value="hybrid">Hybrid</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Số chỗ ngồi</label>
+                            <input type="number" name="seats" min="1" max="50"
+                                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Thông tin liên hệ -->
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Thông tin liên hệ</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="contact_name" class="block text-sm font-medium text-gray-700 mb-2">Tên người bán
+                                *</label>
+                            <input type="text" id="contact_name" name="contact_name" required
+                                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500">
+                        </div>
+                        <div>
+                            <label for="contact_phone" class="block text-sm font-medium text-gray-700 mb-2">Số điện
+                                thoại *</label>
+                            <input type="tel" id="contact_phone" name="contact_phone" required
+                                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500">
+                        </div>
+                        <div class="md:col-span-2">
+                            <label for="contact_address" class="block text-sm font-medium text-gray-700 mb-2">Địa chỉ
+                                *</label>
+                            <textarea id="contact_address" name="contact_address" rows="2" required
+                                class="w-full p-3 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500"
+                                placeholder="Địa chỉ chi tiết"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Buttons -->
+                <div class="flex justify-end space-x-4">
+                    <button type="button" onclick="window.location.href='index.html'"
+                        class="px-6 py-3 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">
+                        Hủy
+                    </button>
+                    <button type="submit" class="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg">
+                        Đăng tin
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
+    <script>
+        // Optimized JavaScript with better error handling and performance
+        (function () {
+            'use strict';
+
+            // Cache DOM elements and state
+            let isDropdownOpen = false;
+            let eventListenersAttached = false;
+
+            // Utility functions
+            const utils = {
+                createElement: (tag, className, attributes = {}) => {
+                    const element = document.createElement(tag);
+                    if (className) element.className = className;
+                    Object.entries(attributes).forEach(([key, value]) => {
+                        element.setAttribute(key, value);
+                    });
+                    return element;
+                },
+
+                debounce: (func, wait) => {
+                    let timeout;
+                    return function executedFunction(...args) {
+                        const later = () => {
+                            clearTimeout(timeout);
+                            func(...args);
+                        };
+                        clearTimeout(timeout);
+                        timeout = setTimeout(later, wait);
+                    };
+                },
+
+                validateFile: (file) => {
+                    const maxSize = 10 * 1024 * 1024; // 10MB
+                    const allowedTypes = ['image/', 'video/'];
+
+                    if (!file) return { valid: false, error: 'Không có file được chọn' };
+                    if (file.size > maxSize) return { valid: false, error: 'File quá lớn. Vui lòng chọn file nhỏ hơn 10MB.' };
+                    if (!allowedTypes.some(type => file.type.startsWith(type))) {
+                        return { valid: false, error: 'Định dạng file không được hỗ trợ. Chỉ chấp nhận hình ảnh và video.' };
+                    }
+
+                    return { valid: true };
+                },
+
+                safeLocalStorage: {
+                    setItem: (key, value) => {
+                        try {
+                            localStorage.setItem(key, JSON.stringify(value));
+                            return true;
+                        } catch (error) {
+                            console.warn('Không thể lưu vào localStorage:', error);
+                            return false;
+                        }
+                    },
+
+                    getItem: (key) => {
+                        try {
+                            const item = localStorage.getItem(key);
+                            return item ? JSON.parse(item) : null;
+                        } catch (error) {
+                            console.warn('Không thể đọc từ localStorage:', error);
+                            return null;
+                        }
+                    }
+                }
+            };
+
+            // Initialize when DOM is ready
+            document.addEventListener('DOMContentLoaded', function () {
+                console.log('DOM loaded, initializing...');
+                initDropdown();
+                initAvatarSystem();
+                initProductForm();
+                initializeMediaUpload();
+
+                // Initialize story image upload BEFORE markdown editor to avoid conflicts
+                setTimeout(() => {
+                    initializeStoryImageUpload();
+                }, 100);
+
+                initializeMarkdownEditor();
+
+                console.log('All initialization complete');
+            });
+
+            function updateCartCount() {
+                const cart = utils.safeLocalStorage.getItem('cart') || [];
+                const cartCount = cart.reduce((total, item) => {
+                    return total + (parseInt(item.quantity) || 0);
+                }, 0);
+
+                const cartCountElement = document.getElementById('cart-count');
+
+                if (cartCountElement) {
+                    if (cartCount > 0) {
+                        cartCountElement.textContent = cartCount > 99 ? '99+' : cartCount;
+                        cartCountElement.classList.remove('hidden');
+                    } else {
+                        cartCountElement.classList.add('hidden');
+                    }
+                }
+            }
+            document.addEventListener('DOMContentLoaded', function() {
+                // Wait a bit for all other initializations
+                setTimeout(updateCartCount, 100);
+            });
+
+            // Initialize story image upload functionality - SIMPLE VERSION
+            function initializeStoryImageUpload() {
+                console.log('Initializing story image upload...');
+
+                // Initialize global array
+                window.storyImages = window.storyImages || [];
+
+                // Wait for DOM to be fully ready
+                setTimeout(() => {
+                    const addBtn = document.getElementById('add-story-image-btn');
+                    const fileInput = document.getElementById('story-image-input');
+
+                    console.log('Button found:', !!addBtn);
+                    console.log('Input found:', !!fileInput);
+
+                    if (addBtn && fileInput) {
+                        // Simple click handler
+                        addBtn.onclick = function (e) {
+                            e.preventDefault();
+                            console.log('Button clicked!');
+                            fileInput.click();
+                        };
+
+                        // Simple change handler
+                        fileInput.onchange = function (e) {
+                            console.log('File input changed');
+                            const files = Array.from(e.target.files);
+
+                            files.forEach(file => {
+                                if (!file.type.startsWith('image/')) {
+                                    alert('Chỉ chấp nhận file hình ảnh');
+                                    return;
+                                }
+
+                                if (file.size > 10 * 1024 * 1024) {
+                                    alert('File quá lớn. Tối đa 10MB');
+                                    return;
+                                }
+
+                                if (window.storyImages.length >= 5) {
+                                    alert('Tối đa 5 hình ảnh cho câu chuyện');
+                                    return;
+                                }
+
+                                const reader = new FileReader();
+                                reader.onload = function (event) {
+                                    window.storyImages.push(event.target.result);
+                                    console.log('Image added. Total:', window.storyImages.length);
+                                    showStoryPreview();
+                                    showNotification(`Đã thêm ảnh! Tổng: ${window.storyImages.length}`);
+                                };
+                                reader.readAsDataURL(file);
+                            });
+
+                            e.target.value = '';
+                        };
+
+                        console.log('Event handlers attached successfully');
+
+                        // Load existing preview if any
+                        if (window.storyImages.length > 0) {
+                            showStoryPreview();
+                        }
+                    } else {
+                        console.error('Story image elements not found');
+                    }
+                }, 500);
+
+                // Preview function
+                function showStoryPreview() {
+                    let container = document.getElementById('story-preview-container');
+                    if (!container) {
+                        container = document.createElement('div');
+                        container.id = 'story-preview-container';
+                        container.className = 'mt-4 p-4 border border-gray-200 rounded-lg bg-gray-50';
+
+                        // Insert after description textarea container
+                        const descriptionContainer = document.getElementById('description').closest('.border');
+                        descriptionContainer.parentNode.insertBefore(container, descriptionContainer.nextSibling);
+                    }
+
+                    if (window.storyImages.length === 0) {
+                        container.style.display = 'none';
+                        return;
+                    }
+
+                    let html = '<h4 class="text-sm font-medium text-gray-700 mb-3">📸 Ảnh câu chuyện đã thêm:</h4>';
+                    html += '<div class="grid grid-cols-4 gap-3">';
+
+                    window.storyImages.forEach((imageData, index) => {
+                        html += `
+                            <div class="relative group">
+                                <img src="${imageData}" alt="Story ${index + 1}" 
+                                     class="w-full h-20 object-cover rounded border-2 border-gray-200 hover:border-green-400 transition-colors">
+                                <button type="button" onclick="removeStoryImage(${index})" 
+                                        class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 text-sm hover:bg-red-600 opacity-0 group-hover:opacity-100 transition-opacity font-bold">×</button>
+                            </div>
+                        `;
+                    });
+
+                    html += '</div>';
+                    html += `<p class="text-xs text-gray-500 mt-2">Còn lại: ${5 - window.storyImages.length} ảnh có thể thêm</p>`;
+
+                    container.innerHTML = html;
+                    container.style.display = 'block';
+                }
+
+                // Global function to remove image
+                window.removeStoryImage = function (index) {
+                    window.storyImages.splice(index, 1);
+                    showStoryPreview();
+                    showNotification(`Đã xóa ảnh. Còn lại: ${window.storyImages.length}`);
+                };
+
+                // Simple notification
+                function showNotification(message) {
+                    // Remove existing notifications
+                    document.querySelectorAll('.story-notification').forEach(n => n.remove());
+
+                    const notification = document.createElement('div');
+                    notification.className = 'story-notification fixed top-20 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg z-50';
+                    notification.textContent = message;
+
+                    document.body.appendChild(notification);
+
+                    setTimeout(() => {
+                        if (notification.parentNode) {
+                            notification.remove();
+                        }
+                    }, 3000);
+                }
+            }
+
+            // --- 3. Product Form System ---
+            function initProductForm() {
+                const form = document.getElementById('product-form');
+                const categorySelect = document.getElementById('category');
+                const productIdInput = document.getElementById('product_id');
+                const mediaUpload = document.getElementById('media-upload');
+                const mediaPreview = document.getElementById('media-preview');
+                const authenticityUpload = document.getElementById('authenticity-upload');
+                const authenticityPreview = document.getElementById('authenticity-preview');
+
+                let uploadedMedia = [];
+                let uploadedAuthenticityMedia = [];
+
+                // Handle category change to show/hide specific fields and generate product ID
+                categorySelect.addEventListener('change', function () {
+                    // Hide all category fields
+                    document.querySelectorAll('.category-field').forEach(field => {
+                        field.style.display = 'none';
+                    });
+
+                    // Show selected category field
+                    if (this.value) {
+                        const categoryField = document.getElementById(`category-${this.value}`);
+                        if (categoryField) {
+                            categoryField.style.display = 'block';
+                        }
+
+                        // Generate product ID
+                        generateProductId(this.value);
+                    } else {
+                        productIdInput.value = '';
+                    }
+                });
+
+                // Handle media upload
+                mediaUpload.addEventListener('change', function (e) {
+                    const files = Array.from(e.target.files);
+
+                    files.forEach(file => {
+                        if (uploadedMedia.length >= 10) {
+                            alert('Tối đa 10 file media');
+                            return;
+                        }
+
+                        if (file.size > 50 * 1024 * 1024) {
+                            alert('File quá lớn. Tối đa 50MB');
+                            return;
+                        }
+
+                        const reader = new FileReader();
+                        reader.onload = function (e) {
+                            const mediaData = {
+                                id: Date.now() + Math.random(),
+                                data: e.target.result,
+                                type: file.type,
+                                name: file.name
+                            };
+
+                            uploadedMedia.push(mediaData);
+                            displayMediaPreview();
+                        };
+                        reader.readAsDataURL(file);
+                    });
+
+                    // Reset input
+                    e.target.value = '';
+                });
+
+                // Handle authenticity media upload
+                if (authenticityUpload) {
+                    authenticityUpload.addEventListener('change', function (e) {
+                        const files = Array.from(e.target.files);
+
+                        files.forEach(file => {
+                            if (uploadedAuthenticityMedia.length >= 10) {
+                                alert('Tối đa 10 file hình ảnh chứng minh');
+                                return;
+                            }
+
+                            if (file.size > 50 * 1024 * 1024) {
+                                alert('File quá lớn. Tối đa 50MB');
+                                return;
+                            }
+
+                            const reader = new FileReader();
+                            reader.onload = function (e) {
+                                const mediaData = {
+                                    id: Date.now() + Math.random(),
+                                    data: e.target.result,
+                                    type: file.type,
+                                    name: file.name
+                                };
+
+                                uploadedAuthenticityMedia.push(mediaData);
+                                displayAuthenticityPreview();
+                            };
+                            reader.readAsDataURL(file);
+                        });
+
+                        // Reset input
+                        e.target.value = '';
+                    });
+                }
+
+                // Handle form submission
+                form.addEventListener('submit', function (e) {
+                    e.preventDefault();
+
+                    if (uploadedMedia.length === 0) {
+                        alert('Vui lòng thêm ít nhất 1 hình ảnh hoặc video');
+                        return;
+                    }
+
+                    // Check authenticity media for electronics category
+                    const selectedCategory = document.querySelector('input[name="category"]:checked');
+                    if (selectedCategory && selectedCategory.value === 'F') {
+                        if (uploadedAuthenticityMedia.length === 0) {
+                            alert('Vui lòng thêm hình ảnh chứng minh chính hãng cho sản phẩm điện tử');
+                            return;
+                        }
+                    }
+
+                    const formData = new FormData(form);
+
+                    const productData = {
+                        id: productIdInput.value,
+                        title: formData.get('title'),
+                        price: parseInt(formData.get('price')) || 0,
+                        description: formData.get('description'),
+                        category: formData.get('category'),
+                        transactionType: formData.get('transaction_type'),
+                        condition: formData.get('condition') || '',
+                        brand: formData.get('brand') || '',
+                        model: formData.get('model') || '',
+                        contactName: formData.get('contact_name'),
+                        contactPhone: formData.get('contact_phone'),
+                        contactAddress: formData.get('contact_address'),
+                        media: uploadedMedia,
+                        authenticityMedia: uploadedAuthenticityMedia,
+                        createdAt: new Date().toISOString(),
+                        status: 'active'
+                    };
+
+                    // Add category-specific fields
+                    const categoryField = document.getElementById(`category-${productData.category}`);
+                    if (categoryField) {
+                        const inputs = categoryField.querySelectorAll('input, select, textarea');
+                        inputs.forEach(input => {
+                            if (input.value) {
+                                productData[input.name] = input.value;
+                            }
+                        });
+                    }
+
+                    // Save to localStorage
+                    saveProduct(productData);
+                });
+
+                function generateProductId(category) {
+                    // Get existing products to determine next ID
+                    const existingProducts = utils.safeLocalStorage.getItem('products') || [];
+                    const categoryProducts = existingProducts.filter(p => p.category === category);
+                    const nextNumber = categoryProducts.length + 1;
+                    const productId = `${category}${nextNumber.toString().padStart(7, '0')}`;
+                    productIdInput.value = productId;
+                }
+
+                // Enhanced media handling with tabs and drag & drop
+                function initializeMediaUpload() {
+                    const dropZone = document.getElementById('drop-zone');
+                    const mediaUpload = document.getElementById('media-upload');
+
+                    // Drag and drop functionality
+                    dropZone.addEventListener('dragover', (e) => {
+                        e.preventDefault();
+                        dropZone.classList.add('drop-zone-active');
+                    });
+
+                    dropZone.addEventListener('dragleave', (e) => {
+                        e.preventDefault();
+                        dropZone.classList.remove('drop-zone-active');
+                    });
+
+                    dropZone.addEventListener('drop', (e) => {
+                        e.preventDefault();
+                        dropZone.classList.remove('drop-zone-active');
+                        const files = Array.from(e.dataTransfer.files);
+                        handleFiles(files);
+                    });
+
+                    // File input change
+                    mediaUpload.addEventListener('change', (e) => {
+                        const files = Array.from(e.target.files);
+                        handleFiles(files);
+                    });
+                }
+
+                // Handle file uploads
+                function handleFiles(files) {
+                    files.forEach(file => {
+                        if (uploadedMedia.length >= 10) {
+                            alert('Tối đa 10 file được phép tải lên');
+                            return;
+                        }
+
+                        if (file.size > 50 * 1024 * 1024) {
+                            alert(`File "${file.name}" quá lớn. Vui lòng chọn file nhỏ hơn 50MB.`);
+                            return;
+                        }
+
+                        const reader = new FileReader();
+                        reader.onload = (e) => {
+                            const media = {
+                                id: Date.now() + Math.random(),
+                                type: file.type,
+                                data: e.target.result,
+                                name: file.name
+                            };
+                            uploadedMedia.push(media);
+                            displayMediaPreview();
+                        };
+                        reader.readAsDataURL(file);
+                    });
+                }
+
+                // Markdown editor functionality
+                function initializeMarkdownEditor() {
+                    const editTab = document.getElementById('edit-tab');
+                    const previewTab = document.getElementById('preview-tab');
+                    const editorArea = document.getElementById('editor-area');
+                    const textarea = document.getElementById('description');
+                    const previewArea = document.getElementById('preview-area');
+
+                    editTab.addEventListener('click', () => {
+                        editTab.className = 'text-sm px-2 py-1 rounded bg-green-100 text-green-700';
+                        previewTab.className = 'text-sm px-2 py-1 rounded text-gray-600 hover:bg-gray-100';
+                        textarea.classList.remove('hidden');
+                        previewArea.classList.add('hidden');
+                    });
+
+                    previewTab.addEventListener('click', () => {
+                        previewTab.className = 'text-sm px-2 py-1 rounded bg-green-100 text-green-700';
+                        editTab.className = 'text-sm px-2 py-1 rounded text-gray-600 hover:bg-gray-100';
+                        textarea.classList.add('hidden');
+                        previewArea.classList.remove('hidden');
+                        updateMarkdownPreview();
+                    });
+
+                    textarea.addEventListener('input', () => {
+                        if (!previewArea.classList.contains('hidden')) {
+                            updateMarkdownPreview();
+                        }
+                    });
+                }
+
+                function updateMarkdownPreview() {
+                    const textarea = document.getElementById('description');
+                    const previewArea = document.getElementById('preview-area');
+                    const markdown = textarea.value;
+
+                    // Simple markdown to HTML conversion
+                    let html = markdown
+                        .replace(/^## (.*$)/gim, '<h2 class="text-xl font-bold mb-2">$1</h2>')
+                        .replace(/^### (.*$)/gim, '<h3 class="text-lg font-semibold mb-2">$1</h3>')
+                        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                        .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                        .replace(/`(.*?)`/g, '<code class="bg-gray-100 px-1 rounded">$1</code>')
+                        .replace(/^- (.*$)/gim, '<li class="ml-4">• $1</li>')
+                        .replace(/\n\n/g, '</p><p class="mb-2">')
+                        .replace(/\n/g, '<br>');
+
+                    html = '<p class="mb-2">' + html + '</p>';
+
+                    previewArea.innerHTML = html || '<p class="text-gray-500">Không có nội dung để xem trước...</p>';
+                }
+
+                window.insertMarkdown = function (before, after, placeholder) {
+                    const textarea = document.getElementById('description');
+                    const start = textarea.selectionStart;
+                    const end = textarea.selectionEnd;
+                    const selectedText = textarea.value.substring(start, end) || placeholder;
+                    const replacement = before + selectedText + after;
+
+                    textarea.value = textarea.value.substring(0, start) + replacement + textarea.value.substring(end);
+                    textarea.focus();
+                    textarea.setSelectionRange(start + before.length, start + before.length + selectedText.length);
+                };
+
+                function displayMediaPreview() {
+                    mediaPreview.innerHTML = '';
+
+                    uploadedMedia.forEach((media, index) => {
+                        const preview = document.createElement('div');
+                        preview.className = 'media-preview';
+
+                        let mediaElement;
+                        if (media.type.startsWith('image/')) {
+                            mediaElement = document.createElement('img');
+                            mediaElement.style.width = '100px';
+                            mediaElement.style.height = '100px';
+                            mediaElement.style.objectFit = 'cover';
+                        } else if (media.type.startsWith('video/')) {
+                            mediaElement = document.createElement('video');
+                            mediaElement.style.width = '100px';
+                            mediaElement.style.height = '100px';
+                            mediaElement.controls = false;
+                            mediaElement.muted = true;
+                        }
+
+                        mediaElement.src = media.data;
+
+                        const removeButton = document.createElement('div');
+                        removeButton.className = 'remove-media';
+                        removeButton.textContent = '×';
+                        removeButton.onclick = () => removeMedia(media.id);
+
+                        preview.appendChild(mediaElement);
+                        preview.appendChild(removeButton);
+                        mediaPreview.appendChild(preview);
+                    });
+                }
+
+                function removeMedia(mediaId) {
+                    uploadedMedia = uploadedMedia.filter(media => media.id !== mediaId);
+                    displayMediaPreview();
+                }
+
+                function displayAuthenticityPreview() {
+                    if (authenticityPreview) {
+                        authenticityPreview.innerHTML = '';
+
+                        uploadedAuthenticityMedia.forEach((media, index) => {
+                            const preview = document.createElement('div');
+                            preview.className = 'media-preview';
+
+                            let mediaElement;
+                            if (media.type.startsWith('image/')) {
+                                mediaElement = document.createElement('img');
+                                mediaElement.style.width = '100px';
+                                mediaElement.style.height = '100px';
+                                mediaElement.style.objectFit = 'cover';
+                            } else if (media.type.startsWith('video/')) {
+                                mediaElement = document.createElement('video');
+                                mediaElement.style.width = '100px';
+                                mediaElement.style.height = '100px';
+                                mediaElement.controls = false;
+                                mediaElement.muted = true;
+                            }
+
+                            mediaElement.src = media.data;
+
+                            const removeButton = document.createElement('div');
+                            removeButton.className = 'remove-media';
+                            removeButton.textContent = '×';
+                            removeButton.onclick = () => removeAuthenticityMedia(media.id);
+
+                            preview.appendChild(mediaElement);
+                            preview.appendChild(removeButton);
+                            authenticityPreview.appendChild(preview);
+                        });
+                    }
+                }
+
+                function removeAuthenticityMedia(mediaId) {
+                    uploadedAuthenticityMedia = uploadedAuthenticityMedia.filter(media => media.id !== mediaId);
+                    displayAuthenticityPreview();
+                }
+
+                function saveProduct(productData) {
+                    try {
+                        // Get existing products
+                        const existingProducts = utils.safeLocalStorage.getItem('products') || [];
+
+                        // Add new product
+                        existingProducts.push(productData);
+
+                        // Save back to localStorage
+                        utils.safeLocalStorage.setItem('products', existingProducts);
+
+                        // Also save uploaded images for display in product detail
+                        const existingUploadedImages = utils.safeLocalStorage.getItem('uploadedImages') || {};
+                        if (productData.media && productData.media.length > 0) {
+                            const productImages = productData.media.map(media => media.data);
+                            existingUploadedImages[productData.id] = productImages;
+                            utils.safeLocalStorage.setItem('uploadedImages', existingUploadedImages);
+                        }
+
+                        // Save story images to localStorage
+                        if (window.storyImages && window.storyImages.length > 0) {
+                            const existingStoryImages = utils.safeLocalStorage.getItem('storyImages') || {};
+                            existingStoryImages[productData.id] = window.storyImages;
+                            utils.safeLocalStorage.setItem('storyImages', existingStoryImages);
+                            console.log('Story images saved for product:', productData.id, window.storyImages.length);
+                        }
+
+                        alert('Đăng tin thành công! Sản phẩm của bạn đã được lưu.');
+
+                        // Redirect to mua.html
+                        window.location.href = 'mua.html';
+
+                    } catch (error) {
+                        console.error('Error saving product:', error);
+                        alert('Có lỗi xảy ra khi lưu sản phẩm. Vui lòng thử lại.');
+                    }
+                }
+            }
+
+            // --- 1. Dropdown Management ---
+            function initDropdown() {
+                const dropdownToggle = document.getElementById('dropdown-toggle');
+                const dropdownContent = document.getElementById('dropdown-content');
+                const arrowIcon = document.getElementById('arrow-icon');
+
+                if (!dropdownToggle || !dropdownContent || !arrowIcon) {
+                    console.warn('Dropdown elements not found');
+                    return;
+                }
+
+                const toggleDropdown = (e) => {
+                    e.stopPropagation();
+                    isDropdownOpen = !isDropdownOpen;
+
+                    dropdownContent.classList.toggle('hidden', !isDropdownOpen);
+                    arrowIcon.classList.toggle('rotate-180', isDropdownOpen);
+                };
+
+                const closeDropdown = () => {
+                    if (isDropdownOpen) {
+                        isDropdownOpen = false;
+                        dropdownContent.classList.add('hidden');
+                        arrowIcon.classList.remove('rotate-180');
+                    }
+                };
+
+                // Click outside to close dropdown
+                const handleOutsideClick = (event) => {
+                    if (!dropdownToggle.contains(event.target) && !dropdownContent.contains(event.target)) {
+                        closeDropdown();
+                    }
+                };
+
+                // Escape key to close dropdown
+                const handleKeyPress = (event) => {
+                    if (event.key === 'Escape' && isDropdownOpen) {
+                        closeDropdown();
+                    }
+                };
+
+                // Attach event listeners
+                dropdownToggle.addEventListener('click', toggleDropdown);
+                document.addEventListener('click', handleOutsideClick);
+                document.addEventListener('keydown', handleKeyPress);
+            }
+
+            // --- 2. Avatar System ---
+            function initAvatarSystem() {
+                const avatarFileInput = document.getElementById('avatar-input');
+                const navAvatarContainer = document.querySelector('.relative.h-8.w-8');
+                const avatarContainer = document.getElementById('avatar-container');
+
+                if (!avatarFileInput || !avatarContainer) {
+                    console.warn('Avatar elements not found');
+                    return;
+                }
+
+                // Create avatar element based on type and container
+                function createAvatarElement(src, type, containerType) {
+                    let element;
+                    const isImage = type.startsWith('image/');
+                    const isVideo = type.startsWith('video/');
+
+                    if (isImage) {
+                        element = utils.createElement('img', '', {
+                            src,
+                            alt: 'Avatar',
+                            loading: 'lazy'
+                        });
+                    } else if (isVideo) {
+                        element = utils.createElement('video', '', {
+                            src,
+                            autoplay: 'true',
+                            loop: 'true',
+                            muted: 'true'
+                        });
+                    }
+
+                    if (element) {
+                        element.className = containerType === 'nav'
+                            ? 'h-8 w-8 rounded-full object-cover'
+                            : 'h-12 w-12 rounded-full object-cover';
+
+                        // Add error handling for media elements
+                        element.onerror = () => {
+                            console.error('Failed to load avatar media');
+                            // Could implement fallback avatar here
+                        };
+                    }
+
+                    return element;
+                }
+
+                // Update avatar display in all locations
+                function updateAvatarDisplay(src, type) {
+                    // Update nav avatar
+                    if (navAvatarContainer) {
+                        const newNavAvatar = createAvatarElement(src, type, 'nav');
+                        if (newNavAvatar) {
+                            navAvatarContainer.innerHTML = '';
+                            navAvatarContainer.appendChild(newNavAvatar);
+                        }
+                    }
+
+                    // Update dropdown avatar
+                    if (avatarContainer) {
+                        const currentAvatar = avatarContainer.querySelector('svg, img, video');
+                        const newDropdownAvatar = createAvatarElement(src, type, 'dropdown');
+
+                        if (currentAvatar && newDropdownAvatar) {
+                            currentAvatar.replaceWith(newDropdownAvatar);
+                        }
+
+                        // Ensure pencil button exists and is functional
+                        ensurePencilButton();
+                    }
+                }
+
+                // Ensure pencil edit button exists and works
+                function ensurePencilButton() {
+                    let pencilButton = avatarContainer.querySelector('#pencil-edit-button');
+
+                    if (!pencilButton) {
+                        pencilButton = utils.createElement('button',
+                            'absolute -bottom-1 -right-1 bg-white rounded-full p-0.5 shadow-md hover:bg-gray-50 transition-colors z-10',
+                            {
+                                id: 'pencil-edit-button',
+                                title: 'Đổi avatar',
+                                'aria-label': 'Đổi avatar'
+                            }
+                        );
+
+                        pencilButton.innerHTML = `
+                                <svg class="h-3 w-3 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                          d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+                                    </path>
+                                </svg>
+                            `;
+
+                        avatarContainer.appendChild(pencilButton);
+                    }
+
+                    // Remove existing listeners to prevent duplicates
+                    const newPencilButton = pencilButton.cloneNode(true);
+                    pencilButton.replaceWith(newPencilButton);
+
+                    // Add click handler
+                    newPencilButton.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        avatarFileInput.click();
+                    });
+                }
+
+                // Handle file input change
+                const handleFileChange = utils.debounce((event) => {
+                    const file = event.target.files[0];
+                    const validation = utils.validateFile(file);
+
+                    if (!validation.valid) {
+                        alert(validation.error);
+                        // Reset input
+                        event.target.value = '';
+                        return;
+                    }
+
+                    const reader = new FileReader();
+
+                    reader.onload = (e) => {
+                        const src = e.target.result;
+                        const type = file.type;
+
+                        updateAvatarDisplay(src, type);
+                        utils.safeLocalStorage.setItem('avatar', { src, type });
+                    };
+
+                    reader.onerror = () => {
+                        alert('Lỗi khi đọc file. Vui lòng thử lại.');
+                    };
+
+                    reader.readAsDataURL(file);
+                }, 300);
+
+                // Load saved avatar from localStorage
+                function loadSavedAvatar() {
+                    const savedAvatar = utils.safeLocalStorage.getItem('avatar');
+                    if (savedAvatar && savedAvatar.src && savedAvatar.type) {
+                        updateAvatarDisplay(savedAvatar.src, savedAvatar.type);
+                    } else {
+                        // Ensure default pencil button is functional
+                        ensurePencilButton();
+                    }
+                }
+
+                // Initialize avatar system
+                avatarFileInput.addEventListener('change', handleFileChange);
+                loadSavedAvatar();
+            }
+        })();
+
+        // Price Suggestion System
+        (function () {
+            'use strict';
+
+            const API_BASE_URL = 'http://127.0.0.1:5000';
+
+            // Cache DOM elements
+            const priceInput = document.getElementById('price');
+            const titleInput = document.getElementById('title');
+            const conditionSelect = document.getElementById('condition');
+            const suggestionBtn = document.getElementById('price-suggestion-btn');
+            const priceNotification = document.getElementById('price-notification');
+            const priceAlert = document.getElementById('price-alert');
+            const priceIcon = document.getElementById('price-icon');
+            const priceMessage = document.getElementById('price-message');
+            const priceDetails = document.getElementById('price-details');
+            const applyBtn = document.getElementById('apply-suggested-price');
+            const loadingIndicator = document.getElementById('price-loading');
+
+            let currentSuggestion = null;
+            let validationTimeout = null;
+
+            // Initialize price suggestion system
+            function initPriceSuggestion() {
+                if (!suggestionBtn || !priceInput || !titleInput || !conditionSelect) {
+                    console.warn('Price suggestion elements not found');
+                    return;
+                }
+
+                // Event listeners
+                suggestionBtn.addEventListener('click', handlePriceSuggestion);
+                priceInput.addEventListener('input', debounce(validateUserPrice, 1000));
+                applyBtn.addEventListener('click', applySuggestedPrice);
+
+                // Auto-validate when title or condition changes
+                titleInput.addEventListener('input', debounce(autoValidatePrice, 1500));
+                conditionSelect.addEventListener('change', autoValidatePrice);
+            }
+
+            // Debounce function
+            function debounce(func, wait) {
+                let timeout;
+                return function executedFunction(...args) {
+                    const later = () => {
+                        clearTimeout(timeout);
+                        func(...args);
+                    };
+                    clearTimeout(timeout);
+                    timeout = setTimeout(later, wait);
+                };
+            }
+
+            // Handle price suggestion button click
+            async function handlePriceSuggestion() {
+                const productName = titleInput.value.trim();
+                const condition = conditionSelect.value;
+
+                if (!productName) {
+                    showNotification('warning', '⚠️', 'Vui lòng nhập tên sản phẩm trước', '');
+                    return;
+                }
+
+                if (!condition) {
+                    showNotification('warning', '⚠️', 'Vui lòng chọn tình trạng sản phẩm', '');
+                    return;
+                }
+
+                await getPriceSuggestion(productName, condition);
+            }
+
+            // Get price suggestion from API
+            async function getPriceSuggestion(productName, condition) {
+                try {
+                    showLoading(true);
+                    hideNotification();
+
+                    const response = await fetch(`${API_BASE_URL}/api/price-suggestion`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            product_name: productName,
+                            condition: condition
+                        })
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+
+                    const data = await response.json();
+
+                    if (data.success && data.price_range) {
+                        currentSuggestion = data;
+                        displayPriceSuggestion(data);
+                    } else {
+                        showNotification('info', '📊', 'Không tìm thấy dữ liệu tham khảo', 'Hãy thử với tên sản phẩm khác hoặc tham khảo giá trên thị trường');
+                    }
+
+                } catch (error) {
+                    console.error('Price suggestion error:', error);
+                    showNotification('error', '❌', 'Không thể kết nối đến dịch vụ gợi ý giá', 'Vui lòng kiểm tra kết nối mạng và thử lại');
+                } finally {
+                    showLoading(false);
+                }
+            }
+
+            // Display price suggestion
+            function displayPriceSuggestion(data) {
+                const { price_range, sources, data_sources_used } = data;
+                const { recommended_price, min_price, max_price, market_average, condition_multiplier, sample_size } = price_range;
+
+                // Tính toán discount percentage từ condition multiplier
+                const discountPercentage = Math.round((1 - condition_multiplier) * 100);
+                const sourcesText = data_sources_used ? data_sources_used.join(', ') : 'Dữ liệu ước tính';
+
+                const message = `Giá đề xuất: ${formatPrice(recommended_price)} (${discountPercentage}% giảm từ giá mới)`;
+                const details = `Giá thị trường TB: ${formatPrice(market_average)} • Khoảng hợp lý: ${formatPrice(min_price)} - ${formatPrice(max_price)} • Nguồn: ${sourcesText} (${sample_size || 0} mẫu)`;
+
+                showNotification('suggestion', '💡', message, details);
+
+                // Show apply button
+                applyBtn.textContent = `Áp dụng ${formatPrice(recommended_price)}`;
+                applyBtn.classList.remove('hidden');
+            }
+
+            // Auto-validate price when user enters a price
+            function autoValidatePrice() {
+                const price = parseInt(priceInput.value);
+                const productName = titleInput.value.trim();
+                const condition = conditionSelect.value;
+
+                if (price && productName && condition) {
+                    if (validationTimeout) {
+                        clearTimeout(validationTimeout);
+                    }
+                    validationTimeout = setTimeout(() => {
+                        validateUserPrice();
+                    }, 1000);
+                }
+            }
+
+            // Validate user entered price
+            async function validateUserPrice() {
+                const price = parseInt(priceInput.value);
+                const productName = titleInput.value.trim();
+                const condition = conditionSelect.value;
+
+                if (!productName || !condition) {
+                    return;
+                }
+
+                if (!price || price <= 0) {
+                    // Don't validate invalid prices
+                    hideNotification();
+                    applyBtn.classList.add('hidden');
+                    return;
+                }
+
+                try {
+                    const response = await fetch(`${API_BASE_URL}/api/validate-price`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            product_name: productName,
+                            condition: condition,
+                            price: price
+                        })
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+
+                    const data = await response.json();
+                    displayValidationResult(data);
+
+                } catch (error) {
+                    console.error('Price validation error:', error);
+                }
+            }
+
+            // Display validation result
+            function displayValidationResult(data) {
+                const { status, message, icon, recommended_price } = data;
+
+                let notificationType = 'info';
+
+                switch (status) {
+                    case 'too_high':
+                        notificationType = 'error';
+                        break;
+                    case 'high':
+                        notificationType = 'warning';
+                        break;
+                    case 'too_low':
+                        notificationType = 'info';
+                        break;
+                    case 'good':
+                        notificationType = 'success';
+                        break;
+                    case 'acceptable':
+                        notificationType = 'info';
+                        break;
+                    case 'invalid_price':
+                        notificationType = 'warning';
+                        break;
+                    case 'no_data':
+                        notificationType = 'info';
+                        break;
+                    default:
+                        notificationType = 'info';
+                }
+
+                showNotification(notificationType, icon, message, '');
+
+                // Show apply button for recommendations
+                if (recommended_price && status !== 'good') {
+                    applyBtn.textContent = `Áp dụng ${formatPrice(recommended_price)}`;
+                    applyBtn.classList.remove('hidden');
+                    currentSuggestion = { price_range: { recommended_price } };
+                } else {
+                    applyBtn.classList.add('hidden');
+                }
+            }
+
+            // Apply suggested price
+            function applySuggestedPrice() {
+                if (currentSuggestion && currentSuggestion.price_range && currentSuggestion.price_range.recommended_price) {
+                    priceInput.value = currentSuggestion.price_range.recommended_price;
+
+                    // Trigger input event to validate the new price
+                    priceInput.dispatchEvent(new Event('input'));
+
+                    // Hide apply button
+                    applyBtn.classList.add('hidden');
+
+                    // Show success message
+                    showNotification('success', '✅', 'Đã áp dụng giá đề xuất', '');
+                }
+            }
+
+            // Show notification
+            function showNotification(type, icon, message, details) {
+                priceIcon.textContent = icon;
+                priceMessage.textContent = message;
+                priceDetails.textContent = details;
+
+                // Reset classes
+                priceAlert.className = 'p-3 rounded-lg border-l-4 flex items-center space-x-2';
+
+                // Apply type-specific styles
+                switch (type) {
+                    case 'success':
+                        priceAlert.classList.add('bg-green-50', 'border-green-400', 'text-green-700');
+                        break;
+                    case 'warning':
+                        priceAlert.classList.add('bg-yellow-50', 'border-yellow-400', 'text-yellow-700');
+                        break;
+                    case 'error':
+                        priceAlert.classList.add('bg-red-50', 'border-red-400', 'text-red-700');
+                        break;
+                    case 'info':
+                        priceAlert.classList.add('bg-blue-50', 'border-blue-400', 'text-blue-700');
+                        break;
+                    case 'suggestion':
+                        priceAlert.classList.add('bg-purple-50', 'border-purple-400', 'text-purple-700');
+                        break;
+                    default:
+                        priceAlert.classList.add('bg-gray-50', 'border-gray-400', 'text-gray-700');
+                }
+
+                priceNotification.classList.remove('hidden');
+
+                // Auto-hide after 10 seconds for non-critical messages
+                if (type !== 'error' && type !== 'warning') {
+                    setTimeout(() => {
+                        hideNotification();
+                    }, 10000);
+                }
+            }
+
+            // Hide notification
+            function hideNotification() {
+                priceNotification.classList.add('hidden');
+                applyBtn.classList.add('hidden');
+            }
+
+            // Show/hide loading indicator
+            function showLoading(show) {
+                if (show) {
+                    loadingIndicator.classList.remove('hidden');
+                    suggestionBtn.disabled = true;
+                    suggestionBtn.textContent = '🔍 Đang tìm...';
+                } else {
+                    loadingIndicator.classList.add('hidden');
+                    suggestionBtn.disabled = false;
+                    suggestionBtn.textContent = '💡 Gợi ý';
+                }
+            }
+
+            
+            // Format price with Vietnamese currency
+            function formatPrice(price) {
+                return new Intl.NumberFormat('vi-VN', {
+                    style: 'currency',
+                    currency: 'VND',
+                    minimumFractionDigits: 0
+                }).format(price);
+            }
+
+            // Initialize when DOM is ready
+            document.addEventListener('DOMContentLoaded', initPriceSuggestion);
+
+            // Export for testing
+            window.PriceSuggestion = {
+                getPriceSuggestion,
+                validateUserPrice,
+                formatPrice
+            };
+        })();
+    </script>
+
+
+</body>
+
+</html>

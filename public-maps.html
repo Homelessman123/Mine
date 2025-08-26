@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="vi" class="h-full">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary Meta Tags -->
+    <title>Mine - Nơi Đồ Cũ Viết Tiếp Câu Chuyện Xanh | Mua Bán Đồ Cũ Bền Vững</title>
+    <meta name="title" content="Mine - Nơi Đồ Cũ Viết Tiếp Câu Chuyện Xanh">
+    <meta name="description"
+        content="Mine - Nền tảng mua bán đồ cũ hàng đầu Việt Nam. Tìm kiếm bất động sản, xe cộ, đồ điện tử, gia dụng đã qua sử dụng với chất lượng tốt. Góp phần bảo vệ môi trường qua kinh tế tuần hoàn.">
+    <meta name="keywords"
+        content="đồ cũ, mua bán đồ cũ, bất động sản cũ, xe cũ, đồ điện tử cũ, đồ gia dụng cũ, kinh tế tuần hoàn, bảo vệ môi trường, second hand, recycle">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Vietnamese">
+    <meta name="author" content="Mine">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css" rel="stylesheet" />
+    <link rel="icon" href="Picture/logo.png" type="image/svg+xml">
+    <link rel="icon" href="Picture/logo.png" type="image/x-icon">
+    <link rel="icon" href="Picture/logo.png" type="image/png">
+    <link rel="apple-touch-icon" href="Picture/logo.png">
+    <style>
+        .map-preview {
+            position: relative;
+            overflow: hidden;
+            border-radius: 0.5rem;
+            aspect-ratio: 16/9;
+        }
+
+        .map-preview img {
+            transition: transform 0.3s ease;
+        }
+
+        .map-preview:hover img {
+            transform: scale(1.05);
+        }
+
+        .loading-skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% {
+                background-position: 200% 0;
+            }
+
+            100% {
+                background-position: -200% 0;
+            }
+        }
+
+        .marker-indicator {
+            font-size: 0.75rem;
+            padding: 0.125rem 0.375rem;
+            border-radius: 9999px;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 h-full">
+    <!-- Navigation -->
+    <nav class="bg-gray-800 border-gray-700 dark:bg-gray-900 fixed w-full z-50 shadow-sm">
+        <div class="max-w-screen-xl flex items-center mx-auto p-3">
+            <!-- Logo và tên -->
+            <a href="index.html" class="flex items-center space-x-2 flex-shrink-0">
+                <img src="Picture/logo.png" class="h-10" alt="Mine Logo">
+                <span class="self-center text-xl font-bold text-white">Mine</span>
+            </a>
+
+            <!-- Menu chính (ẩn trên mobile/tablet) -->
+            <div class="hidden lg:flex items-center space-x-6 ml-8">
+                <a href="index.html" class="text-white hover:text-green-400 transition-colors">Trang chủ</a>
+                <a href="mua_fixed.html" class="text-white hover:text-green-400 transition-colors">Mua sắm</a>
+                <a href="service.html" class="text-white hover:text-green-400 transition-colors">Dịch vụ</a>
+                <a href="timhieuthem.html" class="text-white hover:text-green-400 transition-colors">Về chúng tôi</a>
+                <a href="contact.html" class="text-white hover:text-green-400 transition-colors">Liên hệ</a>
+            </div>
+
+            <!-- Spacer để đẩy actions về bên phải -->
+            <div class="flex-1"></div>
+
+            <!-- Actions (giỏ hàng, đăng bán, đăng nhập) -->
+            <div class="flex items-center space-x-3 flex-shrink-0">
+                <!-- Giỏ hàng với icon đẹp hơn -->
+                <a href="cart.html" class="relative p-2 text-white hover:text-green-400 transition-colors"
+                    title="Giỏ hàng">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l-1 7H6L5 9z" />
+                    </svg>
+                    <span id="cart-count"
+                        class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center hidden">0</span>
+                </a>
+
+                <!-- Nút đăng bán -->
+                <a href="dang_ban.html"
+                    class="px-4 py-2 text-sm font-medium text-white bg-green-600 hover:bg-green-700 rounded-lg transition-colors">
+                    Đăng bán
+                </a>
+                <button data-collapse-toggle="navbar-default" type="button"
+                    class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+                    aria-controls="navbar-default" aria-expanded="false">
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 17 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M1 1h15M1 7h15M1 13h15" />
+                    </svg>
+                </button>
+                <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+                    <ul
+                        class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                        <li class="relative flex items-center space-x-2">
+                            <div class="relative h-8 w-8 flex items-center justify-center">
+                                <svg class="h-8 w-8 text-green-600" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5.94 7.94l-4.47 4.47-2.4-2.4-1.42 1.42 3.82 3.82 5.89-5.89-1.42-1.42z" />
+                                    <path d="M12 7v3M9 10h6M12 13v3" class="text-white" />
+                                </svg>
+                            </div>
+                            <button id="dropdown-toggle" class="text-gray-500 hover:text-gray-700 ml-1"
+                                title="Toggle dropdown">
+                                <svg id="arrow-icon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                    viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M5.293 9.293a1 1 0 011.414 0L10 12.586l3.293-3.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                            <div id="dropdown-content"
+                                class="hidden absolute top-full mt-2 w-60 bg-white border border-gray-300 rounded-lg shadow-lg end-0">
+                                <div class="p-4">
+                                    <div class="flex items-start mb-4">
+                                        <!-- Avatar container with pencil icon -->
+                                        <div id="avatar-container" class="relative flex-shrink-0 mr-3">
+                                            <svg class="h-12 w-12 text-green-600" fill="currentColor"
+                                                viewBox="0 0 24 24">
+                                                <path
+                                                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5.94 7.94l-4.47 4.47-2.4-2.4-1.42 1.42 3.82 3.82 5.89-5.89-1.42-1.42z" />
+                                                <path d="M12 7v3M9 10h6M12 13v3" class="text-white" />
+                                            </svg>
+                                            <!-- Icon cây viết chì bên cạnh avatar -->
+                                            <button id="pencil-edit-button"
+                                                class="absolute -bottom-1 -right-1 bg-white rounded-full p-0.5 shadow-md hover:bg-gray-50 transition-colors z-10"
+                                                title="Đổi avatar">
+                                                <svg class="h-3 w-3 text-gray-600" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+                                                    </path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <!-- User info -->
+                                        <div class="flex-1 min-w-0">
+                                            <p
+                                                class="text-sm font-medium whitespace-nowrap overflow-hidden text-ellipsis">
+                                                Trần Hữu Hải Đăng</p>
+                                            <p
+                                                class="text-xs text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
+                                                TK Định danh: C0888293...</p>
+                                        </div>
+                                    </div>
+                                    <input type="file" id="avatar-input" accept="image/*,video/*" class="hidden"
+                                        title="Chọn avatar mới" placeholder="Chọn file avatar">
+                                    <ul class="mt-2 space-y-1">
+                                        <li><a href="public-maps.html"
+                                                class="block text-sm text-gray-700 hover:underline">Bản đồ công khai</a>
+                                        </li>
+                                        <li><a href="blog.html"
+                                                class="block text-sm text-gray-700 hover:underline">Blog</a>
+                                        </li>
+                                        <li><a href="event.html" class="block text-sm text-gray-700 hover:underline">Sự
+                                                kiện</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+
+            </div>
+
+    </nav>
+
+    <!-- Main Content -->
+    <div class="pt-20 min-h-screen">
+        <!-- Hero Section -->
+        <section class="bg-gradient-to-r from-green-600 to-green-800 text-white py-16" style="margin-top: -1rem;">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                        Bản Đồ Công Khai
+                    </h1>
+                    <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
+                        Khám phá các bản đồ môi trường được chia sẻ bởi cộng đồng
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
+                            <div class="text-3xl font-bold" id="total-maps">0</div>
+                            <div class="text-sm opacity-90">Bản đồ công khai</div>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
+                            <div class="text-3xl font-bold" id="total-markers">0</div>
+                            <div class="text-sm opacity-90">Điểm đánh dấu</div>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center">
+                            <div class="text-3xl font-bold" id="total-users">0</div>
+                            <div class="text-sm opacity-90">Người đóng góp</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Filters and Search -->
+        <section class="py-8 bg-white border-b">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col lg:flex-row gap-4 items-center justify-between">
+                    <!-- Search -->
+                    <div class="relative flex-1 max-w-md">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                        </div>
+                        <input type="text" id="search-input"
+                            class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-green-500 focus:border-green-500"
+                            placeholder="Tìm kiếm bản đồ...">
+                    </div>
+
+                    <!-- Sort Options -->
+                    <div class="flex gap-2">
+                        <select id="sort-select"
+                            class="border border-gray-300 rounded-md px-3 py-2 bg-white focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500">
+                            <option value="newest">Mới nhất</option>
+                            <option value="oldest">Cũ nhất</option>
+                            <option value="most_markers">Nhiều đánh dấu nhất</option>
+                            <option value="title">Theo tên A-Z</option>
+                        </select>
+
+                        <button id="view-toggle"
+                            class="px-4 py-2 border border-gray-300 rounded-md bg-white hover:bg-gray-50 focus:outline-none focus:ring-1 focus:ring-green-500">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z">
+                                </path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Maps Grid -->
+        <section class="py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Loading State -->
+                <div id="loading-state" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <div class="loading-skeleton h-48"></div>
+                        <div class="p-6">
+                            <div class="loading-skeleton h-6 mb-3 rounded"></div>
+                            <div class="loading-skeleton h-4 mb-2 rounded w-3/4"></div>
+                            <div class="loading-skeleton h-4 rounded w-1/2"></div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <div class="loading-skeleton h-48"></div>
+                        <div class="p-6">
+                            <div class="loading-skeleton h-6 mb-3 rounded"></div>
+                            <div class="loading-skeleton h-4 mb-2 rounded w-3/4"></div>
+                            <div class="loading-skeleton h-4 rounded w-1/2"></div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <div class="loading-skeleton h-48"></div>
+                        <div class="p-6">
+                            <div class="loading-skeleton h-6 mb-3 rounded"></div>
+                            <div class="loading-skeleton h-4 mb-2 rounded w-3/4"></div>
+                            <div class="loading-skeleton h-4 rounded w-1/2"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Maps Container -->
+                <div id="maps-container" class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Maps will be loaded here -->
+                </div>
+
+                <!-- Empty State -->
+                <div id="empty-state" class="hidden text-center py-16">
+                    <svg class="mx-auto h-24 w-24 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
+                            d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-1.447-.894L15 4m0 13V4m0 0L9 7">
+                        </path>
+                    </svg>
+                    <h3 class="mt-4 text-lg font-medium text-gray-900">Chưa có bản đồ nào</h3>
+                    <p class="mt-2 text-gray-500">Hãy là người đầu tiên tạo và chia sẻ bản đồ!</p>
+                    <div class="mt-6">
+                        <a href="service.html"
+                            class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                            <svg class="-ml-1 mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                            </svg>
+                            Tạo Bản Đồ Mới
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Load More Button -->
+                <div id="load-more-container" class="hidden text-center mt-12">
+                    <button id="load-more-btn"
+                        class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                        <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white hidden" id="load-more-spinner"
+                            fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
+                            </circle>
+                            <path class="opacity-75" fill="currentColor"
+                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                            </path>
+                        </svg>
+                        Xem thêm
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
+    <script>
+        // Enhanced JavaScript for public maps with sample data
+        (function () {
+            'use strict';
+
+            // State management
+            let isDropdownOpen = false;
+            let allMaps = [];
+            let filteredMaps = [];
+            let currentPage = 1;
+            const mapsPerPage = 9;
+            let currentSort = 'newest';
+            let currentSearch = '';
+
+            // Sample maps data - tạo các bản đồ mẫu
+            const sampleMaps = [
+                {
+                    id: 'MAP-SAMPLE-001',
+                    title: 'Khu vực Hồ Gươm - Hà Nội',
+                    description: 'Bản đồ môi trường khu vực Hồ Hoàn Kiếm và phố cổ Hà Nội',
+                    mapData: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iI2UwZjJmZSIvPgogIDxjaXJjbGUgY3g9IjIwMCIgY3k9IjE1MCIgcj0iODAiIGZpbGw9IiMzMzM4ZmYiIG9wYWNpdHk9IjAuMyIvPgogIDx0ZXh0IHg9IjIwMCIgeT0iMTU1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMzMzM4ZmYiPkjhu5MgR8awxqFtPC90ZXh0Pgo8L3N2Zz4=',
+                    markers: [
+                        { x: 25, y: 30, type: 'clean' },
+                        { x: 75, y: 45, type: 'clean' },
+                        { x: 50, y: 70, type: 'polluted' },
+                        { x: 80, y: 80, type: 'clean' }
+                    ],
+                    author: 'Trần Hữu Hải Đăng - C0888293',
+                    createdAt: '2024-01-15T08:30:00.000Z',
+                    stats: {
+                        cleanMarkers: 3,
+                        pollutedMarkers: 1,
+                        totalMarkers: 4
+                    }
+                },
+                {
+                    id: 'MAP-SAMPLE-002',
+                    title: 'Công viên Thống Nhất - TP.HCM',
+                    description: 'Đánh giá chất lượng môi trường tại công viên Thống Nhất',
+                    mapData: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4gIDxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjZjBmZGY0Ii8+ICA8cmVjdCB4PSI1MCIgeT0iNTAiIHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIiBmaWxsPSIjMTBiOTgxIiBvcGFjaXR5PSIwLjMiLz4gIDx0ZXh0IHg9IjIwMCIgeT0iMTU1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiMxMGI5ODEiPkPDtG5nIHZp4buHbiBUaOG7kW5nIE5o4bqldDwvdGV4dD48L3N2Zz4=',
+                    markers: [
+                        { x: 20, y: 25, type: 'clean' },
+                        { x: 40, y: 40, type: 'clean' },
+                        { x: 60, y: 35, type: 'clean' },
+                        { x: 80, y: 50, type: 'clean' },
+                        { x: 30, y: 70, type: 'clean' },
+                        { x: 70, y: 75, type: 'clean' }
+                    ],
+                    author: 'Trần Hữu Hải Đăng - C0888293',
+                    createdAt: '2024-01-20T14:15:00.000Z',
+                    stats: {
+                        cleanMarkers: 6,
+                        pollutedMarkers: 0,
+                        totalMarkers: 6
+                    }
+                },
+                {
+                    id: 'MAP-SAMPLE-003',
+                    title: 'Khu công nghiệp Đồng Nai',
+                    description: 'Giám sát ô nhiễm môi trường tại các khu công nghiệp',
+                    mapData: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4gIDxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjZmVmMmY2Ii8+ICA8cmVjdCB4PSI3MCIgeT0iNzAiIHdpZHRoPSIyNjAiIGhlaWdodD0iMTYwIiBmaWxsPSIjZWY0NDQ0IiBvcGFjaXR5PSIwLjMiLz4gIDx0ZXh0IHg9IjIwMCIgeT0iMTU1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiNlZjQ0NDQiPktodSBjw7RuZyBuZ2hp4buHcCDEkOG7k25nIE5haTwvdGV4dD48L3N2Zz4=',
+                    markers: [
+                        { x: 30, y: 40, type: 'polluted' },
+                        { x: 50, y: 30, type: 'polluted' },
+                        { x: 70, y: 45, type: 'polluted' },
+                        { x: 40, y: 60, type: 'polluted' },
+                        { x: 60, y: 70, type: 'polluted' },
+                        { x: 80, y: 35, type: 'polluted' },
+                        { x: 25, y: 75, type: 'clean' },
+                        { x: 85, y: 80, type: 'clean' }
+                    ],
+                    author: 'Trần Hữu Hải Đăng - C0888293',
+                    createdAt: '2024-01-25T10:45:00.000Z',
+                    stats: {
+                        cleanMarkers: 2,
+                        pollutedMarkers: 6,
+                        totalMarkers: 8
+                    }
+                },
+                {
+                    id: 'MAP-SAMPLE-004',
+                    title: 'Bãi biển Vũng Tàu',
+                    description: 'Đánh giá chất lượng nước biển và môi trường ven biển',
+                    mapData: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4gIDxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjZGRmNGZmIi8+ICA8cGF0aCBkPSJNMCAxNTAgUTIwMCAxMDAgNDAwIDEyMCBMNDAwIDMwMCBMMCAzMDAiIGZpbGw9IiMzYjgyZjYiIG9wYWNpdHk9IjAuNSIvPiAgPHRleHQgeD0iMjAwIiB5PSIyNDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzNiODJmNiI+QsOjaSBiaOG7g24gVsWpbmcgVMOgdTwvdGV4dD48L3N2Zz4=',
+                    markers: [
+                        { x: 15, y: 35, type: 'clean' },
+                        { x: 35, y: 40, type: 'clean' },
+                        { x: 55, y: 38, type: 'clean' },
+                        { x: 75, y: 42, type: 'clean' },
+                        { x: 90, y: 45, type: 'clean' },
+                        { x: 45, y: 65, type: 'polluted' },
+                        { x: 65, y: 75, type: 'polluted' }
+                    ],
+                    author: 'Trần Hữu Hải Đăng - C0888293',
+                    createdAt: '2024-02-01T16:20:00.000Z',
+                    stats: {
+                        cleanMarkers: 5,
+                        pollutedMarkers: 2,
+                        totalMarkers: 7
+                    }
+                },
+                {
+                    id: 'MAP-SAMPLE-005',
+                    title: 'Rừng Cát Tiên',
+                    description: 'Bảo tồn đa dạng sinh học tại Vườn Quốc gia Cát Tiên',
+                    mapData: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4gIDxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjZjBmZGY0Ii8+ICA8Y2lyY2xlIGN4PSI4MCIgY3k9IjgwIiByPSI0MCIgZmlsbD0iIzE2OTM0YSIgb3BhY2l0eT0iMC40Ii8+ICA8Y2lyY2xlIGN4PSIyMDAiIGN5PSIxMDAiIHI9IjYwIiBmaWxsPSIjMTY5MzRhIiBvcGFjaXR5PSIwLjQiLz4gIDxjaXJjbGUgY3g9IjMyMCIgY3k9IjE0MCIgcj0iNTAiIGZpbGw9IiMxNjkzNGEiIG9wYWNpdHk9IjAuNCIvPiAgPHRleHQgeD0iMjAwIiB5PSIyNDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzE2OTM0YSI+UsOrbmcgQ8OhdCBUacOqbjwvdGV4dD48L3N2Zz4=',
+                    markers: [
+                        { x: 20, y: 25, type: 'clean' },
+                        { x: 30, y: 35, type: 'clean' },
+                        { x: 50, y: 30, type: 'clean' },
+                        { x: 40, y: 45, type: 'clean' },
+                        { x: 60, y: 40, type: 'clean' },
+                        { x: 70, y: 50, type: 'clean' },
+                        { x: 80, y: 45, type: 'clean' },
+                        { x: 25, y: 60, type: 'clean' },
+                        { x: 75, y: 65, type: 'clean' }
+                    ],
+                    author: 'Trần Hữu Hải Đăng - C0888293',
+                    createdAt: '2024-02-05T09:10:00.000Z',
+                    stats: {
+                        cleanMarkers: 9,
+                        pollutedMarkers: 0,
+                        totalMarkers: 9
+                    }
+                },
+                {
+                    id: 'MAP-SAMPLE-006',
+                    title: 'Sông Đồng Nai',
+                    description: 'Giám sát chất lượng nước sông và các nguồn ô nhiễm',
+                    mapData: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4gIDxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjZmFmOWZmIi8+ICA8cGF0aCBkPSJNNTAgNTAgUTEwMCAxMDAgMTUwIDEyMCBRMjAwIDEwMCAyNTAgMTQwIFEzMDAgMTgwIDM1MCAyMDAiIHN0cm9rZT0iIzM5ODNmNCIgc3Ryb2tlLXdpZHRoPSIyMCIgZmlsbD0ibm9uZSIgb3BhY2l0eT0iMC42Ii8+ICA8dGV4dCB4PSIyMDAiIHk9IjI2MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE2IiBmaWxsPSIjMzk4M2Y0Ij5Tw7RuZyDEkOG7k25nIE5haTwvdGV4dD48L3N2Zz4=',
+                    markers: [
+                        { x: 15, y: 20, type: 'clean' },
+                        { x: 25, y: 30, type: 'clean' },
+                        { x: 40, y: 50, type: 'polluted' },
+                        { x: 50, y: 45, type: 'polluted' },
+                        { x: 65, y: 55, type: 'clean' },
+                        { x: 75, y: 60, type: 'polluted' },
+                        { x: 85, y: 70, type: 'polluted' }
+                    ],
+                    author: 'Trần Hữu Hải Đăng - C0888293',
+                    createdAt: '2024-02-10T11:30:00.000Z',
+                    stats: {
+                        cleanMarkers: 3,
+                        pollutedMarkers: 4,
+                        totalMarkers: 7
+                    }
+                }
+            ];
+
+            // Utility functions
+            const utils = {
+                createElement: (tag, className, attributes = {}) => {
+                    const element = document.createElement(tag);
+                    if (className) element.className = className;
+                    Object.entries(attributes).forEach(([key, value]) => {
+                        element.setAttribute(key, value);
+                    });
+                    return element;
+                },
+
+                debounce: (func, wait) => {
+                    let timeout;
+                    return function executedFunction(...args) {
+                        const later = () => {
+                            clearTimeout(timeout);
+                            func(...args);
+                        };
+                        clearTimeout(timeout);
+                        timeout = setTimeout(later, wait);
+                    };
+                },
+
+                formatDate: (dateString) => {
+                    const date = new Date(dateString);
+                    return date.toLocaleDateString('vi-VN', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    });
+                },
+
+                validateFile: (file) => {
+                    const maxSize = 10 * 1024 * 1024;
+                    const allowedTypes = ['image/', 'video/'];
+
+                    if (!file) return { valid: false, error: 'Không có file được chọn' };
+                    if (file.size > maxSize) return { valid: false, error: 'File quá lớn. Vui lòng chọn file nhỏ hơn 10MB.' };
+                    if (!allowedTypes.some(type => file.type.startsWith(type))) {
+                        return { valid: false, error: 'Định dạng file không được hỗ trợ.' };
+                    }
+
+                    return { valid: true };
+                },
+
+                safeLocalStorage: {
+                    setItem: (key, value) => {
+                        try {
+                            localStorage.setItem(key, JSON.stringify(value));
+                            return true;
+                        } catch (error) {
+                            console.warn('Không thể lưu vào localStorage:', error);
+                            return false;
+                        }
+                    },
+
+                    getItem: (key) => {
+                        try {
+                            const item = localStorage.getItem(key);
+                            return item ? JSON.parse(item) : null;
+                        } catch (error) {
+                            console.warn('Không thể đọc từ localStorage:', error);
+                            return null;
+                        }
+                    }
+                }
+            };
+
+            // Initialize when DOM is ready
+            document.addEventListener('DOMContentLoaded', function () {
+                initDropdown();
+                initAvatarSystem();
+                initPublicMaps();
+            });
+
+            // --- 1. Dropdown Management ---
+            function initDropdown() {
+                const dropdownToggle = document.getElementById('dropdown-toggle');
+                const dropdownContent = document.getElementById('dropdown-content');
+                const arrowIcon = document.getElementById('arrow-icon');
+
+                if (!dropdownToggle || !dropdownContent || !arrowIcon) {
+                    console.warn('Dropdown elements not found');
+                    return;
+                }
+
+                const toggleDropdown = (e) => {
+                    e.stopPropagation();
+                    isDropdownOpen = !isDropdownOpen;
+
+                    dropdownContent.classList.toggle('hidden', !isDropdownOpen);
+                    arrowIcon.classList.toggle('rotate-180', isDropdownOpen);
+                };
+
+                const closeDropdown = () => {
+                    if (isDropdownOpen) {
+                        isDropdownOpen = false;
+                        dropdownContent.classList.add('hidden');
+                        arrowIcon.classList.remove('rotate-180');
+                    }
+                };
+
+                const handleOutsideClick = (event) => {
+                    if (!dropdownToggle.contains(event.target) && !dropdownContent.contains(event.target)) {
+                        closeDropdown();
+                    }
+                };
+
+                const handleKeyPress = (event) => {
+                    if (event.key === 'Escape' && isDropdownOpen) {
+                        closeDropdown();
+                    }
+                };
+
+                dropdownToggle.addEventListener('click', toggleDropdown);
+                document.addEventListener('click', handleOutsideClick);
+                document.addEventListener('keydown', handleKeyPress);
+            }
+
+            function updateCartCount() {
+                const cart = utils.safeLocalStorage.getItem('cart') || [];
+                const cartCount = cart.reduce((total, item) => {
+                    return total + (parseInt(item.quantity) || 0);
+                }, 0);
+
+                const cartCountElement = document.getElementById('cart-count');
+
+                if (cartCountElement) {
+                    if (cartCount > 0) {
+                        cartCountElement.textContent = cartCount > 99 ? '99+' : cartCount;
+                        cartCountElement.classList.remove('hidden');
+                    } else {
+                        cartCountElement.classList.add('hidden');
+                    }
+                }
+            }
+
+            // --- 2. Avatar System ---
+            function initAvatarSystem() {
+                const avatarFileInput = document.getElementById('avatar-input');
+                const navAvatarContainer = document.querySelector('.relative.h-8.w-8');
+                const avatarContainer = document.getElementById('avatar-container');
+
+                if (!avatarFileInput || !avatarContainer) {
+                    console.warn('Avatar elements not found');
+                    return;
+                }
+
+                function createAvatarElement(src, type, containerType) {
+                    let element;
+                    const isImage = type.startsWith('image/');
+                    const isVideo = type.startsWith('video/');
+
+                    if (isImage) {
+                        element = document.createElement('img');
+                        element.setAttribute('src', src);
+                        element.setAttribute('alt', 'Avatar');
+                        element.setAttribute('loading', 'lazy');
+                    } else if (isVideo) {
+                        element = document.createElement('video');
+                        element.setAttribute('src', src);
+                        element.setAttribute('autoplay', 'true');
+                        element.setAttribute('loop', 'true');
+                        element.setAttribute('muted', 'true');
+                    }
+
+                    if (element) {
+                        element.className = containerType === 'nav'
+                            ? 'h-8 w-8 rounded-full object-cover'
+                            : 'h-12 w-12 rounded-full object-cover';
+
+                        element.onerror = () => {
+                            console.error('Failed to load avatar media');
+                        };
+                    }
+
+                    return element;
+                }
+
+                function updateAvatarDisplay(src, type) {
+                    // Update nav avatar
+                    if (navAvatarContainer) {
+                        const newNavAvatar = createAvatarElement(src, type, 'nav');
+                        if (newNavAvatar) {
+                            navAvatarContainer.innerHTML = '';
+                            navAvatarContainer.appendChild(newNavAvatar);
+                        }
+                    }
+
+                    // Update dropdown avatar
+                    if (avatarContainer) {
+                        const currentAvatar = avatarContainer.querySelector('svg, img, video');
+                        const newDropdownAvatar = createAvatarElement(src, type, 'dropdown');
+
+                        if (currentAvatar && newDropdownAvatar) {
+                            currentAvatar.replaceWith(newDropdownAvatar);
+                        }
+
+                        ensurePencilButton();
+                    }
+                }
+
+                function ensurePencilButton() {
+                    let pencilButton = avatarContainer.querySelector('#pencil-edit-button');
+
+                    if (!pencilButton) {
+                        pencilButton = document.createElement('button');
+                        pencilButton.id = 'pencil-edit-button';
+                        pencilButton.className = 'absolute -bottom-1 -right-1 bg-white rounded-full p-0.5 shadow-md hover:bg-gray-50 transition-colors z-10';
+                        pencilButton.title = 'Đổi avatar';
+                        pencilButton.setAttribute('aria-label', 'Đổi avatar');
+
+                        pencilButton.innerHTML = `
+                            <svg class="h-3 w-3 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                      d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+                                </path>
+                            </svg>
+                        `;
+
+                        avatarContainer.appendChild(pencilButton);
+                    }
+
+                    // Remove existing listeners to prevent duplicates
+                    const newPencilButton = pencilButton.cloneNode(true);
+                    pencilButton.replaceWith(newPencilButton);
+
+                    newPencilButton.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        avatarFileInput.click();
+                    });
+                }
+
+                const handleFileChange = utils.debounce((event) => {
+                    const file = event.target.files[0];
+                    const validation = utils.validateFile(file);
+
+                    if (!validation.valid) {
+                        alert(validation.error);
+                        event.target.value = '';
+                        return;
+                    }
+
+                    const reader = new FileReader();
+
+                    reader.onload = (e) => {
+                        const src = e.target.result;
+                        const type = file.type;
+
+                        updateAvatarDisplay(src, type);
+                        utils.safeLocalStorage.setItem('avatar', { src, type });
+                    };
+
+                    reader.onerror = () => {
+                        alert('Lỗi khi đọc file. Vui lòng thử lại.');
+                    };
+
+                    reader.readAsDataURL(file);
+                }, 300);
+
+                function loadSavedAvatar() {
+                    const savedAvatar = utils.safeLocalStorage.getItem('avatar');
+                    if (savedAvatar && savedAvatar.src && savedAvatar.type) {
+                        updateAvatarDisplay(savedAvatar.src, savedAvatar.type);
+                    } else {
+                        ensurePencilButton();
+                    }
+                }
+
+                avatarFileInput.addEventListener('change', handleFileChange);
+                loadSavedAvatar();
+            }
+
+            // --- 3. Public Maps System ---
+            function initPublicMaps() {
+                // Load maps from localStorage and combine with sample data
+                loadMaps();
+                setupFilters();
+                updateStats();
+                renderMaps();
+            }
+
+            function loadMaps() {
+                // Get maps from localStorage
+                const savedMaps = utils.safeLocalStorage.getItem('publicMaps') || [];
+
+                // Combine with sample maps
+                allMaps = [...sampleMaps, ...savedMaps];
+                filteredMaps = [...allMaps];
+
+                // Sort by default
+                sortMaps(currentSort);
+            }
+
+            function setupFilters() {
+                const searchInput = document.getElementById('search-input');
+                const sortSelect = document.getElementById('sort-select');
+                const viewToggle = document.getElementById('view-toggle');
+
+                if (searchInput) {
+                    searchInput.addEventListener('input', utils.debounce((e) => {
+                        currentSearch = e.target.value.toLowerCase().trim();
+                        filterMaps();
+                        renderMaps();
+                    }, 300));
+                }
+
+                if (sortSelect) {
+                    sortSelect.addEventListener('change', (e) => {
+                        currentSort = e.target.value;
+                        sortMaps(currentSort);
+                        renderMaps();
+                    });
+                }
+
+                if (viewToggle) {
+                    viewToggle.addEventListener('click', () => {
+                        const container = document.getElementById('maps-container');
+                        if (container) {
+                            container.classList.toggle('grid-cols-1');
+                            container.classList.toggle('md:grid-cols-2');
+                            container.classList.toggle('lg:grid-cols-3');
+                            container.classList.toggle('grid-cols-2');
+                            container.classList.toggle('lg:grid-cols-4');
+                        }
+                    });
+                }
+            }
+
+            function filterMaps() {
+                if (!currentSearch) {
+                    filteredMaps = [...allMaps];
+                } else {
+                    filteredMaps = allMaps.filter(map =>
+                        map.title.toLowerCase().includes(currentSearch) ||
+                        map.description.toLowerCase().includes(currentSearch) ||
+                        map.author.toLowerCase().includes(currentSearch)
+                    );
+                }
+            }
+
+            function sortMaps(sortBy) {
+                switch (sortBy) {
+                    case 'newest':
+                        filteredMaps.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+                        break;
+                    case 'oldest':
+                        filteredMaps.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+                        break;
+                    case 'most_markers':
+                        filteredMaps.sort((a, b) => b.stats.totalMarkers - a.stats.totalMarkers);
+                        break;
+                    case 'title':
+                        filteredMaps.sort((a, b) => a.title.localeCompare(b.title, 'vi'));
+                        break;
+                }
+            }
+
+            function updateStats() {
+                const totalMapsElement = document.getElementById('total-maps');
+                const totalMarkersElement = document.getElementById('total-markers');
+                const totalUsersElement = document.getElementById('total-users');
+
+                if (totalMapsElement) totalMapsElement.textContent = allMaps.length;
+                if (totalMarkersElement) {
+                    const totalMarkers = allMaps.reduce((sum, map) => sum + map.stats.totalMarkers, 0);
+                    totalMarkersElement.textContent = totalMarkers;
+                }
+                if (totalUsersElement) {
+                    const uniqueAuthors = new Set(allMaps.map(map => map.author));
+                    totalUsersElement.textContent = uniqueAuthors.size;
+                }
+            }
+
+            function renderMaps() {
+                const loadingState = document.getElementById('loading-state');
+                const mapsContainer = document.getElementById('maps-container');
+                const emptyState = document.getElementById('empty-state');
+
+                // Hide loading
+                if (loadingState) loadingState.classList.add('hidden');
+
+                if (filteredMaps.length === 0) {
+                    if (mapsContainer) mapsContainer.classList.add('hidden');
+                    if (emptyState) emptyState.classList.remove('hidden');
+                    return;
+                }
+
+                if (emptyState) emptyState.classList.add('hidden');
+                if (mapsContainer) mapsContainer.classList.remove('hidden');
+
+                // Render maps
+                if (mapsContainer) {
+                    mapsContainer.innerHTML = '';
+
+                    const mapsToShow = filteredMaps.slice(0, currentPage * mapsPerPage);
+
+                    mapsToShow.forEach(map => {
+                        const mapCard = createMapCard(map);
+                        mapsContainer.appendChild(mapCard);
+                    });
+
+                    // Show/hide load more button
+                    const loadMoreContainer = document.getElementById('load-more-container');
+                    if (loadMoreContainer) {
+                        if (mapsToShow.length < filteredMaps.length) {
+                            loadMoreContainer.classList.remove('hidden');
+                            setupLoadMore();
+                        } else {
+                            loadMoreContainer.classList.add('hidden');
+                        }
+                    }
+                }
+            }
+
+            function createMapCard(map) {
+                const card = document.createElement('div');
+                card.className = 'bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300';
+
+                const cleanColor = '#10b981';
+                const pollutedColor = '#ef4444';
+
+                card.innerHTML = `
+                    <div class="map-preview relative">
+                        <img src="${map.mapData}" alt="${map.title}" class="w-full h-48 object-cover">
+                        <div class="absolute top-2 left-2 bg-white/90 backdrop-blur-sm rounded-lg px-2 py-1 text-xs font-mono font-bold text-blue-600">
+                            ${map.id}
+                        </div>
+                        <div class="absolute top-2 right-2 flex gap-1">
+                            <span class="marker-indicator bg-green-100 text-green-800">${map.stats.cleanMarkers}</span>
+                            <span class="marker-indicator bg-red-100 text-red-800">${map.stats.pollutedMarkers}</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-2">${map.title}</h3>
+                        <p class="text-gray-600 text-sm mb-3 line-clamp-2">${map.description}</p>
+                        
+                        <div class="flex items-center justify-between text-sm text-gray-500 mb-4">
+                            <span>Bởi: ${map.author}</span>
+                            <span>${utils.formatDate(map.createdAt)}</span>
+                        </div>
+                        
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="flex items-center text-green-600">
+                                    <div class="w-3 h-3 rounded-full bg-green-500 mr-1"></div>
+                                    <span class="text-sm font-medium">${map.stats.cleanMarkers}</span>
+                                </div>
+                                <div class="flex items-center text-red-600">
+                                    <div class="w-3 h-3 rounded-full bg-red-500 mr-1"></div>
+                                    <span class="text-sm font-medium">${map.stats.pollutedMarkers}</span>
+                                </div>
+                            </div>
+                            <button onclick="viewMapDetail('${map.id}')" 
+                                    class="px-4 py-2 bg-green-600 text-white text-sm rounded-lg hover:bg-green-700 transition-colors flex items-center gap-2">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                </svg>
+                                Xem chi tiết
+                            </button>
+                        </div>
+                    </div>
+                `;
+
+                return card;
+            }
+
+            function setupLoadMore() {
+                const loadMoreBtn = document.getElementById('load-more-btn');
+                const loadMoreSpinner = document.getElementById('load-more-spinner');
+
+                if (loadMoreBtn && !loadMoreBtn.hasAttribute('data-listener-added')) {
+                    loadMoreBtn.setAttribute('data-listener-added', 'true');
+                    loadMoreBtn.addEventListener('click', () => {
+                        loadMoreSpinner.classList.remove('hidden');
+                        loadMoreBtn.disabled = true;
+
+                        setTimeout(() => {
+                            currentPage++;
+                            renderMaps();
+                            loadMoreSpinner.classList.add('hidden');
+                            loadMoreBtn.disabled = false;
+                        }, 1000);
+                    });
+                }
+            }
+
+            // Global function for map detail view
+            window.viewMapDetail = function (mapId) {
+                // Redirect to show.html with map ID parameter
+                window.location.href = `show.html?id=${encodeURIComponent(mapId)}`;
+            };
+
+            // Initialize sample data if no existing data
+            if (!utils.safeLocalStorage.getItem('publicMaps')) {
+                console.log('Initializing with sample maps data');
+            }
+
+            updateCartCount();
+        })();
+    </script>
+</body>
+
+</html>

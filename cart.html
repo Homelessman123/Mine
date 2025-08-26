@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary Meta Tags -->
+    <title>Mine - Nơi Đồ Cũ Viết Tiếp Câu Chuyện Xanh | Mua Bán Đồ Cũ Bền Vững</title>
+    <meta name="title" content="Mine - Nơi Đồ Cũ Viết Tiếp Câu Chuyện Xanh">
+    <meta name="description"
+        content="Mine - Nền tảng mua bán đồ cũ hàng đầu Việt Nam. Tìm kiếm bất động sản, xe cộ, đồ điện tử, gia dụng đã qua sử dụng với chất lượng tốt. Góp phần bảo vệ môi trường qua kinh tế tuần hoàn.">
+    <meta name="keywords"
+        content="đồ cũ, mua bán đồ cũ, bất động sản cũ, xe cũ, đồ điện tử cũ, đồ gia dụng cũ, kinh tế tuần hoàn, bảo vệ môi trường, second hand, recycle">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Vietnamese">
+    <meta name="author" content="Mine">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css" rel="stylesheet" />
+    <link rel="icon" href="Picture/logo.png" type="image/svg+xml">
+    <link rel="icon" href="Picture/logo.png" type="image/x-icon">
+    <link rel="icon" href="Picture/logo.png" type="image/png">
+    <link rel="apple-touch-icon" href="Picture/logo.png">
+    <style>
+        /* Custom notification styles */
+        .notification {
+            position: fixed;
+            top: 90px;
+            right: 20px;
+            max-width: 400px;
+            padding: 16px 20px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            transform: translateX(120%);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            backdrop-filter: blur(10px);
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification-success {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+        }
+
+        .notification-error {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+        }
+
+        .notification-info {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+        }
+
+        .notification-content {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .notification-icon {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+        }
+
+        .notification-text {
+            flex: 1;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+
+        .notification-close {
+            flex-shrink: 0;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        .notification-close:hover {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-gray-800 border-gray-700 dark:bg-gray-900 fixed w-full z-50 shadow-sm">
+        <div class="max-w-screen-xl flex items-center mx-auto p-3">
+            <!-- Logo và tên -->
+            <a href="index.html" class="flex items-center space-x-2 flex-shrink-0">
+                <img src="Picture/logo.png" class="h-10" alt="Mine Logo">
+                <span class="self-center text-xl font-bold text-white">Mine</span>
+            </a>
+
+            <!-- Menu chính (ẩn trên mobile/tablet) -->
+            <div class="hidden lg:flex items-center space-x-6 ml-8">
+                <a href="index.html" class="text-white hover:text-green-400 transition-colors">Trang chủ</a>
+                <a href="mua_fixed.html" class="text-white hover:text-green-400 transition-colors">Mua sắm</a>
+                <a href="service.html" class="text-white hover:text-green-400 transition-colors">Dịch vụ</a>
+                <a href="timhieuthem.html" class="text-white hover:text-green-400 transition-colors">Về chúng tôi</a>
+                <a href="contact.html" class="text-white hover:text-green-400 transition-colors">Liên hệ</a>
+            </div>
+
+            <!-- Spacer để đẩy actions về bên phải -->
+            <div class="flex-1"></div>
+
+            <!-- Actions (giỏ hàng, đăng bán, đăng nhập) -->
+            <div class="flex items-center space-x-3 flex-shrink-0">
+                <!-- Giỏ hàng với icon đẹp hơn -->
+                <div class="relative">
+                    <a href="cart.html" class="text-green-400 font-medium hover:text-green-300 transition-colors"
+                        title="Giỏ hàng">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M16 11V7a4 4 0 00-8 0v4M5 9h14l-1 7H6L5 9z" />
+                        </svg>
+                    </a>
+                    <span id="cart-count"
+                        class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center hidden">0</span>
+                </div>
+
+                <!-- Nút đăng bán -->
+                <a href="dang_ban.html"
+                    class="px-4 py-2 text-sm font-medium text-white bg-green-600 hover:bg-green-700 rounded-lg transition-colors">
+                    Đăng bán
+                </a>
+                <button data-collapse-toggle="navbar-default" type="button"
+                    class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+                    aria-controls="navbar-default" aria-expanded="false">
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 17 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M1 1h15M1 7h15M1 13h15" />
+                    </svg>
+                </button>
+                <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+                    <ul
+                        class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                        <li class="relative flex items-center space-x-2">
+                            <div class="relative h-8 w-8 flex items-center justify-center">
+                                <svg class="h-8 w-8 text-green-600" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5.94 7.94l-4.47 4.47-2.4-2.4-1.42 1.42 3.82 3.82 5.89-5.89-1.42-1.42z" />
+                                    <path d="M12 7v3M9 10h6M12 13v3" class="text-white" />
+                                </svg>
+                            </div>
+                            <button id="dropdown-toggle" class="text-gray-500 hover:text-gray-700 ml-1"
+                                title="Toggle dropdown">
+                                <svg id="arrow-icon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                    viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M5.293 9.293a1 1 0 011.414 0L10 12.586l3.293-3.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                            <div id="dropdown-content"
+                                class="hidden absolute top-full mt-2 w-60 bg-white border border-gray-300 rounded-lg shadow-lg end-0">
+                                <div class="p-4">
+                                    <div class="flex items-start mb-4">
+                                        <!-- Avatar container with pencil icon -->
+                                        <div id="avatar-container" class="relative flex-shrink-0 mr-3">
+                                            <svg class="h-12 w-12 text-green-600" fill="currentColor"
+                                                viewBox="0 0 24 24">
+                                                <path
+                                                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5.94 7.94l-4.47 4.47-2.4-2.4-1.42 1.42 3.82 3.82 5.89-5.89-1.42-1.42z" />
+                                                <path d="M12 7v3M9 10h6M12 13v3" class="text-white" />
+                                            </svg>
+                                            <!-- Icon cây viết chì bên cạnh avatar -->
+                                            <button id="pencil-edit-button"
+                                                class="absolute -bottom-1 -right-1 bg-white rounded-full p-0.5 shadow-md hover:bg-gray-50 transition-colors z-10"
+                                                title="Đổi avatar">
+                                                <svg class="h-3 w-3 text-gray-600" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+                                                    </path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <!-- User info -->
+                                        <div class="flex-1 min-w-0">
+                                            <p
+                                                class="text-sm font-medium whitespace-nowrap overflow-hidden text-ellipsis">
+                                                Trần Hữu Hải Đăng</p>
+                                            <p
+                                                class="text-xs text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
+                                                TK Định danh: C0888293...</p>
+                                        </div>
+                                    </div>
+                                    <input type="file" id="avatar-input" accept="image/*,video/*" class="hidden"
+                                        title="Chọn avatar mới" placeholder="Chọn file avatar">
+                                    <ul class="mt-2 space-y-1">
+                                        <li><a href="public-maps.html"
+                                                class="block text-sm text-gray-700 hover:underline">Bản đồ công khai</a>
+                                        </li>
+                                        <li><a href="blog.html"
+                                                class="block text-sm text-gray-700 hover:underline">Blog</a>
+                                        </li>
+                                        <li><a href="event.html" class="block text-sm text-gray-700 hover:underline">Sự
+                                                kiện</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+
+            </div>
+
+    </nav>
+
+    <!-- Main Content -->
+    <div class="pt-20 min-h-screen bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <h1 class="text-3xl font-bold text-gray-900 mb-8">Giỏ hàng của bạn</h1>
+
+            <div class="lg:grid lg:grid-cols-12 lg:gap-x-12 lg:items-start xl:gap-x-16">
+                <!-- Cart Items -->
+                <div class="lg:col-span-7">
+                    <div id="cart-items-container" class="space-y-4">
+                        <!-- Cart items will be inserted here -->
+                    </div>
+
+                    <!-- Empty Cart State -->
+                    <div id="empty-cart-state" class="hidden text-center py-16">
+                        <div class="text-gray-400 mb-4">
+                            <svg class="w-24 h-24 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M16 11V7a4 4 0 00-8 0v4M5 9h14l-1 7H6L5 9z"></path>
+                            </svg>
+                        </div>
+                        <h2 class="text-2xl font-bold text-gray-800 mb-2">Giỏ hàng trống</h2>
+                        <p class="text-gray-600 mb-6">Bạn chưa có sản phẩm nào trong giỏ hàng.</p>
+                        <a href="mua.html"
+                            class="inline-flex items-center px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                            </svg>
+                            Tiếp tục mua sắm
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Checkout Summary -->
+                <div class="mt-16 rounded-lg bg-gray-50 px-4 py-6 sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8">
+                    <h2 class="text-lg font-medium text-gray-900">Tóm tắt đơn hàng</h2>
+
+                    <dl class="mt-6 space-y-4">
+                        <div class="flex items-center justify-between">
+                            <dt class="text-sm text-gray-600">Tạm tính</dt>
+                            <dd id="subtotal" class="text-sm font-medium text-gray-900">0₫</dd>
+                        </div>
+                        <div class="flex items-center justify-between border-t border-gray-200 pt-4">
+                            <dt class="flex items-center text-sm text-gray-600">
+                                <span>Phí vận chuyển</span>
+                            </dt>
+                            <dd class="text-sm font-medium text-gray-900">Miễn phí</dd>
+                        </div>
+                        <div class="flex items-center justify-between border-t border-gray-200 pt-4">
+                            <dt class="text-base font-medium text-gray-900">Tổng cộng</dt>
+                            <dd id="total" class="text-base font-medium text-gray-900">0₫</dd>
+                        </div>
+                    </dl>
+
+                    <!-- Payment Methods -->
+                    <div class="mt-6">
+                        <h3 class="text-lg font-medium text-gray-900 mb-4">Phương thức thanh toán</h3>
+
+                        <div class="space-y-4">
+                            <!-- Credit Card Option -->
+                            <div class="flex items-center">
+                                <input id="payment-card" name="payment-method" type="radio" value="card"
+                                    class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300" checked>
+                                <label for="payment-card" class="ml-3 block text-sm font-medium text-gray-700">
+                                    Thẻ tín dụng / Thẻ ghi nợ
+                                </label>
+                            </div>
+
+                            <!-- QR Code Option -->
+                            <div class="flex items-center">
+                                <input id="payment-qr" name="payment-method" type="radio" value="qr"
+                                    class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300">
+                                <label for="payment-qr" class="ml-3 block text-sm font-medium text-gray-700">
+                                    Chuyển khoản QR Code
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Credit Card Form -->
+                        <div id="card-payment-form" class="mt-6">
+                            <div class="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-2">
+                                <div class="sm:col-span-2">
+                                    <label for="card-number" class="block text-sm font-medium text-gray-700">Số
+                                        thẻ</label>
+                                    <div class="mt-1">
+                                        <input type="text" id="card-number" name="card-number"
+                                            placeholder="1234 5678 9012 3456"
+                                            class="shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                                    </div>
+                                </div>
+
+                                <div class="sm:col-span-2">
+                                    <label for="cardholder-name" class="block text-sm font-medium text-gray-700">Tên chủ
+                                        thẻ</label>
+                                    <div class="mt-1">
+                                        <input type="text" id="cardholder-name" name="cardholder-name"
+                                            placeholder="Nguyễn Văn A"
+                                            class="shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label for="card-expiry" class="block text-sm font-medium text-gray-700">Ngày hết
+                                        hạn</label>
+                                    <div class="mt-1">
+                                        <input type="text" id="card-expiry" name="card-expiry" placeholder="MM/YY"
+                                            class="shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label for="card-cvc" class="block text-sm font-medium text-gray-700">CVC</label>
+                                    <div class="mt-1">
+                                        <input type="text" id="card-cvc" name="card-cvc" placeholder="123"
+                                            class="shadow-sm focus:ring-green-500 focus:border-green-500 block w-full sm:text-sm border-gray-300 rounded-md">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Card Type Icons -->
+                            <div class="mt-4 flex space-x-2">
+                                <img src="https://tse1.mm.bing.net/th/id/OIP.ygZGQKeZ0aBwHS7e7wbJVgHaDA?r=0&cb=thfvnext&rs=1&pid=ImgDetMain&o=7&rm=3"
+                                    alt="Visa" class="h-8 w-auto">
+                                <img src="https://e7.pngegg.com/pngimages/436/322/png-clipart-mastercard-logo-moneylive-mobile-payment-brand-mastercard-text-orange-thumbnail.png"
+                                    alt="Mastercard" class="h-8 w-auto">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/American_Express_logo_%282018%29.svg/1200px-American_Express_logo_%282018%29.svg.png"
+                                    alt="American Express" class="h-8 w-auto">
+                            </div>
+                        </div>
+
+                        <!-- QR Code Payment -->
+                        <div id="qr-payment-form" class="mt-6 hidden">
+                            <div class="text-center">
+                                <h4 class="text-lg font-medium text-gray-900 mb-4">Quét mã QR để thanh toán</h4>
+                                <div
+                                    class="bg-white p-4 rounded-lg border-2 border-dashed border-gray-300 inline-block">
+                                    <img src="Picture/QR.png" alt="QR Code thanh toán" class="w-48 h-48 mx-auto">
+                                </div>
+                                <p class="mt-4 text-sm text-gray-600">
+
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Checkout Button -->
+                    <div class="mt-6">
+                        <button id="checkout-btn"
+                            class="w-full bg-green-600 border border-transparent rounded-md shadow-sm py-3 px-4 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 disabled:opacity-50 disabled:cursor-not-allowed">
+                            Đặt hàng
+                        </button>
+                    </div>
+
+                    <div class="mt-6 text-center text-sm text-gray-500">
+                        <p>Bảo mật thanh toán với SSL 256-bit</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Confirmation Modal -->
+    <div id="confirmation-modal"
+        class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
+        <div class="bg-white rounded-lg p-6 max-w-sm mx-4 transform transition-all">
+            <div class="flex items-center justify-center w-12 h-12 mx-auto mb-4 bg-red-100 rounded-full">
+                <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
+                    </path>
+                </svg>
+            </div>
+            <h3 class="text-lg font-medium text-gray-900 text-center mb-2">Xác nhận xóa</h3>
+            <p id="confirmation-message" class="text-sm text-gray-500 text-center mb-6">Bạn có chắc muốn xóa sản phẩm
+                này khỏi giỏ hàng?</p>
+            <div class="flex space-x-3">
+                <button id="confirm-cancel"
+                    class="flex-1 bg-gray-200 text-gray-800 py-2 px-4 rounded-md hover:bg-gray-300 transition-colors">
+                    Hủy
+                </button>
+                <button id="confirm-delete"
+                    class="flex-1 bg-red-600 text-white py-2 px-4 rounded-md hover:bg-red-700 transition-colors">
+                    Xóa
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
+    <script>
+        // Optimized JavaScript with better error handling and performance
+        (function () {
+            'use strict';
+
+            // Cache DOM elements and state
+            let isDropdownOpen = false;
+            let eventListenersAttached = false;
+
+            // Utility functions
+            const utils = {
+                createElement: (tag, className, attributes = {}) => {
+                    const element = document.createElement(tag);
+                    if (className) element.className = className;
+                    Object.entries(attributes).forEach(([key, value]) => {
+                        element.setAttribute(key, value);
+                    });
+                    return element;
+                },
+
+                debounce: (func, wait) => {
+                    let timeout;
+                    return function executedFunction(...args) {
+                        const later = () => {
+                            clearTimeout(timeout);
+                            func(...args);
+                        };
+                        clearTimeout(timeout);
+                        timeout = setTimeout(later, wait);
+                    };
+                },
+
+                validateFile: (file) => {
+                    const maxSize = 10 * 1024 * 1024; // 10MB
+                    const allowedTypes = ['image/', 'video/'];
+
+                    if (!file) return { valid: false, error: 'Không có file được chọn' };
+                    if (file.size > maxSize) return { valid: false, error: 'File quá lớn. Vui lòng chọn file nhỏ hơn 10MB.' };
+                    if (!allowedTypes.some(type => file.type.startsWith(type))) {
+                        return { valid: false, error: 'Định dạng file không được hỗ trợ. Chỉ chấp nhận hình ảnh và video.' };
+                    }
+
+                    return { valid: true };
+                },
+
+                safeLocalStorage: {
+                    setItem: (key, value) => {
+                        try {
+                            localStorage.setItem(key, JSON.stringify(value));
+                            return true;
+                        } catch (error) {
+                            console.warn('Không thể lưu vào localStorage:', error);
+                            return false;
+                        }
+                    },
+
+                    getItem: (key) => {
+                        try {
+                            const item = localStorage.getItem(key);
+                            return item ? JSON.parse(item) : null;
+                        } catch (error) {
+                            console.warn('Không thể đọc từ localStorage:', error);
+                            return null;
+                        }
+                    }
+                }
+            };
+
+            // Initialize when DOM is ready
+            document.addEventListener('DOMContentLoaded', function () {
+                initDropdown();
+                initAvatarSystem();
+            });
+
+            // --- 1. Dropdown Management ---
+            function initDropdown() {
+                const dropdownToggle = document.getElementById('dropdown-toggle');
+                const dropdownContent = document.getElementById('dropdown-content');
+                const arrowIcon = document.getElementById('arrow-icon');
+
+                if (!dropdownToggle || !dropdownContent || !arrowIcon) {
+                    console.warn('Dropdown elements not found');
+                    return;
+                }
+
+                const toggleDropdown = (e) => {
+                    e.stopPropagation();
+                    isDropdownOpen = !isDropdownOpen;
+
+                    dropdownContent.classList.toggle('hidden', !isDropdownOpen);
+                    arrowIcon.classList.toggle('rotate-180', isDropdownOpen);
+                };
+
+                const closeDropdown = () => {
+                    if (isDropdownOpen) {
+                        isDropdownOpen = false;
+                        dropdownContent.classList.add('hidden');
+                        arrowIcon.classList.remove('rotate-180');
+                    }
+                };
+
+                // Click outside to close dropdown
+                const handleOutsideClick = (event) => {
+                    if (!dropdownToggle.contains(event.target) && !dropdownContent.contains(event.target)) {
+                        closeDropdown();
+                    }
+                };
+
+                // Escape key to close dropdown
+                const handleKeyPress = (event) => {
+                    if (event.key === 'Escape' && isDropdownOpen) {
+                        closeDropdown();
+                    }
+                };
+
+                // Attach event listeners
+                dropdownToggle.addEventListener('click', toggleDropdown);
+                document.addEventListener('click', handleOutsideClick);
+                document.addEventListener('keydown', handleKeyPress);
+            }
+
+            // --- 2. Avatar System ---
+            function initAvatarSystem() {
+                const avatarFileInput = document.getElementById('avatar-input');
+                const navAvatarContainer = document.querySelector('.relative.h-8.w-8');
+                const avatarContainer = document.getElementById('avatar-container');
+
+                if (!avatarFileInput || !avatarContainer) {
+                    console.warn('Avatar elements not found');
+                    return;
+                }
+
+                // Create avatar element based on type and container
+                function createAvatarElement(src, type, containerType) {
+                    let element;
+                    const isImage = type.startsWith('image/');
+                    const isVideo = type.startsWith('video/');
+
+                    if (isImage) {
+                        element = utils.createElement('img', '', {
+                            src,
+                            alt: 'Avatar',
+                            loading: 'lazy'
+                        });
+                    } else if (isVideo) {
+                        element = utils.createElement('video', '', {
+                            src,
+                            autoplay: 'true',
+                            loop: 'true',
+                            muted: 'true'
+                        });
+                    }
+
+                    if (element) {
+                        element.className = containerType === 'nav'
+                            ? 'h-8 w-8 rounded-full object-cover'
+                            : 'h-12 w-12 rounded-full object-cover';
+
+                        // Add error handling for media elements
+                        element.onerror = () => {
+                            console.error('Failed to load avatar media');
+                            // Could implement fallback avatar here
+                        };
+                    }
+
+                    return element;
+                }
+
+                // Update avatar display in all locations
+                function updateAvatarDisplay(src, type) {
+                    // Update nav avatar
+                    if (navAvatarContainer) {
+                        const newNavAvatar = createAvatarElement(src, type, 'nav');
+                        if (newNavAvatar) {
+                            navAvatarContainer.innerHTML = '';
+                            navAvatarContainer.appendChild(newNavAvatar);
+                        }
+                    }
+
+                    // Update dropdown avatar
+                    if (avatarContainer) {
+                        const currentAvatar = avatarContainer.querySelector('svg, img, video');
+                        const newDropdownAvatar = createAvatarElement(src, type, 'dropdown');
+
+                        if (currentAvatar && newDropdownAvatar) {
+                            currentAvatar.replaceWith(newDropdownAvatar);
+                        }
+
+                        // Ensure pencil button exists and is functional
+                        ensurePencilButton();
+                    }
+                }
+
+                // Ensure pencil edit button exists and works
+                function ensurePencilButton() {
+                    let pencilButton = avatarContainer.querySelector('#pencil-edit-button');
+
+                    if (!pencilButton) {
+                        pencilButton = utils.createElement('button',
+                            'absolute -bottom-1 -right-1 bg-white rounded-full p-0.5 shadow-md hover:bg-gray-50 transition-colors z-10',
+                            {
+                                id: 'pencil-edit-button',
+                                title: 'Đổi avatar',
+                                'aria-label': 'Đổi avatar'
+                            }
+                        );
+
+                        pencilButton.innerHTML = `
+                                <svg class="h-3 w-3 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                          d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+                                    </path>
+                                </svg>
+                            `;
+
+                        avatarContainer.appendChild(pencilButton);
+                    }
+
+                    // Remove existing listeners to prevent duplicates
+                    const newPencilButton = pencilButton.cloneNode(true);
+                    pencilButton.replaceWith(newPencilButton);
+
+                    // Add click handler
+                    newPencilButton.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        avatarFileInput.click();
+                    });
+                }
+
+                // Handle file input change
+                const handleFileChange = utils.debounce((event) => {
+                    const file = event.target.files[0];
+                    const validation = utils.validateFile(file);
+
+                    if (!validation.valid) {
+                        alert(validation.error);
+                        // Reset input
+                        event.target.value = '';
+                        return;
+                    }
+
+                    const reader = new FileReader();
+
+                    reader.onload = (e) => {
+                        const src = e.target.result;
+                        const type = file.type;
+
+                        updateAvatarDisplay(src, type);
+                        utils.safeLocalStorage.setItem('avatar', { src, type });
+                    };
+
+                    reader.onerror = () => {
+                        alert('Lỗi khi đọc file. Vui lòng thử lại.');
+                    };
+
+                    reader.readAsDataURL(file);
+                }, 300);
+
+                // Load saved avatar from localStorage
+                function loadSavedAvatar() {
+                    const savedAvatar = utils.safeLocalStorage.getItem('avatar');
+                    if (savedAvatar && savedAvatar.src && savedAvatar.type) {
+                        updateAvatarDisplay(savedAvatar.src, savedAvatar.type);
+                    } else {
+                        // Ensure default pencil button is functional
+                        ensurePencilButton();
+                    }
+                }
+
+                // Initialize avatar system
+                avatarFileInput.addEventListener('change', handleFileChange);
+                loadSavedAvatar();
+            }
+
+            // Search functionality
+            function initializeSearch() {
+                const searchInput = document.getElementById('search-input');
+                const searchBtn = document.getElementById('search-btn');
+                const categoryFilter = document.getElementById('category-filter');
+                const searchTags = document.querySelectorAll('.search-tag');
+
+                // Handle search button click
+                function performSearch() {
+                    const searchTerm = searchInput.value.trim();
+                    const category = categoryFilter.value;
+
+                    // Build URL parameters
+                    const params = new URLSearchParams();
+                    if (searchTerm) params.set('search', searchTerm);
+                    if (category) params.set('category', category);
+
+                    // Redirect to mua.html with search parameters
+                    const url = category || searchTerm ? `mua.html?${params.toString()}` : 'mua.html';
+                    window.location.href = url;
+                }
+
+                // Event listeners
+                if (searchBtn) {
+                    searchBtn.addEventListener('click', performSearch);
+                }
+
+                if (searchInput) {
+                    searchInput.addEventListener('keypress', (e) => {
+                        if (e.key === 'Enter') {
+                            e.preventDefault();
+                            performSearch();
+                        }
+                    });
+                }
+
+                // Handle category filter change
+                if (categoryFilter) {
+                    categoryFilter.addEventListener('change', () => {
+                        if (categoryFilter.value) {
+                            performSearch();
+                        }
+                    });
+                }
+
+                // Handle search tag clicks
+                searchTags.forEach(tag => {
+                    tag.addEventListener('click', () => {
+                        const filter = tag.getAttribute('data-filter');
+                        if (filter) {
+                            searchInput.value = filter;
+                            performSearch();
+                        }
+                    });
+                });
+            }
+
+            // Initialize search functionality
+            initializeSearch();
+        })();
+    </script>
+    <script>
+        (function () {
+            'use strict';
+
+            // Utility functions
+            const utils = {
+                safeLocalStorage: {
+                    getItem: (key) => {
+                        try {
+                            const item = localStorage.getItem(key);
+                            return item ? JSON.parse(item) : null;
+                        } catch (error) {
+                            console.warn('Không thể đọc từ localStorage:', error);
+                            return null;
+                        }
+                    },
+
+                    setItem: (key, value) => {
+                        try {
+                            localStorage.setItem(key, JSON.stringify(value));
+                            return true;
+                        } catch (error) {
+                            console.warn('Không thể lưu vào localStorage:', error);
+                            return false;
+                        }
+                    }
+                }
+            };
+
+            // Format price function
+            // Format price with better handling
+            function formatPrice(price) {
+                if (!price || price === '0' || price === 0) return '0₫';
+
+                // Convert string to number if needed
+                const numPrice = typeof price === 'string' ?
+                    parseFloat(price.replace(/[^\d.]/g, '')) :
+                    parseFloat(price);
+
+                if (isNaN(numPrice)) return '0₫';
+
+                return new Intl.NumberFormat('vi-VN', {
+                    style: 'currency',
+                    currency: 'VND',
+                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 0
+                }).format(numPrice);
+            }
+
+            // Load and display cart items
+            function loadCart() {
+                const cart = utils.safeLocalStorage.getItem('cart') || [];
+                const cartItemsContainer = document.getElementById('cart-items-container');
+                const emptyCartState = document.getElementById('empty-cart-state');
+
+                if (cart.length === 0) {
+                    cartItemsContainer.innerHTML = '';
+                    emptyCartState.classList.remove('hidden');
+                    updateSummary(0);
+                    return;
+                }
+
+                emptyCartState.classList.add('hidden');
+                cartItemsContainer.innerHTML = cart.map(item => createCartItemHTML(item)).join('');
+
+                // Calculate total with proper price parsing
+                const total = cart.reduce((sum, item) => {
+                    const price = parseFloat(item.price) || 0;
+                    const quantity = parseInt(item.quantity) || 0;
+                    return sum + (price * quantity);
+                }, 0);
+
+                updateSummary(total);
+
+                // Add event listeners to cart items
+                setupCartItemListeners();
+            }
+
+            // Create HTML for cart item
+            function createCartItemHTML(item) {
+                // Ensure we have a valid product ID
+                const productId = item.productId || item.id || 'undefined';
+
+                return `
+                    <div class="bg-white rounded-lg shadow-sm border p-4" data-product-id="${productId}">
+                        <div class="flex items-center space-x-4">
+                            <div class="flex-shrink-0">
+                                ${item.image ?
+                        `<img src="${item.image}" alt="${item.title || item.name}" class="w-16 h-16 object-cover rounded-lg">` :
+                        `<div class="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center">
+                                        <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                        </svg>
+                                    </div>`
+                    }
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <h3 class="text-lg font-medium text-gray-900 truncate">${item.title || item.name || 'Sản phẩm'}</h3>
+                                <p class="text-sm text-gray-500">ID: ${productId}</p>
+                                <p class="text-lg font-semibold text-green-600">${formatPrice(item.price)}</p>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="flex items-center border border-gray-300 rounded-md">
+                                    <button class="quantity-decrease px-3 py-1 text-gray-500 hover:text-gray-700 transition-colors" data-product-id="${productId}">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path>
+                                        </svg>
+                                    </button>
+                                    <span class="quantity-display px-3 py-1 text-sm font-medium min-w-[2rem] text-center">${item.quantity}</span>
+                                    <button class="quantity-increase px-3 py-1 text-gray-500 hover:text-gray-700 transition-colors" data-product-id="${productId}">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <button class="remove-item text-red-500 hover:text-red-700 p-1 transition-colors" data-product-id="${productId}" title="Xóa sản phẩm">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            // Setup event listeners for cart items
+            function setupCartItemListeners() {
+                // Quantity decrease buttons
+                document.querySelectorAll('.quantity-decrease').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        const productId = btn.dataset.productId || btn.closest('[data-product-id]')?.dataset.productId;
+                        if (productId) {
+                            updateQuantity(productId, -1);
+                        }
+                    });
+                });
+
+                // Quantity increase buttons
+                document.querySelectorAll('.quantity-increase').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        const productId = btn.dataset.productId || btn.closest('[data-product-id]')?.dataset.productId;
+                        if (productId) {
+                            updateQuantity(productId, 1);
+                        }
+                    });
+                });
+
+                // Remove item buttons
+                document.querySelectorAll('.remove-item').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        const productId = btn.dataset.productId || btn.closest('[data-product-id]')?.dataset.productId;
+                        if (productId) {
+                            showConfirmation('Bạn có chắc muốn xóa sản phẩm này khỏi giỏ hàng?', () => {
+                                removeItem(productId);
+                            });
+                        }
+                    });
+                });
+            }
+
+            // Update item quantity
+            function updateQuantity(productId, change) {
+                const cart = utils.safeLocalStorage.getItem('cart') || [];
+                const itemIndex = cart.findIndex(item =>
+                    (item.productId && item.productId === productId) ||
+                    (item.id && item.id === productId)
+                );
+
+                if (itemIndex !== -1) {
+                    const item = cart[itemIndex];
+                    const newQuantity = item.quantity + change;
+
+                    if (newQuantity <= 0) {
+                        // Remove item if quantity becomes 0 or negative
+                        removeItem(productId);
+                        return;
+                    }
+
+                    // Update quantity
+                    item.quantity = newQuantity;
+                    utils.safeLocalStorage.setItem('cart', cart);
+
+                    // Reload cart to update display and pricing
+                    loadCart();
+                    updateCartCount();
+
+                    showNotification(`Đã cập nhật số lượng sản phẩm`, 'success');
+                } else {
+                    showNotification('Không tìm thấy sản phẩm để cập nhật', 'error');
+                }
+            }
+
+            // Remove item from cart
+            function removeItem(productId) {
+                const cart = utils.safeLocalStorage.getItem('cart') || [];
+                const initialLength = cart.length;
+
+                const updatedCart = cart.filter(item =>
+                    item.productId !== productId && item.id !== productId
+                );
+
+                if (updatedCart.length < initialLength) {
+                    utils.safeLocalStorage.setItem('cart', updatedCart);
+                    loadCart();
+                    updateCartCount();
+                    showNotification('Đã xóa sản phẩm khỏi giỏ hàng', 'success');
+                } else {
+                    showNotification('Không tìm thấy sản phẩm để xóa', 'error');
+                }
+            }
+
+            // Update summary
+            function updateSummary(total) {
+                document.getElementById('subtotal').textContent = formatPrice(total);
+                document.getElementById('total').textContent = formatPrice(total);
+
+                // Enable/disable checkout button
+                const checkoutBtn = document.getElementById('checkout-btn');
+                if (total > 0) {
+                    checkoutBtn.disabled = false;
+                } else {
+                    checkoutBtn.disabled = true;
+                }
+            }
+
+            // Update cart count in navigation
+            function updateCartCount() {
+                const cart = utils.safeLocalStorage.getItem('cart') || [];
+                const cartCount = cart.reduce((total, item) => {
+                    return total + (parseInt(item.quantity) || 0);
+                }, 0);
+
+                const cartCountElement = document.getElementById('cart-count');
+
+                if (cartCountElement) {
+                    if (cartCount > 0) {
+                        cartCountElement.textContent = cartCount > 99 ? '99+' : cartCount;
+                        cartCountElement.classList.remove('hidden');
+                    } else {
+                        cartCountElement.classList.add('hidden');
+                    }
+                }
+            }
+
+            // Setup payment method toggle
+            function setupPaymentMethodToggle() {
+                const paymentCardRadio = document.getElementById('payment-card');
+                const paymentQrRadio = document.getElementById('payment-qr');
+                const cardForm = document.getElementById('card-payment-form');
+                const qrForm = document.getElementById('qr-payment-form');
+
+                paymentCardRadio.addEventListener('change', () => {
+                    if (paymentCardRadio.checked) {
+                        cardForm.classList.remove('hidden');
+                        qrForm.classList.add('hidden');
+                    }
+                });
+
+                paymentQrRadio.addEventListener('change', () => {
+                    if (paymentQrRadio.checked) {
+                        cardForm.classList.add('hidden');
+                        qrForm.classList.remove('hidden');
+                    }
+                });
+            }
+
+            // Handle checkout
+            function handleCheckout() {
+                const cart = utils.safeLocalStorage.getItem('cart') || [];
+                if (cart.length === 0) {
+                    showNotification('Giỏ hàng trống', 'error');
+                    return;
+                }
+
+                const paymentMethod = document.querySelector('input[name="payment-method"]:checked').value;
+
+                if (paymentMethod === 'card') {
+                    // Validate card form
+                    const cardNumber = document.getElementById('card-number').value;
+                    const cardholderName = document.getElementById('cardholder-name').value;
+                    const cardExpiry = document.getElementById('card-expiry').value;
+                    const cardCvc = document.getElementById('card-cvc').value;
+
+                    if (!cardNumber || !cardholderName || !cardExpiry || !cardCvc) {
+                        showNotification('Vui lòng điền đầy đủ thông tin thẻ', 'error');
+                        return;
+                    }
+                }
+
+                // Simulate order processing
+                document.getElementById('checkout-btn').textContent = 'Đang xử lý...';
+                document.getElementById('checkout-btn').disabled = true;
+
+                setTimeout(() => {
+                    // Clear cart
+                    utils.safeLocalStorage.setItem('cart', []);
+
+                    // Show success message
+                    showNotification('Đặt hàng thành công! Chúng tôi sẽ liên hệ với bạn sớm nhất.', 'success');
+
+                    // Reload cart
+                    loadCart();
+                    updateCartCount();
+
+                    // Reset checkout button
+                    document.getElementById('checkout-btn').textContent = 'Đặt hàng';
+                    document.getElementById('checkout-btn').disabled = false;
+                }, 2000);
+            }
+
+            // Show confirmation modal
+            function showConfirmation(message, onConfirm) {
+                const modal = document.getElementById('confirmation-modal');
+                const messageElement = document.getElementById('confirmation-message');
+                const cancelBtn = document.getElementById('confirm-cancel');
+                const deleteBtn = document.getElementById('confirm-delete');
+
+                messageElement.textContent = message;
+                modal.classList.remove('hidden');
+
+                // Handle cancel
+                const handleCancel = () => {
+                    modal.classList.add('hidden');
+                    cancelBtn.removeEventListener('click', handleCancel);
+                    deleteBtn.removeEventListener('click', handleConfirm);
+                };
+
+                // Handle confirm
+                const handleConfirm = () => {
+                    modal.classList.add('hidden');
+                    onConfirm();
+                    cancelBtn.removeEventListener('click', handleCancel);
+                    deleteBtn.removeEventListener('click', handleConfirm);
+                };
+
+                cancelBtn.addEventListener('click', handleCancel);
+                deleteBtn.addEventListener('click', handleConfirm);
+
+                // Close on backdrop click
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        handleCancel();
+                    }
+                });
+            }
+
+            // Show notification with modern design
+            function showNotification(message, type = 'info') {
+                // Remove existing notifications
+                const existingNotifications = document.querySelectorAll('.notification');
+                existingNotifications.forEach(notification => notification.remove());
+
+                const notification = document.createElement('div');
+                notification.className = `notification notification-${type}`;
+
+                // Create icon based on type
+                let iconSVG = '';
+                switch (type) {
+                    case 'success':
+                        iconSVG = `
+                            <svg class="notification-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                        `;
+                        break;
+                    case 'error':
+                        iconSVG = `
+                            <svg class="notification-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                            </svg>
+                        `;
+                        break;
+                    default:
+                        iconSVG = `
+                            <svg class="notification-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                            </svg>
+                        `;
+                }
+
+                notification.innerHTML = `
+                    <div class="notification-content">
+                        ${iconSVG}
+                        <div class="notification-text">${message}</div>
+                        <svg class="notification-close" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                `;
+
+                document.body.appendChild(notification);
+
+                // Add close functionality
+                const closeBtn = notification.querySelector('.notification-close');
+                closeBtn.addEventListener('click', () => {
+                    notification.classList.remove('show');
+                    setTimeout(() => notification.remove(), 400);
+                });
+
+                // Show notification
+                setTimeout(() => notification.classList.add('show'), 100);
+
+                // Auto hide after 5 seconds
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.classList.remove('show');
+                        setTimeout(() => notification.remove(), 400);
+                    }
+                }, 5000);
+            }
+
+            // Initialize the page
+            function init() {
+                loadCart();
+                updateCartCount();
+                setupPaymentMethodToggle();
+
+                // Setup checkout button
+                document.getElementById('checkout-btn').addEventListener('click', handleCheckout);
+            }
+
+            // Start when DOM is loaded
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', init);
+            } else {
+                init();
+            }
+        })();
+    </script>
+
+</body>
+
+</html>

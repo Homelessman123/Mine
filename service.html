@@ -1,0 +1,2045 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary Meta Tags -->
+    <title>Mine - Nơi Đồ Cũ Viết Tiếp Câu Chuyện Xanh | Mua Bán Đồ Cũ Bền Vững</title>
+    <meta name="title" content="Mine - Nơi Đồ Cũ Viết Tiếp Câu Chuyện Xanh">
+    <meta name="description"
+        content="Mine - Nền tảng mua bán đồ cũ hàng đầu Việt Nam. Tìm kiếm bất động sản, xe cộ, đồ điện tử, gia dụng đã qua sử dụng với chất lượng tốt. Góp phần bảo vệ môi trường qua kinh tế tuần hoàn.">
+    <meta name="keywords"
+        content="đồ cũ, mua bán đồ cũ, bất động sản cũ, xe cũ, đồ điện tử cũ, đồ gia dụng cũ, kinh tế tuần hoàn, bảo vệ môi trường, second hand, recycle">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Vietnamese">
+    <meta name="author" content="Mine">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css" rel="stylesheet" />
+    <link rel="icon" href="Picture/logo.png" type="image/svg+xml">
+    <link rel="icon" href="Picture/logo.png" type="image/x-icon">
+    <link rel="icon" href="Picture/logo.png" type="image/png">
+    <link rel="apple-touch-icon" href="Picture/logo.png">
+    <style>
+        .img.h-12.w-12.text-green-600 {
+            border-radius: 30px;
+        }
+
+        svg.h-12.w-12.text-green-600.rounded-full,
+        img.h-12.w-12.text-green-600,
+        video.h-12.w-12.rounded-full.object-cover {
+            border-radius: 50% !important;
+        }
+
+        .map-marker {
+            position: absolute;
+            transform: translate(-50%, -100%);
+            cursor: pointer;
+            z-index: 10;
+            animation: bounce 2s infinite;
+        }
+
+        .map-marker.clean {
+            color: #10b981;
+        }
+
+        .map-marker.polluted {
+            color: #ef4444;
+        }
+
+        .text-center.mb-8 {
+            margin-top: 4rem;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translate(-50%, -100%) translateY(0);
+            }
+
+            40% {
+                transform: translate(-50%, -100%) translateY(-10px);
+            }
+
+            60% {
+                transform: translate(-50%, -100%) translateY(-5px);
+            }
+        }
+
+        .map-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1rem;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #f0fdf4 100%);
+        }
+
+        .upload-zone {
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(34, 197, 94, 0.1) 100%);
+        }
+
+        .upload-zone:hover {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(34, 197, 94, 0.15) 100%);
+            transform: translateY(-2px);
+        }
+
+        .upload-zone.dragover {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(34, 197, 94, 0.2) 100%);
+            border-color: #10b981;
+            transform: scale(1.02);
+        }
+
+        .marker-legend {
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .action-button {
+            transition: all 0.2s ease;
+        }
+
+        .action-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Notification Styles */
+        .notification {
+            position: fixed;
+            top: 5rem;
+            right: 1rem;
+            z-index: 1000;
+            max-width: 400px;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            transform: translateX(500px);
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification.success {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.95) 0%, rgba(34, 197, 94, 0.95) 100%);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: white;
+        }
+
+        .notification.error {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.95) 0%, rgba(220, 38, 38, 0.95) 100%);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: white;
+        }
+
+        .notification.info {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.95) 0%, rgba(37, 99, 235, 0.95) 100%);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            color: white;
+        }
+
+        .notification.warning {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.95) 0%, rgba(217, 119, 6, 0.95) 100%);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            color: white;
+        }
+
+        .notification-icon {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Map Status Indicator */
+        .map-status {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            z-index: 20;
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 0.75rem 1rem;
+            border-radius: 0.75rem;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 0.5rem;
+            animation: blink 2s infinite;
+        }
+
+        .status-indicator.public {
+            background-color: #10b981;
+        }
+
+        .status-indicator.private {
+            background-color: #f59e0b;
+        }
+
+        @keyframes blink {
+
+            0%,
+            50% {
+                opacity: 1;
+            }
+
+            51%,
+            100% {
+                opacity: 0.3;
+            }
+        }
+
+        /* Map ID Display */
+        .map-id {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            background: linear-gradient(45deg, #3b82f6, #10b981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Loading Animation */
+        .loading-animation {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .loading-animation::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: loading-sweep 1.5s infinite;
+        }
+
+        @keyframes loading-sweep {
+            0% {
+                left: -100%;
+            }
+
+            100% {
+                left: 100%;
+            }
+        }
+
+        /* Enhanced Statistics */
+        .stat-card {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, currentColor, transparent);
+            animation: stat-glow 3s infinite;
+        }
+
+        @keyframes stat-glow {
+            0% {
+                left: -100%;
+            }
+
+            100% {
+                left: 100%;
+            }
+        }
+
+        /* Button Enhancements */
+        .btn-enhanced {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-enhanced::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s;
+        }
+
+        .btn-enhanced:hover::before {
+            left: 100%;
+        }
+
+        /* Folder Management Styles */
+        .folder-manager {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .folder-manager.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .folder-manager .modal-content {
+            background: white;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: scale(0.8) translateY(50px);
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .folder-manager.active .modal-content {
+            transform: scale(1) translateY(0);
+        }
+
+        .map-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .map-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border-radius: 12px;
+            padding: 1rem;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .map-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            border-color: #10b981;
+        }
+
+        .map-card.selected {
+            border-color: #3b82f6;
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+        }
+
+        .map-card .map-preview {
+            width: 100%;
+            height: 100px;
+            border-radius: 8px;
+            object-fit: cover;
+            margin-bottom: 0.5rem;
+        }
+
+        .map-card .map-placeholder {
+            width: 100%;
+            height: 100px;
+            border-radius: 8px;
+            background: linear-gradient(45deg, #e5e7eb, #f3f4f6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .floating-action-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 100;
+        }
+
+        .floating-action-btn:hover {
+            transform: scale(1.1) rotate(180deg);
+            box-shadow: 0 12px 35px rgba(16, 185, 129, 0.4);
+        }
+
+        .floating-action-btn svg {
+            transition: transform 0.3s ease;
+        }
+
+        /* Public Map Selection Modal */
+        .public-map-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
+            z-index: 1100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .public-map-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .public-map-modal .modal-content {
+            background: white;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            transform: scale(0.8) translateY(50px);
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .public-map-modal.active .modal-content {
+            transform: scale(1) translateY(0);
+        }
+
+        /* Progress Bar for Map Operations */
+        .progress-bar {
+            position: fixed;
+            top: 5rem;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: rgba(0, 0, 0, 0.1);
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .progress-bar.show {
+            opacity: 1;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6, #10b981);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-br from-gray-50 to-green-50 min-h-screen">
+    <!-- Navigation (existing code) -->
+    <nav class="bg-gray-800 border-gray-700 dark:bg-gray-900 fixed w-full z-50 shadow-sm">
+        <div class="max-w-screen-xl flex items-center mx-auto p-3">
+            <!-- Logo và tên -->
+            <a href="index.html" class="flex items-center space-x-2 flex-shrink-0">
+                <img src="Picture/logo.png" class="h-10" alt="Mine Logo">
+                <span class="self-center text-xl font-bold text-white">Mine</span>
+            </a>
+
+            <!-- Menu chính (ẩn trên mobile/tablet) -->
+            <div class="hidden lg:flex items-center space-x-6 ml-8">
+                <a href="index.html" class="text-white hover:text-green-400 transition-colors">Trang chủ</a>
+                <a href="mua_fixed.html" class="text-white hover:text-green-400 transition-colors">Mua sắm</a>
+                <a href="service.html" class="text-green-400 font-medium hover:text-green-300 transition-colors">Dịch
+                    vụ</a>
+                <a href="timhieuthem.html" class="text-white hover:text-green-400 transition-colors">Về chúng tôi</a>
+                <a href="contact.html" class="text-white hover:text-green-400 transition-colors">Liên hệ</a>
+            </div>
+
+            <!-- Spacer để đẩy actions về bên phải -->
+            <div class="flex-1"></div>
+
+            <!-- Actions (giỏ hàng, đăng bán, đăng nhập) -->
+            <div class="flex items-center space-x-3 flex-shrink-0">
+                <!-- Giỏ hàng với icon đẹp hơn -->
+                <a href="cart.html" class="relative p-2 text-white hover:text-green-400 transition-colors"
+                    title="Giỏ hàng">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l-1 7H6L5 9z" />
+                    </svg>
+                    <span id="cart-count"
+                        class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center hidden">0</span>
+                </a>
+
+                <!-- Nút đăng bán -->
+                <a href="dang_ban.html"
+                    class="px-4 py-2 text-sm font-medium text-white bg-green-600 hover:bg-green-700 rounded-lg transition-colors">
+                    Đăng bán
+                </a>
+                <button data-collapse-toggle="navbar-default" type="button"
+                    class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+                    aria-controls="navbar-default" aria-expanded="false">
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 17 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M1 1h15M1 7h15M1 13h15" />
+                    </svg>
+                </button>
+                <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+                    <ul
+                        class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                        <li class="relative flex items-center space-x-2">
+                            <div class="relative h-8 w-8 flex items-center justify-center">
+                                <svg class="h-8 w-8 text-green-600" fill="currentColor" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5.94 7.94l-4.47 4.47-2.4-2.4-1.42 1.42 3.82 3.82 5.89-5.89-1.42-1.42z" />
+                                    <path d="M12 7v3M9 10h6M12 13v3" class="text-white" />
+                                </svg>
+                            </div>
+                            <button id="dropdown-toggle" class="text-gray-500 hover:text-gray-700 ml-1"
+                                title="Toggle dropdown">
+                                <svg id="arrow-icon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                    viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M5.293 9.293a1 1 0 011.414 0L10 12.586l3.293-3.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                            <div id="dropdown-content"
+                                class="hidden absolute top-full mt-2 w-60 bg-white border border-gray-300 rounded-lg shadow-lg end-0">
+                                <div class="p-4">
+                                    <div class="flex items-start mb-4">
+                                        <!-- Avatar container with pencil icon -->
+                                        <div id="avatar-container" class="relative flex-shrink-0 mr-3">
+                                            <svg class="h-12 w-12 text-green-600" fill="currentColor"
+                                                viewBox="0 0 24 24">
+                                                <path
+                                                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5.94 7.94l-4.47 4.47-2.4-2.4-1.42 1.42 3.82 3.82 5.89-5.89-1.42-1.42z" />
+                                                <path d="M12 7v3M9 10h6M12 13v3" class="text-white" />
+                                            </svg>
+                                            <!-- Icon cây viết chì bên cạnh avatar -->
+                                            <button id="pencil-edit-button"
+                                                class="absolute -bottom-1 -right-1 bg-white rounded-full p-0.5 shadow-md hover:bg-gray-50 transition-colors z-10"
+                                                title="Đổi avatar">
+                                                <svg class="h-3 w-3 text-gray-600" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+                                                    </path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <!-- User info -->
+                                        <div class="flex-1 min-w-0">
+                                            <p
+                                                class="text-sm font-medium whitespace-nowrap overflow-hidden text-ellipsis">
+                                                Trần Hữu Hải Đăng</p>
+                                            <p
+                                                class="text-xs text-gray-500 whitespace-nowrap overflow-hidden text-ellipsis">
+                                                TK Định danh: C0888293...</p>
+                                        </div>
+                                    </div>
+                                    <input type="file" id="avatar-input" accept="image/*,video/*" class="hidden"
+                                        title="Chọn avatar mới" placeholder="Chọn file avatar">
+                                    <ul class="mt-2 space-y-1">
+                                        <li><a href="public-maps.html"
+                                                class="block text-sm text-gray-700 hover:underline">Bản đồ công khai</a>
+                                        </li>
+                                        <li><a href="blog.html"
+                                                class="block text-sm text-gray-700 hover:underline">Blog</a>
+                                        </li>
+                                        <li><a href="event.html" class="block text-sm text-gray-700 hover:underline">Sự
+                                                kiện</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+
+            </div>
+
+    </nav>
+
+    <!-- Main Interactive Map Section -->
+    <div class="pt-20 px-4 sm:px-6 lg:px-8 pb-8">
+        <!-- Progress Bar -->
+        <div id="progressBar" class="progress-bar">
+            <div id="progressFill" class="progress-fill"></div>
+        </div>
+
+        <!-- Notification Container -->
+        <div id="notificationContainer"></div>
+
+        <div class="max-w-7xl mx-auto">
+            <!-- Header Section -->
+            <div class="text-center mb-8">
+                <h1 class="text-4xl font-bold text-gray-900 mb-4">
+                    Hệ thống quản lý <span class="text-green-600">Môi Trường</span>
+                </h1>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Tải lên bản đồ khu vực của bạn và cùng cộng đồng đánh dấu những nơi sạch đẹp và những khu vực cần
+                    cải thiện
+                </p>
+            </div>
+
+            <!-- Control Panel -->
+            <div class="mb-6 flex flex-wrap justify-center gap-4">
+                <input type="file" id="mapUpload" accept="image/*" class="hidden" title="Chọn bản đồ khu vực"
+                    placeholder="Chọn file bản đồ">
+                <button id="uploadBtn"
+                    class="action-button btn-enhanced bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium shadow-lg">
+                    <svg class="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12">
+                        </path>
+                    </svg>
+                    Tải Bản Đồ Lên
+                </button>
+
+                <!-- Main Action Buttons (Always Visible) -->
+                <button id="cleanMarkerBtn"
+                    class="action-button btn-enhanced bg-emerald-500 hover:bg-emerald-600 text-white px-6 py-3 rounded-lg font-medium shadow-lg">
+                    <svg class="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    Đánh Dấu Sạch
+                </button>
+
+                <button id="pollutedMarkerBtn"
+                    class="action-button btn-enhanced bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-lg font-medium shadow-lg">
+                    <svg class="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z">
+                        </path>
+                    </svg>
+                    Đánh Dấu Ô Nhiễm
+                </button>
+
+                <button id="clearMarkersBtn"
+                    class="action-button btn-enhanced bg-gray-500 hover:bg-gray-600 text-white px-6 py-3 rounded-lg font-medium shadow-lg">
+                    <svg class="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
+                        </path>
+                    </svg>
+                    Xóa Đánh Dấu
+                </button>
+            </div>
+
+            <!-- Floating Folder Button -->
+            <button id="folderBtn" class="floating-action-btn" title="Quản lý khu vực">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
+                </svg>
+            </button>
+
+            <!-- Folder Management Modal -->
+            <div id="folderManager" class="folder-manager">
+                <div class="modal-content">
+                    <div class="p-6 border-b border-gray-200">
+                        <div class="flex items-center justify-between">
+                            <h2 class="text-2xl font-bold text-gray-800">Quản lý Khu vực</h2>
+                            <button id="closeFolderBtn" class="text-gray-500 hover:text-gray-700">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M6 18L18 6M6 6l12 12"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <p class="text-gray-600 mt-2">Tạo và quản lý các bản đồ trong khu vực của bạn</p>
+                    </div>
+
+                    <div class="p-6">
+                        <!-- Area Name Input -->
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Tên khu vực</label>
+                            <input type="text" id="areaNameInput" placeholder="Nhập tên khu vực..."
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                        </div>
+
+                        <!-- Map Grid -->
+                        <div class="mb-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-lg font-semibold text-gray-800">Bản đồ trong khu vực</h3>
+                                <button id="addMapBtn"
+                                    class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-medium">
+                                    <svg class="w-4 h-4 inline-block mr-1" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M12 4v16m8-8H4"></path>
+                                    </svg>
+                                    Thêm bản đồ
+                                </button>
+                            </div>
+                            <div id="mapGrid" class="map-grid">
+                                <!-- Maps will be added here dynamically -->
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="flex gap-4 justify-end">
+                            <button id="clearMapBtn"
+                                class="action-button btn-enhanced bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-medium shadow-lg flex items-center">
+                                <svg class="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M19 12H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 12V9a2 2 0 012-2h10a2 2 0 012 2v3">
+                                    </path>
+                                </svg>
+                                Xóa Bản Đồ
+                            </button>
+                            <button id="publicMapBtn"
+                                class="action-button btn-enhanced bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium shadow-lg flex items-center">
+                                <svg class="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
+                                    </path>
+                                </svg>
+                                Công khai
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Public Map Selection Modal -->
+            <div id="publicMapModal" class="public-map-modal">
+                <div class="modal-content">
+                    <div class="p-6 border-b border-gray-200">
+                        <div class="flex items-center justify-between">
+                            <h2 class="text-2xl font-bold text-gray-800">Chọn bản đồ để công khai</h2>
+                            <button id="closePublicModalBtn" class="text-gray-500 hover:text-gray-700">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M6 18L18 6M6 6l12 12"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <p class="text-gray-600 mt-2">Chọn các bản đồ bạn muốn chia sẻ với cộng đồng</p>
+                    </div>
+
+                    <div class="p-6">
+                        <div id="publicMapGrid" class="map-grid mb-6">
+                            <!-- Maps will be populated here -->
+                        </div>
+
+                        <div class="flex gap-4 justify-end">
+                            <button id="cancelPublicBtn"
+                                class="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50">
+                                Hủy
+                            </button>
+                            <button id="confirmPublicBtn"
+                                class="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
+                                Công khai đã chọn
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Map Container -->
+            <div class="relative">
+                <!-- Map Status -->
+                <div id="mapStatus" class="map-status hidden">
+                    <div class="flex items-center text-sm">
+                        <span id="statusIndicator" class="status-indicator"></span>
+                        <span id="statusText">Chưa công khai</span>
+                        <span class="mx-2">|</span>
+                        <span>ID: <span id="mapId" class="map-id">---</span></span>
+                    </div>
+                </div>
+
+                <!-- Legend -->
+                <div class="absolute top-4 right-4 z-20 marker-legend p-4 rounded-lg border border-gray-200 shadow-lg">
+                    <h3 class="font-semibold text-gray-800 mb-2">Chú thích</h3>
+                    <div class="flex items-center mb-2">
+                        <svg class="w-6 h-6 text-emerald-500 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                        </svg>
+                        <span class="text-sm">Khu vực sạch</span>
+                    </div>
+                    <div class="flex items-center">
+                        <svg class="w-6 h-6 text-red-500 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                        </svg>
+                        <span class="text-sm">Khu vực ô nhiễm</span>
+                    </div>
+                </div>
+
+                <!-- Map Display Area -->
+                <div id="mapContainer"
+                    class="map-container w-full h-96 lg:h-[600px] border-2 border-dashed border-gray-300 flex items-center justify-center">
+                    <div id="uploadZone"
+                        class="upload-zone w-full h-full flex flex-col items-center justify-center cursor-pointer">
+                        <svg class="w-16 h-16 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z">
+                            </path>
+                        </svg>
+                        <h3 class="text-xl font-semibold text-gray-700 mb-2">Kéo thả hoặc click để tải bản đồ</h3>
+                        <p class="text-gray-500 text-center max-w-md">
+                            Hỗ trợ các định dạng: JPG, PNG. Kích thước tối đa: 10MB
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Statistics Panel -->
+                <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="stat-card bg-white p-6 rounded-lg shadow-lg border border-gray-100 text-emerald-600">
+                        <div class="flex items-center">
+                            <div class="p-3 bg-emerald-100 rounded-full">
+                                <svg class="w-8 h-8 text-emerald-600" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-600">Khu vực sạch</p>
+                                <p id="cleanCount" class="text-2xl font-bold text-emerald-600">0</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card bg-white p-6 rounded-lg shadow-lg border border-gray-100 text-red-600">
+                        <div class="flex items-center">
+                            <div class="p-3 bg-red-100 rounded-full">
+                                <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-600">Khu vực ô nhiễm</p>
+                                <p id="pollutedCount" class="text-2xl font-bold text-red-600">0</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card bg-white p-6 rounded-lg shadow-lg border border-gray-100 text-blue-600">
+                        <div class="flex items-center">
+                            <div class="p-3 bg-blue-100 rounded-full">
+                                <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm font-medium text-gray-600">Tổng đánh dấu</p>
+                                <p id="totalCount" class="text-2xl font-bold text-blue-600">0</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
+    <script>
+        // Enhanced JavaScript with advanced notifications and map ID system
+        (function () {
+            'use strict';
+
+            // Cache DOM elements and state
+            let isDropdownOpen = false;
+            let currentMap = null;
+            let markers = [];
+            let currentMarkerMode = null;
+            let currentMapData = null;
+            let initialUploadZoneHTML = '';
+            let currentMapId = null;
+            let isMapPublic = false;
+
+            // Notification System
+            const NotificationSystem = {
+                container: null,
+
+                init() {
+                    this.container = document.getElementById('notificationContainer');
+                    if (!this.container) {
+                        this.container = document.createElement('div');
+                        this.container.id = 'notificationContainer';
+                        document.body.appendChild(this.container);
+                    }
+                },
+
+                show(message, type = 'info', duration = 5000) {
+                    const notification = document.createElement('div');
+                    notification.className = `notification ${type}`;
+
+                    const iconSvg = this.getIcon(type);
+
+                    notification.innerHTML = `
+                        <div class="flex items-start space-x-3">
+                            <div class="notification-icon flex-shrink-0">
+                                ${iconSvg}
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-sm font-medium">${message}</p>
+                            </div>
+                            <button onclick="this.parentElement.parentElement.remove()" 
+                                    class="flex-shrink-0 ml-2 opacity-70 hover:opacity-100 transition-opacity">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                                </svg>
+                            </button>
+                        </div>
+                    `;
+
+                    this.container.appendChild(notification);
+
+                    // Trigger show animation
+                    setTimeout(() => notification.classList.add('show'), 100);
+
+                    // Auto remove
+                    if (duration > 0) {
+                        setTimeout(() => {
+                            notification.classList.remove('show');
+                            setTimeout(() => notification.remove(), 400);
+                        }, duration);
+                    }
+
+                    return notification;
+                },
+
+                getIcon(type) {
+                    const icons = {
+                        success: `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                        </svg>`,
+                        error: `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+                        </svg>`,
+                        warning: `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                        </svg>`,
+                        info: `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                        </svg>`
+                    };
+                    return icons[type] || icons.info;
+                }
+            };
+
+            // Progress Bar System
+            const ProgressBar = {
+                bar: null,
+                fill: null,
+
+                init() {
+                    this.bar = document.getElementById('progressBar');
+                    this.fill = document.getElementById('progressFill');
+                },
+
+                show() {
+                    if (this.bar) this.bar.classList.add('show');
+                },
+
+                hide() {
+                    if (this.bar) this.bar.classList.remove('show');
+                },
+
+                setProgress(percent) {
+                    if (this.fill) this.fill.style.width = `${percent}%`;
+                }
+            };
+
+            // Map ID Generator
+            const MapIDGenerator = {
+                generate() {
+                    const timestamp = Date.now().toString(36);
+                    const random = Math.random().toString(36).substr(2, 5);
+                    return `MAP-${timestamp}-${random}`.toUpperCase();
+                },
+
+                updateDisplay(id, isPublic = false) {
+                    const mapIdElement = document.getElementById('mapId');
+                    const statusElement = document.getElementById('statusText');
+                    const statusIndicator = document.getElementById('statusIndicator');
+                    const mapStatus = document.getElementById('mapStatus');
+
+                    if (mapIdElement) mapIdElement.textContent = id || '---';
+
+                    if (statusElement && statusIndicator) {
+                        if (isPublic) {
+                            statusElement.textContent = 'Đã công khai';
+                            statusIndicator.className = 'status-indicator public';
+                        } else {
+                            statusElement.textContent = 'Chưa công khai';
+                            statusIndicator.className = 'status-indicator private';
+                        }
+                    }
+
+                    if (mapStatus) {
+                        if (id) {
+                            mapStatus.classList.remove('hidden');
+                        } else {
+                            mapStatus.classList.add('hidden');
+                        }
+                    }
+                }
+            };
+
+            // Utility functions
+            const utils = {
+                debounce: (func, wait) => {
+                    let timeout;
+                    return function executedFunction(...args) {
+                        const later = () => {
+                            clearTimeout(timeout);
+                            func(...args);
+                        };
+                        clearTimeout(timeout);
+                        timeout = setTimeout(later, wait);
+                    };
+                },
+
+                validateFile: (file, maxSize = 10 * 1024 * 1024, allowedTypes = ['image/']) => {
+                    if (!file) return { valid: false, error: 'Không có file được chọn' };
+                    if (file.size > maxSize) return { valid: false, error: 'File quá lớn. Vui lòng chọn file nhỏ hơn 10MB.' };
+                    if (!allowedTypes.some(type => file.type.startsWith(type))) {
+                        return { valid: false, error: 'Định dạng file không được hỗ trợ.' };
+                    }
+                    return { valid: true };
+                },
+
+                safeLocalStorage: {
+                    setItem: (key, value) => {
+                        try {
+                            localStorage.setItem(key, JSON.stringify(value));
+                            return true;
+                        } catch (error) {
+                            console.warn('Không thể lưu vào localStorage:', error);
+                            return false;
+                        }
+                    },
+
+                    getItem: (key) => {
+                        try {
+                            const item = localStorage.getItem(key);
+                            return item ? JSON.parse(item) : null;
+                        } catch (error) {
+                            console.warn('Không thể đọc từ localStorage:', error);
+                            return null;
+                        }
+                    }
+                }
+            };
+
+            // Initialize when DOM is ready
+            document.addEventListener('DOMContentLoaded', function () {
+                NotificationSystem.init();
+                ProgressBar.init();
+                initDropdown();
+                initAvatarSystem();
+                initMapSystem();
+
+                // Welcome notification
+                setTimeout(() => {
+                    NotificationSystem.show('Chào mừng bạn đến với hệ thống quản lý môi trường!', 'info', 3000);
+                }, 1000);
+            });
+
+            // --- 1. Dropdown Management ---
+            function initDropdown() {
+                const dropdownToggle = document.getElementById('dropdown-toggle');
+                const dropdownContent = document.getElementById('dropdown-content');
+                const arrowIcon = document.getElementById('arrow-icon');
+
+                if (!dropdownToggle || !dropdownContent || !arrowIcon) {
+                    console.warn('Dropdown elements not found');
+                    return;
+                }
+
+                const toggleDropdown = (e) => {
+                    e.stopPropagation();
+                    isDropdownOpen = !isDropdownOpen;
+
+                    dropdownContent.classList.toggle('hidden', !isDropdownOpen);
+                    arrowIcon.classList.toggle('rotate-180', isDropdownOpen);
+                };
+
+                const closeDropdown = () => {
+                    if (isDropdownOpen) {
+                        isDropdownOpen = false;
+                        dropdownContent.classList.add('hidden');
+                        arrowIcon.classList.remove('rotate-180');
+                    }
+                };
+
+                const handleOutsideClick = (event) => {
+                    if (!dropdownToggle.contains(event.target) && !dropdownContent.contains(event.target)) {
+                        closeDropdown();
+                    }
+                };
+
+                const handleKeyPress = (event) => {
+                    if (event.key === 'Escape' && isDropdownOpen) {
+                        closeDropdown();
+                    }
+                };
+
+                dropdownToggle.addEventListener('click', toggleDropdown);
+                document.addEventListener('click', handleOutsideClick);
+                document.addEventListener('keydown', handleKeyPress);
+            }
+
+            function updateCartCount() {
+                const cart = utils.safeLocalStorage.getItem('cart') || [];
+                const cartCount = cart.reduce((total, item) => {
+                    return total + (parseInt(item.quantity) || 0);
+                }, 0);
+
+                const cartCountElement = document.getElementById('cart-count');
+
+                if (cartCountElement) {
+                    if (cartCount > 0) {
+                        cartCountElement.textContent = cartCount > 99 ? '99+' : cartCount;
+                        cartCountElement.classList.remove('hidden');
+                    } else {
+                        cartCountElement.classList.add('hidden');
+                    }
+                }
+            }
+
+            // --- 2. Avatar System ---
+            function initAvatarSystem() {
+                const avatarFileInput = document.getElementById('avatar-input');
+                const navAvatarContainer = document.querySelector('.relative.h-8.w-8');
+                const avatarContainer = document.getElementById('avatar-container');
+
+                if (!avatarFileInput || !avatarContainer) {
+                    console.warn('Avatar elements not found');
+                    return;
+                }
+
+                function createAvatarElement(src, type, containerType) {
+                    let element;
+                    const isImage = type.startsWith('image/');
+                    const isVideo = type.startsWith('video/');
+
+                    if (isImage) {
+                        element = document.createElement('img');
+                        element.setAttribute('src', src);
+                        element.setAttribute('alt', 'Avatar');
+                        element.setAttribute('loading', 'lazy');
+                    } else if (isVideo) {
+                        element = document.createElement('video');
+                        element.setAttribute('src', src);
+                        element.setAttribute('autoplay', 'true');
+                        element.setAttribute('loop', 'true');
+                        element.setAttribute('muted', 'true');
+                    }
+
+                    if (element) {
+                        element.className = containerType === 'nav'
+                            ? 'h-8 w-8 rounded-full object-cover'
+                            : 'h-12 w-12 rounded-full object-cover';
+
+                        element.onerror = () => {
+                            console.error('Failed to load avatar media');
+                            NotificationSystem.show('Không thể tải avatar. Vui lòng thử file khác.', 'error');
+                        };
+                    }
+
+                    return element;
+                }
+
+                function updateAvatarDisplay(src, type) {
+                    ProgressBar.show();
+                    ProgressBar.setProgress(50);
+
+                    // Update nav avatar
+                    if (navAvatarContainer) {
+                        const newNavAvatar = createAvatarElement(src, type, 'nav');
+                        if (newNavAvatar) {
+                            navAvatarContainer.innerHTML = '';
+                            navAvatarContainer.appendChild(newNavAvatar);
+                        }
+                    }
+
+                    // Update dropdown avatar
+                    if (avatarContainer) {
+                        const currentAvatar = avatarContainer.querySelector('svg, img, video');
+                        const newDropdownAvatar = createAvatarElement(src, type, 'dropdown');
+
+                        if (currentAvatar && newDropdownAvatar) {
+                            currentAvatar.replaceWith(newDropdownAvatar);
+                        }
+
+                        ensurePencilButton();
+                    }
+
+                    ProgressBar.setProgress(100);
+                    setTimeout(() => {
+                        ProgressBar.hide();
+                        NotificationSystem.show('Avatar đã được cập nhật thành công!', 'success');
+                    }, 500);
+                }
+
+                function ensurePencilButton() {
+                    let pencilButton = avatarContainer.querySelector('#pencil-edit-button');
+
+                    if (!pencilButton) {
+                        pencilButton = document.createElement('button');
+                        pencilButton.id = 'pencil-edit-button';
+                        pencilButton.className = 'absolute -bottom-1 -right-1 bg-white rounded-full p-0.5 shadow-md hover:bg-gray-50 transition-colors z-10';
+                        pencilButton.title = 'Đổi avatar';
+                        pencilButton.setAttribute('aria-label', 'Đổi avatar');
+
+                        pencilButton.innerHTML = `
+                            <svg class="h-3 w-3 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                      d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+                                </path>
+                            </svg>
+                        `;
+
+                        avatarContainer.appendChild(pencilButton);
+                    }
+
+                    // Remove existing listeners to prevent duplicates
+                    const newPencilButton = pencilButton.cloneNode(true);
+                    pencilButton.replaceWith(newPencilButton);
+
+                    newPencilButton.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        avatarFileInput.click();
+                    });
+                }
+
+                const handleFileChange = utils.debounce((event) => {
+                    const file = event.target.files[0];
+                    const validation = utils.validateFile(file);
+
+                    if (!validation.valid) {
+                        NotificationSystem.show(validation.error, 'error');
+                        event.target.value = '';
+                        return;
+                    }
+
+                    const reader = new FileReader();
+
+                    reader.onload = (e) => {
+                        const src = e.target.result;
+                        const type = file.type;
+
+                        updateAvatarDisplay(src, type);
+                        utils.safeLocalStorage.setItem('avatar', { src, type });
+                    };
+
+                    reader.onerror = () => {
+                        NotificationSystem.show('Lỗi khi đọc file. Vui lòng thử lại.', 'error');
+                    };
+
+                    reader.readAsDataURL(file);
+                }, 300);
+
+                function loadSavedAvatar() {
+                    const savedAvatar = utils.safeLocalStorage.getItem('avatar');
+                    if (savedAvatar && savedAvatar.src && savedAvatar.type) {
+                        updateAvatarDisplay(savedAvatar.src, savedAvatar.type);
+                    } else {
+                        ensurePencilButton();
+                    }
+                }
+
+                avatarFileInput.addEventListener('change', handleFileChange);
+                loadSavedAvatar();
+            }
+
+            // --- 3. Enhanced Map System ---
+            function initMapSystem() {
+                const mapUpload = document.getElementById('mapUpload');
+                const uploadBtn = document.getElementById('uploadBtn');
+                const uploadZone = document.getElementById('uploadZone');
+                const mapContainer = document.getElementById('mapContainer');
+                const cleanMarkerBtn = document.getElementById('cleanMarkerBtn');
+                const pollutedMarkerBtn = document.getElementById('pollutedMarkerBtn');
+                const clearMarkersBtn = document.getElementById('clearMarkersBtn');
+                const clearMapBtn = document.getElementById('clearMapBtn');
+                const cleanCount = document.getElementById('cleanCount');
+                const pollutedCount = document.getElementById('pollutedCount');
+                const totalCount = document.getElementById('totalCount');
+
+                if (!mapContainer || !uploadBtn || !uploadZone) {
+                    console.warn('Map elements not found');
+                    return;
+                }
+
+                // Store initial upload zone HTML
+                initialUploadZoneHTML = mapContainer.innerHTML;
+
+                function loadSavedMapData() {
+                    const savedData = utils.safeLocalStorage.getItem('mapData');
+                    if (savedData && savedData.mapImage) {
+                        displayMap(savedData.mapImage);
+                        currentMapData = savedData.mapImage;
+                        currentMapId = savedData.mapId || MapIDGenerator.generate();
+                        isMapPublic = savedData.isPublic || false;
+
+                        MapIDGenerator.updateDisplay(currentMapId, isMapPublic);
+
+                        if (savedData.markers && Array.isArray(savedData.markers)) {
+                            savedData.markers.forEach(marker => {
+                                createMarker(marker.x, marker.y, marker.type);
+                            });
+                            updateStats();
+                        }
+
+                        NotificationSystem.show(`Đã khôi phục bản đồ ${currentMapId}`, 'info', 3000);
+                    }
+                }
+
+                function saveCurrentState() {
+                    const data = {
+                        mapImage: currentMapData,
+                        mapId: currentMapId,
+                        isPublic: isMapPublic,
+                        markers: markers.map(marker => ({
+                            x: parseFloat(marker.element.style.left),
+                            y: parseFloat(marker.element.style.top),
+                            type: marker.type
+                        }))
+                    };
+                    utils.safeLocalStorage.setItem('mapData', data);
+                }
+
+                function setupUploadEvents() {
+                    const currentUploadBtn = document.getElementById('uploadBtn');
+                    const currentUploadZone = document.getElementById('uploadZone');
+                    const currentMapUpload = document.getElementById('mapUpload');
+
+                    if (!currentUploadBtn || !currentUploadZone || !currentMapUpload) return;
+
+                    currentUploadBtn.addEventListener('click', () => currentMapUpload.click());
+                    currentUploadZone.addEventListener('click', () => currentMapUpload.click());
+
+                    currentUploadZone.addEventListener('dragover', (e) => {
+                        e.preventDefault();
+                        currentUploadZone.classList.add('dragover');
+                    });
+
+                    currentUploadZone.addEventListener('dragleave', () => {
+                        currentUploadZone.classList.remove('dragover');
+                    });
+
+                    currentUploadZone.addEventListener('drop', (e) => {
+                        e.preventDefault();
+                        currentUploadZone.classList.remove('dragover');
+                        const files = e.dataTransfer.files;
+                        if (files.length > 0) {
+                            handleMapUpload(files[0]);
+                        }
+                    });
+
+                    currentMapUpload.addEventListener('change', (e) => {
+                        if (e.target.files.length > 0) {
+                            handleMapUpload(e.target.files[0]);
+                        }
+                    });
+                }
+
+                function handleMapUpload(file) {
+                    const validation = utils.validateFile(file, 10 * 1024 * 1024, ['image/']);
+
+                    if (!validation.valid) {
+                        NotificationSystem.show(validation.error, 'error');
+                        return;
+                    }
+
+                    ProgressBar.show();
+                    ProgressBar.setProgress(25);
+                    NotificationSystem.show('Đang tải bản đồ...', 'info', 2000);
+
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        ProgressBar.setProgress(75);
+                        displayMap(e.target.result);
+                        ProgressBar.setProgress(100);
+                        setTimeout(() => {
+                            ProgressBar.hide();
+                            NotificationSystem.show('Bản đồ đã được tải thành công!', 'success');
+                        }, 500);
+                    };
+                    reader.onerror = () => {
+                        ProgressBar.hide();
+                        NotificationSystem.show('Lỗi khi đọc file hình ảnh.', 'error');
+                    };
+                    reader.readAsDataURL(file);
+                }
+
+                function displayMap(src) {
+                    mapContainer.innerHTML = '';
+                    const img = document.createElement('img');
+                    img.src = src;
+                    img.className = 'w-full h-full object-contain cursor-crosshair';
+                    img.style.maxWidth = '100%';
+                    img.style.maxHeight = '100%';
+
+                    // Add loading animation
+                    img.classList.add('loading-animation');
+
+                    mapContainer.appendChild(img);
+                    currentMap = img;
+                    currentMapData = src;
+
+                    // Generate new map ID if not exists
+                    if (!currentMapId) {
+                        currentMapId = MapIDGenerator.generate();
+                        isMapPublic = false;
+                    }
+
+                    MapIDGenerator.updateDisplay(currentMapId, isMapPublic);
+
+                    img.addEventListener('click', handleMapClick);
+                    saveCurrentState();
+
+                    // Remove loading animation after load
+                    img.addEventListener('load', () => {
+                        img.classList.remove('loading-animation');
+                    });
+                }
+
+                function handleMapClick(e) {
+                    if (!currentMarkerMode || !currentMap) return;
+
+                    const rect = currentMap.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+
+                    const xPercent = (x / rect.width) * 100;
+                    const yPercent = (y / rect.height) * 100;
+
+                    createMarker(xPercent, yPercent, currentMarkerMode);
+                    updateStats();
+
+                    const markerTypeText = currentMarkerMode === 'clean' ? 'sạch' : 'ô nhiễm';
+                    NotificationSystem.show(`Đã thêm đánh dấu khu vực ${markerTypeText}`, 'success', 2000);
+                }
+
+                function createMarker(x, y, type) {
+                    const marker = document.createElement('div');
+                    marker.className = `map-marker ${type}`;
+                    marker.style.left = x + '%';
+                    marker.style.top = y + '%';
+
+                    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                    svg.setAttribute('class', 'w-8 h-8');
+                    svg.setAttribute('fill', 'currentColor');
+                    svg.setAttribute('viewBox', '0 0 24 24');
+
+                    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                    path.setAttribute('d', 'M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z');
+
+                    svg.appendChild(path);
+                    marker.appendChild(svg);
+
+                    // Remove marker on click
+                    marker.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        marker.remove();
+                        markers = markers.filter(m => m.element !== marker);
+                        updateStats();
+                        saveCurrentState();
+                        NotificationSystem.show('Đã xóa đánh dấu', 'info', 1500);
+                    });
+
+                    // Add tooltip
+                    const tooltip = document.createElement('div');
+                    tooltip.className = 'absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 pointer-events-none transition-opacity duration-200';
+                    tooltip.textContent = type === 'clean' ? 'Khu vực sạch - Click để xóa' : 'Khu vực ô nhiễm - Click để xóa';
+
+                    marker.appendChild(tooltip);
+
+                    marker.addEventListener('mouseenter', () => {
+                        tooltip.classList.remove('opacity-0');
+                    });
+
+                    marker.addEventListener('mouseleave', () => {
+                        tooltip.classList.add('opacity-0');
+                    });
+
+                    mapContainer.appendChild(marker);
+                    markers.push({ element: marker, type: type, x: x, y: y });
+                    saveCurrentState();
+                }
+
+                function updateStats() {
+                    const cleanMarkers = markers.filter(m => m.type === 'clean').length;
+                    const pollutedMarkers = markers.filter(m => m.type === 'polluted').length;
+                    const total = markers.length;
+
+                    if (cleanCount) cleanCount.textContent = cleanMarkers;
+                    if (pollutedCount) pollutedCount.textContent = pollutedMarkers;
+                    if (totalCount) totalCount.textContent = total;
+                }
+
+                function updateButtonStates() {
+                    if (cleanMarkerBtn) {
+                        cleanMarkerBtn.classList.toggle('ring-4', currentMarkerMode === 'clean');
+                        cleanMarkerBtn.classList.toggle('ring-emerald-300', currentMarkerMode === 'clean');
+                    }
+                    if (pollutedMarkerBtn) {
+                        pollutedMarkerBtn.classList.toggle('ring-4', currentMarkerMode === 'polluted');
+                        pollutedMarkerBtn.classList.toggle('ring-red-300', currentMarkerMode === 'polluted');
+                    }
+                }
+
+                // Event listeners
+                if (cleanMarkerBtn) {
+                    cleanMarkerBtn.addEventListener('click', () => {
+                        currentMarkerMode = currentMarkerMode === 'clean' ? null : 'clean';
+                        updateButtonStates();
+                        const mode = currentMarkerMode ? 'Bật' : 'Tắt';
+                        NotificationSystem.show(`${mode} chế độ đánh dấu khu vực sạch`, 'info', 2000);
+                    });
+                }
+
+                if (pollutedMarkerBtn) {
+                    pollutedMarkerBtn.addEventListener('click', () => {
+                        currentMarkerMode = currentMarkerMode === 'polluted' ? null : 'polluted';
+                        updateButtonStates();
+                        const mode = currentMarkerMode ? 'Bật' : 'Tắt';
+                        NotificationSystem.show(`${mode} chế độ đánh dấu khu vực ô nhiễm`, 'info', 2000);
+                    });
+                }
+
+                if (clearMarkersBtn) {
+                    clearMarkersBtn.addEventListener('click', () => {
+                        if (markers.length === 0) {
+                            NotificationSystem.show('Không có đánh dấu nào để xóa', 'warning');
+                            return;
+                        }
+
+                        if (confirm(`Bạn có chắc muốn xóa tất cả ${markers.length} đánh dấu không?`)) {
+                            markers.forEach(marker => marker.element.remove());
+                            markers = [];
+                            updateStats();
+                            saveCurrentState();
+                            NotificationSystem.show('Đã xóa tất cả đánh dấu', 'success');
+                        }
+                    });
+                }
+
+                if (clearMapBtn) {
+                    clearMapBtn.addEventListener('click', () => {
+                        if (!currentMapData) {
+                            NotificationSystem.show('Không có bản đồ để xóa.', 'warning');
+                            return;
+                        }
+
+                        if (confirm('Bạn có chắc muốn xóa bản đồ và tất cả đánh dấu không?')) {
+                            localStorage.removeItem('mapData');
+                            mapContainer.innerHTML = initialUploadZoneHTML;
+
+                            markers = [];
+                            currentMapData = null;
+                            currentMarkerMode = null;
+                            currentMap = null;
+                            currentMapId = null;
+                            isMapPublic = false;
+
+                            updateStats();
+                            updateButtonStates();
+                            MapIDGenerator.updateDisplay(null, false);
+                            setupUploadEvents();
+
+                            NotificationSystem.show('Đã xóa bản đồ thành công!', 'success');
+                        }
+                    });
+                }
+
+                // Enhanced public map button
+                const publicMapBtn = document.getElementById('publicMapBtn');
+                if (publicMapBtn) {
+                    publicMapBtn.addEventListener('click', () => {
+                        if (!currentMapData) {
+                            NotificationSystem.show('Không có bản đồ để công khai. Vui lòng tải lên một bản đồ trước.', 'warning');
+                            return;
+                        }
+
+                        if (isMapPublic) {
+                            NotificationSystem.show('Bản đồ này đã được công khai rồi!', 'info');
+                            return;
+                        }
+
+                        if (markers.length === 0) {
+                            if (!confirm('Bản đồ chưa có đánh dấu nào. Bạn có muốn công khai bản đồ này không?')) {
+                                return;
+                            }
+                        }
+
+                        ProgressBar.show();
+                        ProgressBar.setProgress(33);
+
+                        // Create public map data
+                        const title = prompt('Nhập tên cho bản đồ công khai:') || `Bản đồ ${currentMapId}`;
+                        const description = prompt('Nhập mô tả cho bản đồ:') || 'Bản đồ tương tác môi trường';
+
+                        ProgressBar.setProgress(66);
+
+                        const publicMapData = {
+                            id: currentMapId,
+                            title: title,
+                            description: description,
+                            mapData: currentMapData,
+                            markers: markers.map(marker => ({
+                                x: marker.x,
+                                y: marker.y,
+                                type: marker.type
+                            })),
+                            author: 'Trần Hữu Hải Đăng - C0888293',
+                            createdAt: new Date().toISOString(),
+                            stats: {
+                                cleanMarkers: markers.filter(m => m.type === 'clean').length,
+                                pollutedMarkers: markers.filter(m => m.type === 'polluted').length,
+                                totalMarkers: markers.length
+                            }
+                        };
+
+                        // Get existing public maps
+                        let publicMaps = [];
+                        try {
+                            const existingMaps = localStorage.getItem('publicMaps');
+                            if (existingMaps) {
+                                publicMaps = JSON.parse(existingMaps);
+                            }
+                        } catch (error) {
+                            console.error('Error loading existing public maps:', error);
+                        }
+
+                        // Add new map to public maps
+                        publicMaps.push(publicMapData);
+
+                        // Save to localStorage
+                        try {
+                            localStorage.setItem('publicMaps', JSON.stringify(publicMaps));
+                            isMapPublic = true;
+                            saveCurrentState();
+                            MapIDGenerator.updateDisplay(currentMapId, isMapPublic);
+
+                            ProgressBar.setProgress(100);
+                            setTimeout(() => {
+                                ProgressBar.hide();
+                                NotificationSystem.show(`Đã công khai bản đồ "${title}" thành công! ID: ${currentMapId}`, 'success', 5000);
+                            }, 500);
+                        } catch (error) {
+                            ProgressBar.hide();
+                            console.error('Error saving public map:', error);
+                            NotificationSystem.show('Có lỗi xảy ra khi công khai bản đồ. Vui lòng thử lại.', 'error');
+                        }
+                    });
+                }
+
+                // Keyboard shortcuts
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === '1') {
+                        currentMarkerMode = currentMarkerMode === 'clean' ? null : 'clean';
+                        updateButtonStates();
+                        NotificationSystem.show('Chế độ đánh dấu sạch', 'info', 1000);
+                    }
+                    if (e.key === '2') {
+                        currentMarkerMode = currentMarkerMode === 'polluted' ? null : 'polluted';
+                        updateButtonStates();
+                        NotificationSystem.show('Chế độ đánh dấu ô nhiễm', 'info', 1000);
+                    }
+                    if (e.key === 'Escape') {
+                        currentMarkerMode = null;
+                        updateButtonStates();
+                        NotificationSystem.show('Đã thoát chế độ đánh dấu', 'info', 1000);
+                    }
+                });
+
+                // Folder Management System
+                const FolderManager = {
+                    areaName: '',
+                    maps: [],
+                    selectedMaps: new Set(),
+
+                    init() {
+                        this.setupEventListeners();
+                        this.loadAreaData();
+                    },
+
+                    setupEventListeners() {
+                        // Folder button
+                        document.getElementById('folderBtn').addEventListener('click', () => {
+                            this.showModal();
+                        });
+
+                        // Close folder modal
+                        document.getElementById('closeFolderBtn').addEventListener('click', () => {
+                            this.hideModal();
+                        });
+
+                        // Area name input
+                        document.getElementById('areaNameInput').addEventListener('input', (e) => {
+                            this.areaName = e.target.value;
+                            this.saveAreaData();
+                        });
+
+                        // Add map button
+                        document.getElementById('addMapBtn').addEventListener('click', () => {
+                            this.addCurrentMap();
+                        });
+
+                        // Public map modal events
+                        document.getElementById('publicMapBtn').addEventListener('click', () => {
+                            this.showPublicModal();
+                        });
+
+                        document.getElementById('closePublicModalBtn').addEventListener('click', () => {
+                            this.hidePublicModal();
+                        });
+
+                        document.getElementById('cancelPublicBtn').addEventListener('click', () => {
+                            this.hidePublicModal();
+                        });
+
+                        document.getElementById('confirmPublicBtn').addEventListener('click', () => {
+                            this.publishSelectedMaps();
+                        });
+
+                        // Clear map button functionality
+                        document.getElementById('clearMapBtn').addEventListener('click', () => {
+                            this.clearSelectedMaps();
+                        });
+                    },
+
+                    showModal() {
+                        document.getElementById('folderManager').classList.add('active');
+                        this.renderMaps();
+                    },
+
+                    hideModal() {
+                        document.getElementById('folderManager').classList.remove('active');
+                    },
+
+                    showPublicModal() {
+                        if (this.maps.length === 0) {
+                            NotificationSystem.show('Không có bản đồ nào để công khai!', 'warning', 3000);
+                            return;
+                        }
+                        document.getElementById('publicMapModal').classList.add('active');
+                        this.renderPublicMaps();
+                    },
+
+                    hidePublicModal() {
+                        document.getElementById('publicMapModal').classList.remove('active');
+                        this.selectedMaps.clear();
+                    },
+
+                    addCurrentMap() {
+                        if (!currentMapData || !currentMap) {
+                            NotificationSystem.show('Vui lòng tải lên một bản đồ trước!', 'warning', 3000);
+                            return;
+                        }
+
+                        const newMap = {
+                            id: MapIDGenerator.generate(),
+                            name: this.areaName ? `${this.areaName} - Vị trí ${this.maps.length + 1}` : `Bản đồ ${this.maps.length + 1}`,
+                            image: currentMapData,
+                            markers: [...markers],
+                            createdAt: new Date().toISOString(),
+                            isPublic: false
+                        };
+
+                        this.maps.push(newMap);
+                        this.saveAreaData();
+                        this.renderMaps();
+
+                        NotificationSystem.show(`Đã thêm bản đồ "${newMap.name}"!`, 'success', 3000);
+                    },
+
+                    renderMaps() {
+                        const grid = document.getElementById('mapGrid');
+                        grid.innerHTML = '';
+
+                        if (this.maps.length === 0) {
+                            grid.innerHTML = `
+                                <div class="col-span-full text-center py-8 text-gray-500">
+                                    <svg class="w-16 h-16 mx-auto mb-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                    </svg>
+                                    <p>Chưa có bản đồ nào trong khu vực</p>
+                                    <p class="text-sm">Hãy tải lên bản đồ và bấm "Thêm bản đồ"</p>
+                                </div>
+                            `;
+                            return;
+                        }
+
+                        this.maps.forEach((map, index) => {
+                            const mapCard = document.createElement('div');
+                            mapCard.className = 'map-card';
+                            mapCard.innerHTML = `
+                                <img src="${map.image}" alt="${map.name}" class="map-preview">
+                                <h4 class="font-medium text-sm text-gray-800 mb-1">${map.name}</h4>
+                                <div class="flex items-center justify-between text-xs text-gray-500">
+                                    <span>${map.markers.length} đánh dấu</span>
+                                    <span class="px-2 py-1 rounded-full text-xs ${map.isPublic ? 'bg-green-100 text-green-600' : 'bg-gray-100 text-gray-600'}">
+                                        ${map.isPublic ? 'Công khai' : 'Riêng tư'}
+                                    </span>
+                                </div>
+                                <div class="mt-2 flex gap-2">
+                                    <button onclick="FolderManager.loadMap(${index})" class="flex-1 bg-blue-500 text-white text-xs px-2 py-1 rounded hover:bg-blue-600">
+                                        Tải
+                                    </button>
+                                    <button onclick="FolderManager.deleteMap(${index})" class="bg-red-500 text-white text-xs px-2 py-1 rounded hover:bg-red-600">
+                                        Xóa
+                                    </button>
+                                </div>
+                            `;
+                            grid.appendChild(mapCard);
+                        });
+                    },
+
+                    renderPublicMaps() {
+                        const grid = document.getElementById('publicMapGrid');
+                        grid.innerHTML = '';
+
+                        this.maps.forEach((map, index) => {
+                            const mapCard = document.createElement('div');
+                            mapCard.className = 'map-card';
+                            mapCard.dataset.index = index;
+
+                            mapCard.innerHTML = `
+                                <img src="${map.image}" alt="${map.name}" class="map-preview">
+                                <h4 class="font-medium text-sm text-gray-800 mb-1">${map.name}</h4>
+                                <div class="flex items-center justify-between text-xs text-gray-500">
+                                    <span>${map.markers.length} đánh dấu</span>
+                                    <span class="px-2 py-1 rounded-full text-xs ${map.isPublic ? 'bg-green-100 text-green-600' : 'bg-gray-100 text-gray-600'}">
+                                        ${map.isPublic ? 'Đã công khai' : 'Chưa công khai'}
+                                    </span>
+                                </div>
+                            `;
+
+                            mapCard.addEventListener('click', () => {
+                                const index = parseInt(mapCard.dataset.index);
+                                if (this.selectedMaps.has(index)) {
+                                    this.selectedMaps.delete(index);
+                                    mapCard.classList.remove('selected');
+                                } else {
+                                    this.selectedMaps.add(index);
+                                    mapCard.classList.add('selected');
+                                }
+                            });
+
+                            grid.appendChild(mapCard);
+                        });
+                    },
+
+                    loadMap(index) {
+                        const map = this.maps[index];
+                        if (!map) return;
+
+                        // Load map image
+                        currentMapData = map.image;
+                        const uploadZone = document.getElementById('uploadZone');
+                        uploadZone.innerHTML = `<img src="${map.image}" alt="Uploaded Map" style="width: 100%; height: 100%; object-fit: contain;">`;
+
+                        // Load markers
+                        markers = [...map.markers];
+                        updateMapDisplay();
+                        updateStats();
+
+                        // Close modal
+                        this.hideModal();
+
+                        NotificationSystem.show(`Đã tải bản đồ "${map.name}"!`, 'success', 3000);
+                    },
+
+                    deleteMap(index) {
+                        const map = this.maps[index];
+                        if (!map) return;
+
+                        if (confirm(`Bạn có chắc muốn xóa bản đồ "${map.name}"?`)) {
+                            this.maps.splice(index, 1);
+                            this.saveAreaData();
+                            this.renderMaps();
+                            NotificationSystem.show(`Đã xóa bản đồ "${map.name}"!`, 'info', 3000);
+                        }
+                    },
+
+                    clearSelectedMaps() {
+                        if (this.maps.length === 0) {
+                            NotificationSystem.show('Không có bản đồ nào để xóa!', 'warning', 3000);
+                            return;
+                        }
+
+                        if (confirm(`Bạn có chắc muốn xóa tất cả ${this.maps.length} bản đồ?`)) {
+                            this.maps = [];
+                            this.saveAreaData();
+                            this.renderMaps();
+                            NotificationSystem.show('Đã xóa tất cả bản đồ!', 'info', 3000);
+                        }
+                    },
+
+                    publishSelectedMaps() {
+                        if (this.selectedMaps.size === 0) {
+                            NotificationSystem.show('Vui lòng chọn ít nhất một bản đồ để công khai!', 'warning', 3000);
+                            return;
+                        }
+
+                        const selectedMapArray = Array.from(this.selectedMaps);
+                        let publicMaps = [];
+
+                        try {
+                            const existingMaps = localStorage.getItem('publicMaps');
+                            if (existingMaps) {
+                                publicMaps = JSON.parse(existingMaps);
+                            }
+                        } catch (error) {
+                            console.error('Error loading existing public maps:', error);
+                        }
+
+                        selectedMapArray.forEach(index => {
+                            const map = this.maps[index];
+                            if (map && !map.isPublic) {
+                                const publicMapData = {
+                                    id: map.id,
+                                    title: map.name,
+                                    author: 'Trần Hữu Hải Đăng - C0888293',
+                                    image: map.image,
+                                    markers: map.markers,
+                                    createdAt: map.createdAt,
+                                    stats: {
+                                        cleanMarkers: map.markers.filter(m => m.type === 'clean').length,
+                                        pollutedMarkers: map.markers.filter(m => m.type === 'polluted').length,
+                                        totalMarkers: map.markers.length
+                                    }
+                                };
+
+                                publicMaps.push(publicMapData);
+                                this.maps[index].isPublic = true;
+                            }
+                        });
+
+                        try {
+                            localStorage.setItem('publicMaps', JSON.stringify(publicMaps));
+                            this.saveAreaData();
+                            this.hidePublicModal();
+                            NotificationSystem.show(`Đã công khai ${selectedMapArray.length} bản đồ thành công!`, 'success', 4000);
+                        } catch (error) {
+                            console.error('Error saving public maps:', error);
+                            NotificationSystem.show('Có lỗi xảy ra khi công khai bản đồ. Vui lòng thử lại.', 'error');
+                        }
+                    },
+
+                    saveAreaData() {
+                        try {
+                            const areaData = {
+                                name: this.areaName,
+                                maps: this.maps
+                            };
+                            localStorage.setItem('areaData', JSON.stringify(areaData));
+                        } catch (error) {
+                            console.error('Error saving area data:', error);
+                        }
+                    },
+
+                    loadAreaData() {
+                        try {
+                            const areaData = localStorage.getItem('areaData');
+                            if (areaData) {
+                                const data = JSON.parse(areaData);
+                                this.areaName = data.name || '';
+                                this.maps = data.maps || [];
+
+                                // Update area name input
+                                document.getElementById('areaNameInput').value = this.areaName;
+                            }
+                        } catch (error) {
+                            console.error('Error loading area data:', error);
+                        }
+                    }
+                };
+
+                // Initialize
+                setupUploadEvents();
+                loadSavedMapData();
+                updateStats();
+                FolderManager.init();
+            }
+            updateCartCount();            
+        })();
+    </script>
+</body>
+
+</html>
